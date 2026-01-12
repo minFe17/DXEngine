@@ -3,6 +3,9 @@
 
 #include "framework.h"
 #include "DXEngine.h"
+#include "..\\Engine_Source\DXEngineApplication.h"
+
+//#pragma comment (lib, "..\\x64\\Debug\\Engine.lib")
 
 #define MAX_LOADSTRING 100
 
@@ -42,16 +45,25 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
-    // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    while (true)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            if (msg.message == WM_QUIT)
+                break;
+
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+            {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
+        }
+        else
+        {
+            // 메세지가 없을 경우 처리
+            // 게임 로직이 들어가면 됨
         }
     }
-
     return (int) msg.wParam;
 }
 
@@ -98,7 +110,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+      CW_USEDEFAULT, 0, 1600, 900, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {
@@ -146,7 +158,25 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-            // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+            HBRUSH brush = CreateSolidBrush(RGB(255, 0, 255));
+            HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush);
+            Rectangle(hdc, 100, 100, 200, 200);
+
+            SelectObject(hdc, oldBrush);
+            DeleteObject(brush);
+
+            HPEN pen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
+            HPEN oldPen = HPEN(SelectObject(hdc, pen));
+
+            Ellipse(hdc, 200, 200, 300, 300);
+            SelectObject(hdc, oldPen);
+            DeleteObject(pen);
+
+            HBRUSH grayBrush = (HBRUSH)GetStockObject(GRAY_BRUSH);
+            oldBrush = (HBRUSH)SelectObject(hdc, grayBrush);
+            Rectangle(hdc, 400, 400, 500, 500);
+            SelectObject(hdc, oldBrush);
+
             EndPaint(hWnd, &ps);
         }
         break;

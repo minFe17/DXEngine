@@ -5,6 +5,10 @@ VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DXEngine", "DXEngine\DXEngine.vcxproj", "{255C2630-F4AC-4C67-AF9D-2A28459B26D2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcxproj", "{A74CD310-6D4D-4699-A0BA-1068A5A12536}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine_Source", "Engine_Source\Engine_Source.vcxitems", "{EEDDBB2D-9B96-4C6A-8C2B-C3D640C43D01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,11 +25,24 @@ Global
 		{255C2630-F4AC-4C67-AF9D-2A28459B26D2}.Release|x64.Build.0 = Release|x64
 		{255C2630-F4AC-4C67-AF9D-2A28459B26D2}.Release|x86.ActiveCfg = Release|Win32
 		{255C2630-F4AC-4C67-AF9D-2A28459B26D2}.Release|x86.Build.0 = Release|Win32
+		{A74CD310-6D4D-4699-A0BA-1068A5A12536}.Debug|x64.ActiveCfg = Debug|x64
+		{A74CD310-6D4D-4699-A0BA-1068A5A12536}.Debug|x64.Build.0 = Debug|x64
+		{A74CD310-6D4D-4699-A0BA-1068A5A12536}.Debug|x86.ActiveCfg = Debug|Win32
+		{A74CD310-6D4D-4699-A0BA-1068A5A12536}.Debug|x86.Build.0 = Debug|Win32
+		{A74CD310-6D4D-4699-A0BA-1068A5A12536}.Release|x64.ActiveCfg = Release|x64
+		{A74CD310-6D4D-4699-A0BA-1068A5A12536}.Release|x64.Build.0 = Release|x64
+		{A74CD310-6D4D-4699-A0BA-1068A5A12536}.Release|x86.ActiveCfg = Release|Win32
+		{A74CD310-6D4D-4699-A0BA-1068A5A12536}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D222B380-6759-4893-A30A-23B84945E56E}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Engine_Source\Engine_Source.vcxitems*{255c2630-f4ac-4c67-af9d-2a28459b26d2}*SharedItemsImports = 4
+		Engine_Source\Engine_Source.vcxitems*{a74cd310-6d4d-4699-a0ba-1068a5a12536}*SharedItemsImports = 4
+		Engine_Source\Engine_Source.vcxitems*{eeddbb2d-9b96-4c6a-8c2b-c3d640c43d01}*SharedItemsImports = 9
 	EndGlobalSection
 EndGlobal
