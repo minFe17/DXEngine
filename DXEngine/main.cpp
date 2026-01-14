@@ -5,7 +5,7 @@
 #include "DXEngine.h"
 #include "..\\Engine_Source\DXEngineApplication.h"
 
-//#pragma comment (lib, "..\\x64\\Debug\\Engine.lib")
+DXEngine::Application application;
 
 #define MAX_LOADSTRING 100
 
@@ -62,6 +62,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         {
             // 메세지가 없을 경우 처리
             // 게임 로직이 들어가면 됨
+            application.Run();
         }
     }
     return (int) msg.wParam;
@@ -112,6 +113,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, 1600, 900, nullptr, nullptr, hInstance, nullptr);
 
+   application.Init(hWnd);
+
    if (!hWnd)
    {
       return FALSE;
@@ -158,24 +161,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-            HBRUSH brush = CreateSolidBrush(RGB(255, 0, 255));
-            HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush);
-            Rectangle(hdc, 100, 100, 200, 200);
-
-            SelectObject(hdc, oldBrush);
-            DeleteObject(brush);
-
-            HPEN pen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
-            HPEN oldPen = HPEN(SelectObject(hdc, pen));
-
-            Ellipse(hdc, 200, 200, 300, 300);
-            SelectObject(hdc, oldPen);
-            DeleteObject(pen);
-
-            HBRUSH grayBrush = (HBRUSH)GetStockObject(GRAY_BRUSH);
-            oldBrush = (HBRUSH)SelectObject(hdc, grayBrush);
-            Rectangle(hdc, 400, 400, 500, 500);
-            SelectObject(hdc, oldBrush);
 
             EndPaint(hWnd, &ps);
         }
