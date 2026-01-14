@@ -30,6 +30,7 @@ namespace DXEngine
 	void Application::Update()
 	{
 		player.Update();
+		player2.Update();
 	}
 
 	void Application::LateUpdate()
@@ -40,5 +41,6 @@ namespace DXEngine
 	void Application::Render()
 	{
 		player.Render(hdc);
+		player2.Render(hdc);
 	}
 }
