@@ -17,11 +17,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGameObject.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGameObject2.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineGameObject.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineGameObject2.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineInput.cpp" />
   </ItemGroup>
 </Project>

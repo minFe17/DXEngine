@@ -1,4 +1,5 @@
 #include "DXEngineApplication.h"
+#include "DXEngineInput.h"
 
 namespace DXEngine
 {
@@ -18,6 +19,8 @@ namespace DXEngine
 		hdc = GetDC(hwnd);
 
 		player.SetPosition(0, 0);
+
+		Input::Init();
 	}
 
 	void Application::Run()
@@ -29,8 +32,8 @@ namespace DXEngine
 
 	void Application::Update()
 	{
+		Input::Update();
 		player.Update();
-		player2.Update();
 	}
 
 	void Application::LateUpdate()
@@ -41,6 +44,5 @@ namespace DXEngine
 	void Application::Render()
 	{
 		player.Render(hdc);
-		player2.Render(hdc);
 	}
 }

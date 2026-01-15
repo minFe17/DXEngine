@@ -1,7 +1,6 @@
 #pragma once
 #include "CommonInclude.h"
 #include "DXEngineGameObject.h"
-#include "DXEngineGameObject2.h"
 
 namespace DXEngine
 {
@@ -21,6 +20,5 @@ namespace DXEngine
 		HDC hdc;
 
 		GameObject player;
-		GameObject2 player2;
 	};
 }
