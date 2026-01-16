@@ -36,6 +36,10 @@ namespace DXEngine
 		static bool GetKeyDown(EKeyCode code) { return keys[(UINT)code].state == EKeyState::Down; }
 		static bool GetKeyUp(EKeyCode code) { return keys[(UINT)code].state == EKeyState::Up; }
 		static bool GetKey(EKeyCode code) { return keys[(UINT)code].state == EKeyState::Pressed; }
+
+	private:
+		static void CreateKeys();
+		static void UpdateKeys();
 		
 	private:
 		static std::vector<Input::Key> keys;

@@ -1,5 +1,6 @@
 #include "DXEngineGameObject.h"
 #include "DXEngineInput.h"
+#include "DXEngineTime.h"
 
 namespace DXEngine
 {
@@ -13,14 +14,16 @@ namespace DXEngine
 
 	void GameObject::Update()
 	{
+		const int speed = 100;
+
 		if (Input::GetKey(EKeyCode::Left))
-			xPos -= 0.01f;
+			xPos -= speed * Time::DeltaTime();
 		if (Input::GetKey(EKeyCode::Right))
-			xPos += 0.01f;
+			xPos += speed * Time::DeltaTime();
 		if (Input::GetKey(EKeyCode::Up))
-			yPos -= 0.01f;
+			yPos -= speed * Time::DeltaTime();
 		if (Input::GetKey(EKeyCode::Down))
-			yPos += 0.01f;
+			yPos += speed * Time::DeltaTime();
 	}
 
 	void GameObject::LateUpdate()

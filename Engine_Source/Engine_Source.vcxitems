@@ -18,10 +18,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineInput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTime.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineInput.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTime.cpp" />
   </ItemGroup>
 </Project>

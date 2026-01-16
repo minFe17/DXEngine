@@ -21,6 +21,7 @@ namespace DXEngine
 		player.SetPosition(0, 0);
 
 		Input::Init();
+		Time::Init();
 	}
 
 	void Application::Run()
@@ -33,6 +34,8 @@ namespace DXEngine
 	void Application::Update()
 	{
 		Input::Update();
+		Time::Update();
+
 		player.Update();
 	}
 
@@ -43,6 +46,7 @@ namespace DXEngine
 
 	void Application::Render()
 	{
+		time.Render(hdc);
 		player.Render(hdc);
 	}
 }

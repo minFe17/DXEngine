@@ -14,6 +14,16 @@ namespace DXEngine
 
 	void Input::Init()
 	{
+		CreateKeys();
+	}
+
+	void Input::Update()
+	{
+		UpdateKeys();
+	}
+
+	void Input::CreateKeys()
+	{
 		for (int i = 0; i < (UINT)EKeyCode::Max; i++)
 		{
 			Key key = {};
@@ -25,7 +35,7 @@ namespace DXEngine
 		}
 	}
 
-	void Input::Update()
+	void Input::UpdateKeys()
 	{
 		for (int i = 0; i < keys.size(); i++)
 		{
