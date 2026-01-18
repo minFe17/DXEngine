@@ -10,7 +10,7 @@ namespace DXEngine
 	public:
 		Application();
 		~Application();
-		void Init(HWND hwnd);
+		void Init(HWND hwnd, UINT width, UINT height);
 		void Run();
 
 		void Update();
@@ -19,6 +19,12 @@ namespace DXEngine
 	private:
 		HWND hWnd;
 		HDC hdc;
+
+		HDC backHdc;
+		HBITMAP backBuffer;
+
+		UINT width;
+		UINT height;
 
 		GameObject player;
 		Time time;
