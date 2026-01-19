@@ -2,7 +2,7 @@
 
 namespace DXEngine
 {
-	DXEngine::Transform::Transform() : xPos(0), yPos(0)
+	DXEngine::Transform::Transform()
 	{
 	}
 

@@ -4,7 +4,7 @@
 
 namespace DXEngine
 {
-	SpriteRenderer::SpriteRenderer()
+	SpriteRenderer::SpriteRenderer() : image(nullptr), width(0), height(0)
 	{
 
 	}
@@ -27,15 +27,18 @@ namespace DXEngine
 
 	void SpriteRenderer::Render(HDC hdc)
 	{
-		HBRUSH brush = CreateSolidBrush(RGB(0, 0, 255));
-		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush);
-
 		Transform* transform = GetOwner()->GetComponent<Transform>();
-		int x = transform->GetPositionX();
-		int y = transform->GetPositionY();
-		Rectangle(hdc, 100 + x, 100 + y, 200 + x, 200 + y);
 
-		SelectObject(hdc, oldBrush);
-		DeleteObject(brush);
+		Vector2 pos = transform->GetPosition();
+
+		Gdiplus::Graphics graphcis(hdc);
+		graphcis.DrawImage(image, Gdiplus::Rect(pos.x, pos.y, width, height));
+	}
+
+	void SpriteRenderer::ImageLoad(const std::wstring& path)
+	{
+		image = Gdiplus::Image::FromFile(path.c_str());
+		width = image->GetWidth();
+		height = image->GetHeight();
 	}
 }

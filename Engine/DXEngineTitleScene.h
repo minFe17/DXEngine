@@ -3,11 +3,11 @@
 
 namespace DXEngine
 {
-	class PlayScene : public Scene
+	class TitleScene : public Scene
 	{
 	public:
-		PlayScene();
-		~PlayScene();
+		TitleScene();
+		~TitleScene();
 
 		void Init() override;
 		void Update() override;
@@ -15,5 +15,6 @@ namespace DXEngine
 		void Render(HDC hdc) override;
 
 	private:
+
 	};
 }

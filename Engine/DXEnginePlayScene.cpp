@@ -16,15 +16,17 @@ namespace DXEngine
 
 	void PlayScene::Init()
 	{
-		Player* player = new Player();
-		Transform* transform = player->AddComponent<Transform>();
-		transform->SetPosition(300, 400);
+		Player* background = new Player();
+		Transform* transform = background->AddComponent<Transform>();
+		transform->SetPosition(Vector2(0, 0));
+
 		transform->SetName(L"TR");
 
-		SpriteRenderer* spriteRenderer = player->AddComponent<SpriteRenderer>();
+		SpriteRenderer* spriteRenderer = background->AddComponent<SpriteRenderer>();
 		spriteRenderer->SetName(L"SR");
+		spriteRenderer->ImageLoad(L"Resources/CloudOcean.png");
 
-		AddGameObject(player);
+		AddGameObject(background);
 	}
 
 	void PlayScene::Update()

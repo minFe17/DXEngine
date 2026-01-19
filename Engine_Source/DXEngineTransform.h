@@ -4,6 +4,7 @@
 
 namespace DXEngine
 {
+	using namespace Math;
 	class Transform : public Component
 	{
 	public:
@@ -15,17 +16,10 @@ namespace DXEngine
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
 
-		void SetPosition(float x, float y)
-		{
-			xPos = x;
-			yPos = y;
-		}
-
-		float GetPositionX() { return xPos; }
-		float GetPositionY() { return yPos; }
+		void SetPosition(Vector2 pos) { position.x = pos.x, position.y = pos.y; }
+		Vector2 GetPosition() { return position; }
 
 	private:
-		float xPos;
-		float yPos;
+		Vector2 position;
 	};
 }

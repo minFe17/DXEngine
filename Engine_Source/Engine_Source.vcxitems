@@ -20,6 +20,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineInput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineResource.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineSceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineSpriteRenderer.h" />
@@ -32,6 +35,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineInput.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineResource.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineSceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineSpriteRenderer.cpp" />

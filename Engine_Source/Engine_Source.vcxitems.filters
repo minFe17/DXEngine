@@ -19,6 +19,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineSceneManager.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineResource.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineResources.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineSpriteRenderer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTransform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineApplication.h" />
@@ -42,6 +47,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineSceneManager.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineResource.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineResources.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineSpriteRenderer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTransform.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">

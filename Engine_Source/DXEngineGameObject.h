@@ -19,6 +19,7 @@ namespace DXEngine
 		T* AddComponent()
 		{
 			T* component = new T();
+			component->Init();
 			component->SetOwner(this);
 			components.push_back(component);
 

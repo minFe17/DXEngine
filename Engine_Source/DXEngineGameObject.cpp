@@ -35,4 +35,4 @@ namespace DXEngine
 		for (size_t i = 0; i < components.size(); i++)
 			components[i]->Render(hdc);
 	}
-}z
+}
