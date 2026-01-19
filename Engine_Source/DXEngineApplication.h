@@ -16,6 +16,12 @@ namespace DXEngine
 		void Update();
 		void LateUpdate();
 		void Render();
+
+	private:
+		void AdjustWindow(UINT width, UINT hewight);
+		void CreateBuffer();
+		void ClearRenderTarget();
+		void CopyRenderTarget(HDC source, HDC dest);
 	private:
 		HWND hWnd;
 		HDC hdc;
@@ -26,7 +32,6 @@ namespace DXEngine
 		UINT width;
 		UINT height;
 
-		GameObject player;
 		Time time;
 	};
 }

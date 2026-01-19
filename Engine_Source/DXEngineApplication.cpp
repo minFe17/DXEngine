@@ -1,5 +1,6 @@
 #include "DXEngineApplication.h"
 #include "DXEngineInput.h"
+#include "DXEngineSceneManager.h"
 
 namespace DXEngine
 {
@@ -18,28 +19,13 @@ namespace DXEngine
 		hWnd = hwnd;
 		hdc = GetDC(hwnd);
 
-		RECT rect = {0,0, width, height};
-		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
-
-		this->width = rect.right - rect.left;
-		this->height = rect.bottom - rect.top;
-
-		SetWindowPos(hWnd, nullptr, 0, 0, width, height, 0);
-		ShowWindow(hWnd, true);
-
-		// 윈도우 해상도에 맞는 백버퍼 생성
-		backBuffer = CreateCompatibleBitmap(hdc, width, height);
-
-		// 백버퍼를 가르킬 DC 생성
-		backHdc = CreateCompatibleDC(hdc);
-
-		HBITMAP oldBitmap = (HBITMAP)SelectObject(backHdc, backBuffer);
-		DeleteObject(oldBitmap);
-
-		player.SetPosition(0, 0);
+		
+		AdjustWindow(width, height);
+		CreateBuffer();
 
 		Input::Init();
 		Time::Init();
+		SceneManager::Init();
 	}
 
 	void Application::Run()
@@ -54,7 +40,7 @@ namespace DXEngine
 		Input::Update();
 		Time::Update();
 
-		player.Update();
+		SceneManager::Update();
 	}
 
 	void Application::LateUpdate()
@@ -64,12 +50,45 @@ namespace DXEngine
 
 	void Application::Render()
 	{
-		Rectangle(backHdc, 0, 0, 1600, 900);
+		ClearRenderTarget();
 
 		time.Render(backHdc);
-		player.Render(backHdc);
+		SceneManager::Render(backHdc);
 
-		// BackBuffer에 있는걸 원본 Buffer에 복사(그려준다)
-		BitBlt(hdc, 0, 0, width, height, backHdc, 0, 0, SRCCOPY);
+		CopyRenderTarget(backHdc, hdc);
+	}
+
+	void Application::AdjustWindow(UINT width, UINT height)
+	{
+		RECT rect = { 0,0, width, height };
+		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+
+		this->width = rect.right - rect.left;
+		this->height = rect.bottom - rect.top;
+
+		SetWindowPos(hWnd, nullptr, 0, 0, width, height, 0);
+		ShowWindow(hWnd, true);
+	}
+
+	void Application::CreateBuffer()
+	{
+		// 윈도우 해상도에 맞는 백버퍼 생성
+		backBuffer = CreateCompatibleBitmap(hdc, width, height);
+
+		// 백버퍼를 가르킬 DC 생성
+		backHdc = CreateCompatibleDC(hdc);
+
+		HBITMAP oldBitmap = (HBITMAP)SelectObject(backHdc, backBuffer);
+		DeleteObject(oldBitmap);
+	}
+
+	void Application::ClearRenderTarget()
+	{
+		Rectangle(backHdc, -1, -1, 1601, 901);
+	}
+
+	void Application::CopyRenderTarget(HDC source, HDC dest)
+	{
+		BitBlt(dest, 0, 0, width, height, source, 0, 0, SRCCOPY);
 	}
 }

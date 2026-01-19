@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "DXEngine.h"
 #include "..\\Engine_Source\DXEngineApplication.h"
+#include "..\\Engine\DXEngineLoadScene.h"
 
 DXEngine::Application application;
 
@@ -125,6 +126,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
+
+   DXEngine::LoadScenes();
 
    return TRUE;
 }
