@@ -1,5 +1,6 @@
 #pragma once
 #include "CommonInclude.h"
+#include "DXEngineComponent.h"
 
 namespace DXEngine
 {
@@ -9,21 +10,36 @@ namespace DXEngine
 		GameObject();
 		~GameObject();
 
-		void Update();
-		void LateUpdate();
-		void Render(HDC hdc);
+		virtual void Init();
+		virtual void Update();
+		virtual void LateUpdate();
+		virtual void Render(HDC hdc);
 
-		void SetPosition(float x, float y)
+		template <typename T>
+		T* AddComponent()
 		{
-			xPos = x;
-			yPos = y;
+			T* component = new T();
+			component->SetOwner(this);
+			components.push_back(component);
+
+			return component;
 		}
 
-		float GetPositionX() { return xPos; }
-		float GetPositionY() { return yPos; }
+		template <typename T>
+		T* GetComponent()
+		{
+			T* component = nullptr;
+			for (size_t i = 0; i < components.size(); i++)
+			{
+				component = dynamic_cast<T*>(components[i]);
+				if (component)
+					break;
+			}
+
+			return component;
+		}
 
 	private:
-		float xPos;
-		float yPos;
+		std::vector<Component*> components;
 	};
 }

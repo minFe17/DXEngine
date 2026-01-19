@@ -16,20 +16,26 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineSceneManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineSpriteRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTime.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTransform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineSceneManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineSpriteRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTime.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTransform.cpp" />
   </ItemGroup>
 </Project>

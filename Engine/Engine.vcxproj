@@ -135,9 +135,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="DXEngineLoadScene.h" />
+    <ClInclude Include="DXEnginePlayer.h" />
     <ClInclude Include="DXEnginePlayScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DXEnginePlayer.cpp" />
     <ClCompile Include="DXEnginePlayScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

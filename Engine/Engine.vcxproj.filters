@@ -5,6 +5,7 @@
     <ClInclude Include="DXEngineLoadScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="DXEnginePlayer.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scene">
@@ -13,5 +14,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXEnginePlayScene.cpp" />
+    <ClCompile Include="DXEnginePlayer.cpp" />
   </ItemGroup>
 </Project>

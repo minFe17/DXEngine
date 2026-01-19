@@ -1,5 +1,8 @@
 #include "DXEnginePlayScene.h"
 #include "DXEngineGameObject.h"
+#include "DXEnginePlayer.h"
+#include "DXEngineTransform.h"
+#include "DXEngineSpriteRenderer.h"
 
 namespace DXEngine
 {
@@ -13,10 +16,15 @@ namespace DXEngine
 
 	void PlayScene::Init()
 	{
-		GameObject* gameobject = new GameObject();
-		AddGameObject(gameobject);
+		Player* player = new Player();
+		Transform* transform = player->AddComponent<Transform>();
+		transform->SetPosition(300, 400);
+		transform->SetName(L"TR");
 
-		gameobject->SetPosition(0, 0);
+		SpriteRenderer* spriteRenderer = player->AddComponent<SpriteRenderer>();
+		spriteRenderer->SetName(L"SR");
+
+		AddGameObject(player);
 	}
 
 	void PlayScene::Update()
