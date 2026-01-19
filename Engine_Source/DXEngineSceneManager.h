@@ -19,12 +19,15 @@ namespace DXEngine
 
 		static Scene* LoadScene(const std::wstring& name)
 		{
+			if(activeScene != nullptr)
+				activeScene->OnExit();
 			std::map<const std::wstring, Scene*>::iterator iter = scenes.find(name);
 
 			if (iter == scenes.end())
 				return nullptr;
 
 			activeScene = iter->second;
+			activeScene->OnEnter();
 			return iter->second;
 		}
 

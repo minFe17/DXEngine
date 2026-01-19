@@ -3,6 +3,8 @@
 #include "DXEnginePlayer.h"
 #include "DXEngineTransform.h"
 #include "DXEngineSpriteRenderer.h"
+#include "DXEngineInput.h"
+#include "DXEngineSceneManager.h"
 
 namespace DXEngine
 {
@@ -16,7 +18,7 @@ namespace DXEngine
 
 	void PlayScene::Init()
 	{
-		Player* background = new Player();
+		background = new Player();
 		Transform* transform = background->AddComponent<Transform>();
 		transform->SetPosition(Vector2(0, 0));
 
@@ -26,7 +28,7 @@ namespace DXEngine
 		spriteRenderer->SetName(L"SR");
 		spriteRenderer->ImageLoad(L"Resources/CloudOcean.png");
 
-		AddGameObject(background);
+		AddGameObject(background, ELayerType::Background);
 	}
 
 	void PlayScene::Update()
@@ -36,9 +38,24 @@ namespace DXEngine
 	void PlayScene::LateUpdate()
 	{
 		Scene::LateUpdate();
+
+		if (Input::GetKeyDown(EKeyCode::N))
+			SceneManager::LoadScene(L"TitleScene");
 	}
+
 	void PlayScene::Render(HDC hdc)
 	{
 		Scene::Render(hdc);
+		wchar_t text[50] = L"Play Scene";
+		TextOut(hdc, 0, 0, text, 10);
+	}
+
+	void PlayScene::OnEnter()
+	{
+	}
+
+	void PlayScene::OnExit()
+	{
+		
 	}
 }

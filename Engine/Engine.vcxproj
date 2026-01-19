@@ -137,10 +137,12 @@
     <ClInclude Include="DXEngineLoadScene.h" />
     <ClInclude Include="DXEnginePlayer.h" />
     <ClInclude Include="DXEnginePlayScene.h" />
+    <ClInclude Include="DXEngineTitleScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXEnginePlayer.cpp" />
     <ClCompile Include="DXEnginePlayScene.cpp" />
+    <ClCompile Include="DXEngineTitleScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

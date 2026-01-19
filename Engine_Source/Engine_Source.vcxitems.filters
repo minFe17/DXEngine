@@ -2,8 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineApplication.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineInput.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineEntity.cpp">
       <Filter>Common</Filter>
     </ClCompile>
@@ -22,13 +20,24 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineResources.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineSpriteRenderer.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTransform.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineInput.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineSpriteRenderer.cpp">
+      <Filter>Component\Child</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTransform.cpp">
+      <Filter>Component\Child</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTime.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineLayer.cpp">
+      <Filter>Layer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineApplication.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineInput.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
       <Filter>Common</Filter>
     </ClInclude>
@@ -50,8 +59,24 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineResources.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineSpriteRenderer.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTransform.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineSpriteRenderer.h">
+      <Filter>Component\Child</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTransform.h">
+      <Filter>Component\Child</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineInput.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTime.h">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineLayer.h">
+      <Filter>Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEnum.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -65,6 +90,18 @@
     </Filter>
     <Filter Include="Scene">
       <UniqueIdentifier>{164938fa-82eb-49a1-b158-1472e308356a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{62611bf6-b0c6-4065-89bb-2278f4cac07f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Child">
+      <UniqueIdentifier>{0cb26b8e-26d5-4735-9c8a-80194e5b1bf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Time">
+      <UniqueIdentifier>{8953f03d-de47-472e-95b2-38daa49d94e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Layer">
+      <UniqueIdentifier>{39eee8d8-6836-40b8-9fab-9f3da82e2ef9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

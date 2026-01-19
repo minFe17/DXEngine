@@ -1,6 +1,7 @@
 #pragma once
 #include "DXEngineEntity.h";
 #include "DXEngineGameObject.h"
+#include "DXEngineLayer.h"
 
 namespace DXEngine
 {
@@ -15,9 +16,12 @@ namespace DXEngine
 		virtual void LateUpdate();
 		virtual void Render(HDC hdc);
 
-		void AddGameObject(GameObject* gameObject);
+		virtual void OnEnter();
+		virtual void OnExit();
+
+		void AddGameObject(GameObject* gameObject, ELayerType type);
 
 	private:
-		std::vector<GameObject*> gameObjects;
+		std::vector<Layer*> layers;
 	};
 }
