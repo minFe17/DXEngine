@@ -7,6 +7,7 @@ namespace DXEngine::Enum
 		Transform,
 		SpriteRenderer,
 		Script,
+		Camera,
 		Max,
 	};
 

@@ -18,6 +18,8 @@ namespace DXEngine
 		void Render();
 
 		HDC GetHDC() { return hdc; }
+		UINT GetWidth() { return width; }
+		UINT GetHeight() { return height; }
 
 	private:
 		void AdjustWindow(UINT width, UINT hewight);

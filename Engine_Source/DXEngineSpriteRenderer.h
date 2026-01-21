@@ -16,7 +16,7 @@ namespace DXEngine
 		void Render(HDC hdc) override;
 
 		void SetTexture(Graphcis::Texture* texture) { this->texture = texture; }
-		void SetSize(Math::Vector2 value) { scale = value; }
+		void SetScale(Math::Vector2 value) { scale = value; }
 
 	private:
 		Graphcis::Texture* texture;

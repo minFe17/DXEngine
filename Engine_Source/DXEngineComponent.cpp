@@ -2,6 +2,14 @@
 
 namespace DXEngine
 {
+	Component::Component(Enum::EComponentType type)
+	{
+		this->type = type;
+	}
+
+	Component::~Component()
+	{
+	}
 	void Component::Init()
 	{
 

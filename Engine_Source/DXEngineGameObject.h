@@ -21,7 +21,8 @@ namespace DXEngine
 			T* component = new T();
 			component->Init();
 			component->SetOwner(this);
-			components.push_back(component);
+
+			components[(UINT)component->GetType()] = component;
 
 			return component;
 		}

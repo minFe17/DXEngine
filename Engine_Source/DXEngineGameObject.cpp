@@ -18,25 +18,41 @@ namespace DXEngine
 	void GameObject::Init()
 	{
 		for (size_t i = 0; i < components.size(); i++)
+		{
+			if (components[i] == nullptr)
+				continue;
 			components[i]->Init();
+		}
 	}
 
 	void GameObject::Update()
 	{
 		for (size_t i = 0; i < components.size(); i++)
+		{
+			if (components[i] == nullptr)
+				continue;
 			components[i]->Update();
+		}
 	}
 
 	void GameObject::LateUpdate()
 	{
 		for (size_t i = 0; i < components.size(); i++)
+		{
+			if (components[i] == nullptr)
+				continue;
 			components[i]->LateUpdate();
+		}
 	}
 
 	void GameObject::Render(HDC hdc)
 	{
 		for (size_t i = 0; i < components.size(); i++)
+		{
+			if (components[i] == nullptr)
+				continue;
 			components[i]->Render(hdc);
+		}
 	}
 
 	void GameObject::InitTransform()

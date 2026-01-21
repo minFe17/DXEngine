@@ -2,10 +2,11 @@
 #include "DXEngineGameObject.h"
 #include "DXEngineTransform.h"
 #include "DXEngineTexture.h"
+#include "DXEngineRenderer.h"
 
 namespace DXEngine
 {
-	SpriteRenderer::SpriteRenderer() : Component(), texture(nullptr), scale(Vector2::One)
+	SpriteRenderer::SpriteRenderer() : Component(Enum::EComponentType::SpriteRenderer), texture(nullptr), scale(Vector2::One)
 	{
 
 	}
@@ -33,6 +34,7 @@ namespace DXEngine
 
 		Transform* transform = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = transform->GetPosition();
+		pos = Renderer::mainCamera->CalculatePosition(pos);
 
 		if (texture->GetTextureType() == Graphcis::Texture::ETextureType::Bmp)
 		{

@@ -2,7 +2,7 @@
 
 namespace DXEngine
 {
-	DXEngine::Transform::Transform()
+	DXEngine::Transform::Transform() : Component(Enum::EComponentType::Transform)
 	{
 	}
 

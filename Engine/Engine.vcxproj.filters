@@ -12,10 +12,16 @@
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="DXEngineLoadResources.h" />
+    <ClInclude Include="DXEnginePlayerScript.h">
+      <Filter>Script</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scene">
       <UniqueIdentifier>{1ac6f053-39ae-4e77-944d-40cb01700673}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script">
+      <UniqueIdentifier>{cab44ea5-90d2-497b-b41d-1d431e6ee6b9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -25,6 +31,9 @@
     </ClCompile>
     <ClCompile Include="DXEngineTitleScene.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="DXEnginePlayerScript.cpp">
+      <Filter>Script</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

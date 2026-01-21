@@ -1,19 +1,17 @@
 #pragma once
-#include "DXEngineComponent.h"
+#include "..\\Engine_Source\DXEngineScript.h"
 
 namespace DXEngine
 {
-	class Script : public Component
+	class PlayerScript : public Script
 	{
 	public:
-		Script();
-		~Script();
+		PlayerScript();
+		~PlayerScript();
 
 		void Init() override;
 		void Update() override;
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
-
-	private:
 	};
 }

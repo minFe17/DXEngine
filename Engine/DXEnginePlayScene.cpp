@@ -8,6 +8,9 @@
 #include "DXEngineObject.h"
 #include "DXEngineTexture.h"
 #include "DXEngineResources.h"
+#include "DXEnginePlayerScript.h"
+#include "DXEngineCamera.h"
+#include "DXEngineRenderer.h"
 
 namespace DXEngine
 {
@@ -21,9 +24,15 @@ namespace DXEngine
 
 	void PlayScene::Init()
 	{
-		background = Object::Instantiate<Player>(Enum::ELayerType::Background, Vector2(100, 100));
+		GameObject* camera = Object::Instantiate<GameObject>(Enum::ELayerType::None);
+		Camera* cameraComponent = camera->AddComponent<Camera>();
+		Renderer::mainCamera = cameraComponent;
+		camera->AddComponent<PlayerScript>();
+
+		background = Object::Instantiate<Player>(Enum::ELayerType::Background);
 
 		SpriteRenderer* spriteRenderer = background->AddComponent<SpriteRenderer>();
+
 		Graphcis::Texture* texture = Resources::Find<Graphcis::Texture>(L"Background");
 		spriteRenderer->SetTexture(texture);
 

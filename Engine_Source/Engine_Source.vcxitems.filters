@@ -21,12 +21,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineInput.cpp">
       <Filter>Input</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineSpriteRenderer.cpp">
-      <Filter>Component\Child</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTransform.cpp">
-      <Filter>Component\Child</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTime.cpp">
       <Filter>Time</Filter>
     </ClCompile>
@@ -41,6 +35,21 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTexture.cpp">
       <Filter>Resource\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTransform.cpp">
+      <Filter>Component\Child\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineSpriteRenderer.cpp">
+      <Filter>Component\Child\SpriteRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineScript.cpp">
+      <Filter>Component\Child\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCamera.cpp">
+      <Filter>Component\Child\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineRenderer.cpp">
+      <Filter>Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -64,12 +73,6 @@
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMath.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineSpriteRenderer.h">
-      <Filter>Component\Child</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTransform.h">
-      <Filter>Component\Child</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineInput.h">
       <Filter>Input</Filter>
     </ClInclude>
@@ -93,6 +96,21 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTexture.h">
       <Filter>Resource\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTransform.h">
+      <Filter>Component\Child\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineSpriteRenderer.h">
+      <Filter>Component\Child\SpriteRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineScript.h">
+      <Filter>Component\Child\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCamera.h">
+      <Filter>Component\Child\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineRenderer.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +143,21 @@
     </Filter>
     <Filter Include="Resource\Texture">
       <UniqueIdentifier>{57c7faa5-7599-4ce4-83f9-0ab3d8552ac7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Child\Transform">
+      <UniqueIdentifier>{a8a172fa-9110-477a-a648-26a2a6249c82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Child\SpriteRenderer">
+      <UniqueIdentifier>{41a7ec45-ab53-4ca4-8581-f45afb802728}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Child\Script">
+      <UniqueIdentifier>{8ffc7c88-0aee-477e-a6c3-5d3557c5a3b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Child\Camera">
+      <UniqueIdentifier>{f772f464-29a0-4d84-adf2-432a7a55a1aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{4f6bb6cc-1d0f-4ccc-84cb-66b72470d83b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
