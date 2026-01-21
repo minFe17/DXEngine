@@ -23,11 +23,13 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineSceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineSpriteRenderer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTransform.h" />
   </ItemGroup>
@@ -44,6 +46,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineSceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineSpriteRenderer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTransform.cpp" />
   </ItemGroup>

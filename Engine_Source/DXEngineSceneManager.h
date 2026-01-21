@@ -11,25 +11,17 @@ namespace DXEngine
 		{
 			T* scene = new T();
 			scene->SetName(name);
+
+			activeScene = scene;
 			scene->Init();
 
 			scenes.insert(std::make_pair(name, scene));
+
 			return scene;
 		}
 
-		static Scene* LoadScene(const std::wstring& name)
-		{
-			if(activeScene != nullptr)
-				activeScene->OnExit();
-			std::map<const std::wstring, Scene*>::iterator iter = scenes.find(name);
-
-			if (iter == scenes.end())
-				return nullptr;
-
-			activeScene = iter->second;
-			activeScene->OnEnter();
-			return iter->second;
-		}
+		static Scene* LoadScene(const std::wstring& name);
+		static Scene* GetActiveScene() { return activeScene; }
 
 		 static void Init();
 		 static void Update();

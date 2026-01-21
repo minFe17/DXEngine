@@ -1,11 +1,14 @@
 #include "DXEngineGameObject.h"
 #include "DXEngineInput.h"
 #include "DXEngineTime.h"
+#include <DXEngineTransform.h>
 
 namespace DXEngine
 {
 	GameObject::GameObject()
 	{
+		components.resize((UINT)Enum::EComponentType::Max);
+		InitTransform();
 	}
 
 	GameObject::~GameObject()
@@ -34,5 +37,10 @@ namespace DXEngine
 	{
 		for (size_t i = 0; i < components.size(); i++)
 			components[i]->Render(hdc);
+	}
+
+	void GameObject::InitTransform()
+	{
+		AddComponent<Transform>();
 	}
 }

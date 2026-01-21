@@ -5,6 +5,7 @@
 #include "DXEngine.h"
 #include "..\\Engine_Source\DXEngineApplication.h"
 #include "..\\Engine\DXEngineLoadScene.h"
+#include "..\\Engine\DXEngineLoadResources.h"
 
 DXEngine::Application application;
 
@@ -135,6 +136,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
 
+   DXEngine::LoadResources();
    DXEngine::LoadScenes();
 
    return TRUE;

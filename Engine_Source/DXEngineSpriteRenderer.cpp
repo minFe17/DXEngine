@@ -1,10 +1,11 @@
 #include "DXEngineSpriteRenderer.h"
 #include "DXEngineGameObject.h"
 #include "DXEngineTransform.h"
+#include "DXEngineTexture.h"
 
 namespace DXEngine
 {
-	SpriteRenderer::SpriteRenderer() : image(nullptr), width(0), height(0)
+	SpriteRenderer::SpriteRenderer() : Component(), texture(nullptr), scale(Vector2::One)
 	{
 
 	}
@@ -27,18 +28,20 @@ namespace DXEngine
 
 	void SpriteRenderer::Render(HDC hdc)
 	{
-		Transform* transform = GetOwner()->GetComponent<Transform>();
+		if (texture == nullptr)
+			assert(false);
 
+		Transform* transform = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = transform->GetPosition();
 
-		Gdiplus::Graphics graphcis(hdc);
-		graphcis.DrawImage(image, Gdiplus::Rect(pos.x, pos.y, width, height));
-	}
-
-	void SpriteRenderer::ImageLoad(const std::wstring& path)
-	{
-		image = Gdiplus::Image::FromFile(path.c_str());
-		width = image->GetWidth();
-		height = image->GetHeight();
-	}
+		if (texture->GetTextureType() == Graphcis::Texture::ETextureType::Bmp)
+		{
+			TransparentBlt(hdc, pos.x, pos.y, texture->GetWidth() * scale.x, texture->GetHeight() * scale.y, texture->GetHdc(), 0, 0, texture->GetWidth(), texture->GetHeight(), RGB(255, 0, 255));
+		}
+		else if (texture->GetTextureType() == Graphcis::Texture::ETextureType::Png)
+		{
+			Gdiplus::Graphics graphcis(hdc);
+			graphcis.DrawImage(texture->GetImage(), Gdiplus::Rect(pos.x, pos.y, texture->GetWidth() * scale.x, texture->GetHeight() * scale.y));
+		}
+	}	
 }

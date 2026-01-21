@@ -19,7 +19,8 @@ namespace DXEngine
 		virtual void OnEnter();
 		virtual void OnExit();
 
-		void AddGameObject(GameObject* gameObject, ELayerType type);
+		void AddGameObject(GameObject* gameObject, Enum::ELayerType type);
+		Layer* GetLayer(Enum::ELayerType type) { return layers[(UINT)type]; }
 
 	private:
 		std::vector<Layer*> layers;

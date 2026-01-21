@@ -41,6 +41,9 @@ namespace DXEngine
 		}
 
 	private:
+		void InitTransform();
+
+	private:
 		std::vector<Component*> components;
 	};
 }

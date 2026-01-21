@@ -4,9 +4,9 @@ namespace DXEngine
 {
 	Scene::Scene() : layers{}
 	{
-		layers.resize((UINT)ELayerType::Max);
+		layers.resize((UINT)Enum::ELayerType::Max);
 
-		for (size_t i = 0; i < (UINT)ELayerType::Max; i++)
+		for (size_t i = 0; i < (UINT)Enum::ELayerType::Max; i++)
 			layers[i] = new Layer();
 	}
 
@@ -64,7 +64,7 @@ namespace DXEngine
 
 	}
 
-	void Scene::AddGameObject(GameObject* gameObject, ELayerType type)
+	void Scene::AddGameObject(GameObject* gameObject, Enum::ELayerType type)
 	{
 		layers[(UINT)type]->AddGameObject(gameObject);
 	}

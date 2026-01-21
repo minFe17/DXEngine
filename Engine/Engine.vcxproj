@@ -134,6 +134,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DXEngineLoadResources.h" />
     <ClInclude Include="DXEngineLoadScene.h" />
     <ClInclude Include="DXEnginePlayer.h" />
     <ClInclude Include="DXEnginePlayScene.h" />

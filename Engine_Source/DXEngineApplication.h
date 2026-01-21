@@ -17,6 +17,8 @@ namespace DXEngine
 		void LateUpdate();
 		void Render();
 
+		HDC GetHDC() { return hdc; }
+
 	private:
 		void AdjustWindow(UINT width, UINT hewight);
 		void CreateBuffer();

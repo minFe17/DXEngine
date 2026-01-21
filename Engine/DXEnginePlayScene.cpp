@@ -5,10 +5,13 @@
 #include "DXEngineSpriteRenderer.h"
 #include "DXEngineInput.h"
 #include "DXEngineSceneManager.h"
+#include "DXEngineObject.h"
+#include "DXEngineTexture.h"
+#include "DXEngineResources.h"
 
 namespace DXEngine
 {
-	PlayScene::PlayScene()
+	PlayScene::PlayScene() : background(nullptr)
 	{
 	}
 
@@ -18,23 +21,20 @@ namespace DXEngine
 
 	void PlayScene::Init()
 	{
-		background = new Player();
-		Transform* transform = background->AddComponent<Transform>();
-		transform->SetPosition(Vector2(0, 0));
-
-		transform->SetName(L"TR");
+		background = Object::Instantiate<Player>(Enum::ELayerType::Background, Vector2(100, 100));
 
 		SpriteRenderer* spriteRenderer = background->AddComponent<SpriteRenderer>();
-		spriteRenderer->SetName(L"SR");
-		spriteRenderer->ImageLoad(L"Resources/CloudOcean.png");
+		Graphcis::Texture* texture = Resources::Find<Graphcis::Texture>(L"Background");
+		spriteRenderer->SetTexture(texture);
 
-		AddGameObject(background, ELayerType::Background);
+		Scene::Init();
 	}
 
 	void PlayScene::Update()
 	{
 		Scene::Update();
 	}
+
 	void PlayScene::LateUpdate()
 	{
 		Scene::LateUpdate();

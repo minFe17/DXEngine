@@ -11,6 +11,7 @@
     <ClInclude Include="DXEngineTitleScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="DXEngineLoadResources.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scene">

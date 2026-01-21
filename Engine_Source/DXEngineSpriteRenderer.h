@@ -1,7 +1,7 @@
 #pragma once
 #include "DXEngineEntity.h"
 #include "DXEngineComponent.h"
-
+#include "DXEngineTexture.h"
 namespace DXEngine
 {
 	class SpriteRenderer : public Component
@@ -15,11 +15,11 @@ namespace DXEngine
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
 
-		void ImageLoad(const std::wstring& path);
+		void SetTexture(Graphcis::Texture* texture) { this->texture = texture; }
+		void SetSize(Math::Vector2 value) { scale = value; }
 
 	private:
-		Gdiplus::Image* image;
-		UINT width;
-		UINT height;
+		Graphcis::Texture* texture;
+		Math::Vector2 scale;
 	};
 }
