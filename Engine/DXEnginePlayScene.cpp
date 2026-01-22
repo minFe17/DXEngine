@@ -11,6 +11,7 @@
 #include "DXEnginePlayerScript.h"
 #include "DXEngineCamera.h"
 #include "DXEngineRenderer.h"
+#include "DXEngineAnimator.h"
 
 namespace DXEngine
 {

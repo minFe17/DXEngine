@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineEntity.cpp">
       <Filter>Common</Filter>
     </ClCompile>
@@ -17,7 +16,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineSceneManager.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineInput.cpp">
       <Filter>Input</Filter>
     </ClCompile>
@@ -51,9 +49,20 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineRenderer.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineAnimator.cpp">
+      <Filter>Component\Child\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineMath.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineApplication.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineAnimation.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
       <Filter>Common</Filter>
     </ClInclude>
@@ -72,7 +81,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineSceneManager.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineInput.h">
       <Filter>Input</Filter>
     </ClInclude>
@@ -111,6 +119,18 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineRenderer.h">
       <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineAnimator.h">
+      <Filter>Component\Child\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMath.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineApplication.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineAnimation.h">
+      <Filter>Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +178,12 @@
     </Filter>
     <Filter Include="Renderer">
       <UniqueIdentifier>{4f6bb6cc-1d0f-4ccc-84cb-66b72470d83b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Child\Animator">
+      <UniqueIdentifier>{80bba98b-8263-42e8-bde2-c054297719be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{b3638536-48bd-4bbc-b202-ed60ff574c9d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,6 +1,8 @@
 #pragma once
 #include "CommonInclude.h"
 
+using namespace DXEngine::Math;
+
 namespace DXEngine 
 {
 	class Entity

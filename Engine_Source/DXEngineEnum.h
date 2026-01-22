@@ -6,6 +6,7 @@ namespace DXEngine::Enum
 	{
 		Transform,
 		SpriteRenderer,
+		Aniimator,
 		Script,
 		Camera,
 		Max,
@@ -23,6 +24,7 @@ namespace DXEngine::Enum
 	{
 		Texture,
 		AudioClip,
+		Animation,
 		Prefab,
 		Max,
 	};
