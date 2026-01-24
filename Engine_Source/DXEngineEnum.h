@@ -17,6 +17,7 @@ namespace DXEngine::Enum
 		None,
 		Background,
 		Player,
+		Particle,
 		Max,
 	};
 

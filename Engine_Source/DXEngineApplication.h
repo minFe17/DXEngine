@@ -16,8 +16,10 @@ namespace DXEngine
 		void Update();
 		void LateUpdate();
 		void Render();
+		void Release();
 
 		HDC GetHDC() { return hdc; }
+		HWND GetHwnd() { return hWnd; }
 		UINT GetWidth() { return width; }
 		UINT GetHeight() { return height; }
 

@@ -6,7 +6,7 @@
 
 namespace DXEngine
 {
-	SpriteRenderer::SpriteRenderer() : Component(Enum::EComponentType::SpriteRenderer), texture(nullptr), scale(Vector2::One)
+	SpriteRenderer::SpriteRenderer() : Component(Enum::EComponentType::SpriteRenderer), texture(nullptr), size(Vector2::One)
 	{
 
 	}
@@ -33,17 +33,26 @@ namespace DXEngine
 			assert(false);
 
 		Transform* transform = GetOwner()->GetComponent<Transform>();
-		Vector2 pos = transform->GetPosition();
-		pos = Renderer::mainCamera->CalculatePosition(pos);
+		Vector2 position = transform->GetPosition();
+		float rotation = transform->GetRotation();
+		Vector2 scale = transform->GetScale();
+
+		position = Renderer::mainCamera->CalculatePosition(position);
 
 		if (texture->GetTextureType() == Graphcis::Texture::ETextureType::Bmp)
 		{
-			TransparentBlt(hdc, pos.x, pos.y, texture->GetWidth() * scale.x, texture->GetHeight() * scale.y, texture->GetHdc(), 0, 0, texture->GetWidth(), texture->GetHeight(), RGB(255, 0, 255));
+			TransparentBlt(hdc, position.x, position.y, texture->GetWidth() * size.x * scale.x, texture->GetHeight() * scale.y * scale.y, texture->GetHdc(), 0, 0, texture->GetWidth(), texture->GetHeight(), RGB(255, 0, 255));
 		}
 		else if (texture->GetTextureType() == Graphcis::Texture::ETextureType::Png)
 		{
-			Gdiplus::Graphics graphcis(hdc);
-			graphcis.DrawImage(texture->GetImage(), Gdiplus::Rect(pos.x, pos.y, texture->GetWidth() * scale.x, texture->GetHeight() * scale.y));
+			Gdiplus::ImageAttributes imageAttribute = {};
+			imageAttribute.SetColorKey(Gdiplus::Color(100, 100, 100), Gdiplus::Color(255, 255, 255));
+			Gdiplus::Graphics graphics(hdc);
+			graphics.TranslateTransform(position.x, position.y);
+			graphics.RotateTransform(rotation);
+			graphics.TranslateTransform(-position.x, -position.y);
+
+			graphics.DrawImage(texture->GetImage(), Gdiplus::Rect(position.x, position.y, texture->GetWidth() * size.x * scale.x, texture->GetHeight() * size.x * scale.y), 0, 0, texture->GetWidth(), texture->GetHeight(), Gdiplus::UnitPixel, nullptr);
 		}
 	}	
 }

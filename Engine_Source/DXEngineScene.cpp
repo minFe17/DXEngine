@@ -12,6 +12,11 @@ namespace DXEngine
 
 	Scene::~Scene()
 	{
+		for (Layer* layer : layers)
+		{
+			delete layer;
+			layer = nullptr;
+		}
 	}
 
 	void Scene::Init()

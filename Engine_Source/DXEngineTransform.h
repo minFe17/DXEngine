@@ -18,8 +18,14 @@ namespace DXEngine
 
 		void SetPosition(Vector2 pos) { position.x = pos.x, position.y = pos.y; }
 		Vector2 GetPosition() { return position; }
+		float GetRotation() { return rotation; }
+		Vector2 GetScale() { return scale; }
+		void SetRotation(float rotate) { rotation = rotate; }
+		void SetScale(Vector2 scale) { this->scale = scale; }
 
 	private:
 		Vector2 position;
+		float rotation;
+		Vector2 scale;
 	};
 }

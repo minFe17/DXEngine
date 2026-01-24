@@ -35,6 +35,15 @@ namespace DXEngine
 			return resource;
 		}
 
+		static void Release()
+		{
+			for (auto& iter : resources)
+			{
+				delete iter.second;
+				iter.second = nullptr;
+			}
+		}
+
 	private:
 		static std::map<std::wstring, Resource*> resources;
 	};

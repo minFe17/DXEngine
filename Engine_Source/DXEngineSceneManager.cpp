@@ -37,4 +37,15 @@ namespace DXEngine
 	{
 		activeScene->Render(hdc);
 	}
+
+	void SceneManager::Release()
+	{
+		static std::map<std::wstring, Scene*> scene;
+
+		for (auto& iter : scenes)
+		{
+			delete iter.second;
+			iter.second = nullptr;
+		}
+	}
 }

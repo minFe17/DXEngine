@@ -13,6 +13,13 @@ namespace DXEngine
 
 	GameObject::~GameObject()
 	{
+		for (Component* component : components)
+		{
+			if (component == nullptr)
+				continue;
+			delete component;
+			component = nullptr;
+		}
 	}
 
 	void GameObject::Init()

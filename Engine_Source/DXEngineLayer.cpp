@@ -7,6 +7,11 @@ namespace DXEngine
 	}
 	Layer::~Layer()
 	{
+		for (GameObject* gameObject : gameObjects)
+		{
+			delete gameObject;
+			gameObject = nullptr;
+		}
 	}
 
 	void Layer::Init()

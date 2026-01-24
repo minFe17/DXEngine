@@ -1,6 +1,7 @@
 #include "DXEngineApplication.h"
 #include "DXEngineInput.h"
 #include "DXEngineSceneManager.h"
+#include "DXEngineResources.h"
 
 namespace DXEngine
 {
@@ -56,6 +57,12 @@ namespace DXEngine
 		SceneManager::Render(backHdc);
 
 		CopyRenderTarget(backHdc, hdc);
+	}
+
+	void Application::Release()
+	{
+		SceneManager::Release();
+		Resources::Release();
 	}
 
 	void Application::AdjustWindow(UINT width, UINT height)
