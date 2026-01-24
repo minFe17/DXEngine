@@ -59,6 +59,16 @@ namespace DXEngine
 		}
 	}
 
+	void Scene::Destroy()
+	{
+		for (size_t i = 0; i < layers.size(); i++)
+		{
+			if (layers[i] == nullptr)
+				continue;
+			layers[i]->Destroy();
+		}
+	}
+
 	void Scene::OnEnter()
 	{
 

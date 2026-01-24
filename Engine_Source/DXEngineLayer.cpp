@@ -9,6 +9,9 @@ namespace DXEngine
 	{
 		for (GameObject* gameObject : gameObjects)
 		{
+			if (gameObject == nullptr)
+				continue;
+
 			delete gameObject;
 			gameObject = nullptr;
 		}
@@ -20,6 +23,11 @@ namespace DXEngine
 		{
 			if (gameObjects[i] == nullptr)
 				continue;
+
+			GameObject::EStateType state = gameObjects[i]->GetActive();
+			if (state == GameObject::EStateType::Paused || state == GameObject::EStateType::Dead)
+				continue;
+
 			gameObjects[i]->Init();
 		}
 	}
@@ -50,7 +58,29 @@ namespace DXEngine
 		{
 			if (gameObjects[i] == nullptr)
 				continue;
+
+			GameObject::EStateType state = gameObjects[i]->GetActive();
+			if (state == GameObject::EStateType::Paused || state == GameObject::EStateType::Dead)
+				continue;
+
 			gameObjects[i]->Render(hdc);
+		}
+	}
+
+	void Layer::Destroy()
+	{
+		for (GameObjectIter iter = gameObjects.begin(); iter != gameObjects.end(); )
+		{
+			GameObject::EStateType state = (*iter)->GetActive();
+			if (state == GameObject::EStateType::Dead)
+			{
+				GameObject* object = (*iter);
+				iter = gameObjects.erase(iter);
+
+				delete object;
+				continue;
+			}
+			iter++;
 		}
 	}
 

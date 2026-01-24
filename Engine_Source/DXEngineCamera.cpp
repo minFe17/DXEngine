@@ -26,10 +26,12 @@ namespace DXEngine
 			Transform* transform = target->GetComponent<Transform>();
 			lookPosition = transform->GetPosition();
 		}
-
-		Transform* transform = GetOwner()->GetComponent<Transform>();
-		lookPosition = transform->GetPosition();
-
+		else
+		{
+			Transform* transform = GetOwner()->GetComponent<Transform>();
+			lookPosition = transform->GetPosition();
+		}
+		
 		distance = lookPosition - (resolution / 2.0f);
 	}
 

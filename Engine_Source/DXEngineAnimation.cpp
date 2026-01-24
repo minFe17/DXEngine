@@ -63,7 +63,9 @@ namespace DXEngine
 			func.SourceConstantAlpha = 255;
 
 			HDC imageHdc = texture->GetHdc();
-			AlphaBlend(hdc, position.x - (sprite.size.x / 2), position.y - (sprite.size.y / 2), sprite.size.x * scale.x, sprite.size.y * scale.y, imageHdc, sprite.leftTop.x, sprite.leftTop.y, sprite.size.x, sprite.size.y, func);
+			GdiTransparentBlt(hdc, position.x - (sprite.size.x / 2), position.y - (sprite.size.y / 2), sprite.size.x * scale.x, sprite.size.y * scale.y, imageHdc, sprite.leftTop.x, sprite.leftTop.y, sprite.size.x, sprite.size.y, RGB(255, 0, 255));
+
+			//AlphaBlend(hdc, position.x - (sprite.size.x / 2), position.y - (sprite.size.y / 2), sprite.size.x * scale.x, sprite.size.y * scale.y, imageHdc, sprite.leftTop.x, sprite.leftTop.y, sprite.size.x, sprite.size.y, func);
 		}
 		else if (textureType == Graphcis::Texture::ETextureType::Png)
 		{

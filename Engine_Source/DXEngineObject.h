@@ -32,4 +32,9 @@ namespace DXEngine::Object
 
 		return gameObject;
 	}
+
+	static void Destroy(GameObject* gameObject)
+	{
+		gameObject->Death();
+	}
 }

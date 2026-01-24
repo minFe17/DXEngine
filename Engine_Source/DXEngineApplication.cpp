@@ -34,6 +34,8 @@ namespace DXEngine
 		Update();
 		LateUpdate();
 		Render();
+
+		Destroy();
 	}
 
 	void Application::Update()
@@ -63,6 +65,11 @@ namespace DXEngine
 	{
 		SceneManager::Release();
 		Resources::Release();
+	}
+
+	void Application::Destroy()
+	{
+		SceneManager::Destroy();
 	}
 
 	void Application::AdjustWindow(UINT width, UINT height)

@@ -44,6 +44,15 @@ namespace DXEngine
 			}
 		}
 
+		static void Insert(const std::wstring& key, Resource* resource)
+		{
+			if (resource == nullptr)
+				return;
+			if (key == L"")
+				return;
+			resources.insert(std::make_pair(key, resource));
+		}
+
 	private:
 		static std::map<std::wstring, Resource*> resources;
 	};

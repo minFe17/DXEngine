@@ -15,6 +15,7 @@ namespace DXEngine
 		virtual void Update();
 		virtual void LateUpdate();
 		virtual void Render(HDC hdc);
+		virtual void Destroy();
 
 		void AddGameObject(GameObject* gameObject);
 
@@ -22,4 +23,6 @@ namespace DXEngine
 	private:
 		std::vector<GameObject*> gameObjects;
 	};
+
+	typedef std::vector<GameObject*>::iterator GameObjectIter;
 }

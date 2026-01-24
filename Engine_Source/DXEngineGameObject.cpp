@@ -5,7 +5,7 @@
 
 namespace DXEngine
 {
-	GameObject::GameObject()
+	GameObject::GameObject() : stateType(EStateType::Active)
 	{
 		components.resize((UINT)Enum::EComponentType::Max);
 		InitTransform();

@@ -48,4 +48,9 @@ namespace DXEngine
 			iter.second = nullptr;
 		}
 	}
+
+	void SceneManager::Destroy()
+	{
+		activeScene->Destroy();
+	}
 }

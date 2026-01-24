@@ -17,6 +17,8 @@ namespace DXEngine
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
 
+		void SetTarget(GameObject* target) { this->target = target; }
+
 	private:
 		class GameObject* target;
 		Vector2 distance;

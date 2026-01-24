@@ -7,6 +7,13 @@ namespace DXEngine
 	class GameObject
 	{
 	public:
+		enum class EStateType
+		{
+			Active,
+			Paused,
+			Dead,
+			Max,
+		};
 		GameObject();
 		~GameObject();
 
@@ -41,10 +48,23 @@ namespace DXEngine
 			return component;
 		}
 
+		EStateType GetActive() { return stateType; }
+
+		void SetActive(bool power)
+		{
+			if (power)
+				stateType = EStateType::Active;
+			else
+				stateType = EStateType::Paused;
+		}
+
+		void Death() { stateType = EStateType::Dead; }
+
 	private:
 		void InitTransform();
 
 	private:
+		EStateType stateType;
 		std::vector<Component*> components;
 	};
 }

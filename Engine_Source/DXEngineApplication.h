@@ -17,6 +17,7 @@ namespace DXEngine
 		void LateUpdate();
 		void Render();
 		void Release();
+		void Destroy();
 
 		HDC GetHDC() { return hdc; }
 		HWND GetHwnd() { return hWnd; }

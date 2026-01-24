@@ -39,6 +39,7 @@ namespace DXEngine
 		void Render(HDC hdc) override;
 
 		void CreateAnimation(const std::wstring& name, Graphcis::Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration);
+		void CreateAnimationByFolder(const std::wstring& name, const std::wstring& path, Vector2 offset, float duration);
 		Animation* FindAnimation(const std::wstring& name);
 
 		Events* FindEvents(const std::wstring& name);

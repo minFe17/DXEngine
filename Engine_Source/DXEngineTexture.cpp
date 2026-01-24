@@ -1,16 +1,40 @@
 #include "DXEngineTexture.h"
 #include "DXEngineApplication.h"
+#include <DXEngineResources.h>
 
 extern DXEngine::Application application;
 
-namespace DXEngine
+namespace DXEngine::Graphcis
 {
-    DXEngine::Graphcis::Texture::Texture() : Resource(Enum::EResourceType::Texture)
+    Texture::Texture() : Resource(Enum::EResourceType::Texture), isAlpha(false)
     {
     }
 
-    DXEngine::Graphcis::Texture::~Texture()
+    Texture::~Texture()
     {
+    }
+
+    Texture* Texture::Create(const std::wstring& name, UINT width, UINT height)
+    {
+        Texture* image = Resources::Find<Texture>(name);
+        if (image)
+            return image;
+
+        image = new Texture();
+        image->SetName(name);
+        image->SetWidth(width);
+        image->SetHeight(height);
+
+        HDC hdc = application.GetHDC();
+
+        image->bitmap = CreateCompatibleBitmap(hdc, width, height);
+        image->hdc = CreateCompatibleDC(hdc);
+
+        HBITMAP oldBitmap = (HBITMAP)SelectObject(image->hdc, image->bitmap);
+        DeleteObject(oldBitmap);
+
+        Resources::Insert(name + L"Image", image);
+        return image;
     }
 
     HRESULT DXEngine::Graphcis::Texture::Load(const std::wstring& path)

@@ -16,6 +16,8 @@ namespace DXEngine::Graphcis
 		Texture();
 		~Texture();
 
+		static Texture* Create(const std::wstring& name, UINT width, UINT height);
+
 		HRESULT Load(const std::wstring& path) override;
 
 		UINT GetWidth() { return width; }
@@ -23,8 +25,12 @@ namespace DXEngine::Graphcis
 		HDC GetHdc() { return hdc; }
 		ETextureType GetTextureType() { return textureType; }
 		Gdiplus::Image* GetImage() { return image; }
+
+		void SetWidth(UINT width) { this->width = width; }
+		void SetHeight(UINT height) { this->height = height; }
 	
 	private:
+		bool isAlpha;
 		ETextureType textureType;
 		Gdiplus::Image* image;
 		HBITMAP bitmap;

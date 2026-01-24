@@ -28,6 +28,7 @@ namespace DXEngine
 		 static void LateUpdate();
 		 static void Render(HDC hdc);
 		 static void Release();
+		 static void Destroy();
 
 	private:
 		static std::map<const std::wstring, Scene*> scenes;
