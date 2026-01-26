@@ -41,7 +41,18 @@ namespace DXEngine
 
 		if (texture->GetTextureType() == Graphcis::Texture::ETextureType::Bmp)
 		{
-			TransparentBlt(hdc, position.x, position.y, texture->GetWidth() * size.x * scale.x, texture->GetHeight() * scale.y * scale.y, texture->GetHdc(), 0, 0, texture->GetWidth(), texture->GetHeight(), RGB(255, 0, 255));
+			if (texture->IsAlpha())
+			{
+				BLENDFUNCTION func = {};
+				func.BlendOp = AC_SRC_OVER;
+				func.BlendFlags = 0;
+				func.AlphaFormat = AC_SRC_ALPHA;
+				func.SourceConstantAlpha = 255;
+
+				AlphaBlend(hdc, position.x, position.y, texture->GetWidth() * size.x * scale.x, texture->GetHeight() * size.y * scale.y, texture->GetHdc(), 0, 0, texture->GetWidth(), texture->GetHeight(), func);
+			}
+			else
+				GdiTransparentBlt(hdc, position.x, position.y, texture->GetWidth() * size.x * scale.x, texture->GetHeight() * size.y * scale.y, texture->GetHdc(), 0, 0, texture->GetWidth(), texture->GetHeight(), RGB(255, 0, 255));
 		}
 		else if (texture->GetTextureType() == Graphcis::Texture::ETextureType::Png)
 		{

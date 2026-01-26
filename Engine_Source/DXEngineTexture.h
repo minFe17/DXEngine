@@ -25,6 +25,7 @@ namespace DXEngine::Graphcis
 		HDC GetHdc() { return hdc; }
 		ETextureType GetTextureType() { return textureType; }
 		Gdiplus::Image* GetImage() { return image; }
+		bool IsAlpha() { return isAlpha; }
 
 		void SetWidth(UINT width) { this->width = width; }
 		void SetHeight(UINT height) { this->height = height; }

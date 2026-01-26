@@ -54,6 +54,11 @@ namespace DXEngine::Graphcis
             width = info.bmWidth;
             height = info.bmHeight;
 
+            if (info.bmBitsPixel == 32)
+                isAlpha = true;
+            else if (info.bmBitsPixel == 24)
+                isAlpha = false;
+
             HDC mainDC = application.GetHDC();
             hdc = CreateCompatibleDC(mainDC);
 

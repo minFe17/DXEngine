@@ -56,16 +56,26 @@ namespace DXEngine
 		Graphcis::Texture::ETextureType textureType = texture->GetTextureType();
 		if (textureType == Graphcis::Texture::ETextureType::Bmp)
 		{
-			BLENDFUNCTION func = {};
-			func.BlendOp = AC_SRC_OVER;
-			func.BlendFlags = 0;
-			func.AlphaFormat = AC_SRC_ALPHA;
-			func.SourceConstantAlpha = 255;
-
 			HDC imageHdc = texture->GetHdc();
-			GdiTransparentBlt(hdc, position.x - (sprite.size.x / 2), position.y - (sprite.size.y / 2), sprite.size.x * scale.x, sprite.size.y * scale.y, imageHdc, sprite.leftTop.x, sprite.leftTop.y, sprite.size.x, sprite.size.y, RGB(255, 0, 255));
 
-			//AlphaBlend(hdc, position.x - (sprite.size.x / 2), position.y - (sprite.size.y / 2), sprite.size.x * scale.x, sprite.size.y * scale.y, imageHdc, sprite.leftTop.x, sprite.leftTop.y, sprite.size.x, sprite.size.y, func);
+			if (texture->IsAlpha())
+			{
+				BLENDFUNCTION func = {};
+				func.BlendOp = AC_SRC_OVER;
+				func.BlendFlags = 0;
+				func.AlphaFormat = AC_SRC_ALPHA;
+				func.SourceConstantAlpha = 255;
+
+				AlphaBlend(hdc, position.x - (sprite.size.x / 2) + sprite.offset.x, position.y - (sprite.size.y / 2) + sprite.offset.y,
+											  sprite.size.x * scale.x, sprite.size.y * scale.y, 
+					                          imageHdc, sprite.leftTop.x, sprite.leftTop.y, sprite.size.x, sprite.size.y, func);
+			}
+			else
+			{
+				GdiTransparentBlt(hdc, position.x - (sprite.size.x / 2) + sprite.offset.x, position.y - (sprite.size.y / 2) + sprite.offset.y, 
+									   sprite.size.x * scale.x, sprite.size.y * scale.y, 
+					                   imageHdc, sprite.leftTop.x, sprite.leftTop.y, sprite.size.x, sprite.size.y, RGB(255, 0, 255));
+			}
 		}
 		else if (textureType == Graphcis::Texture::ETextureType::Png)
 		{
