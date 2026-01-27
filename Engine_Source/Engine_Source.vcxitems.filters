@@ -44,7 +44,7 @@
       <Filter>Component\Child\Script</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCamera.cpp">
-      <Filter>Component\Child\Camera</Filter>
+      <Filter>Common\Camera</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineRenderer.cpp">
       <Filter>Renderer</Filter>
@@ -115,7 +115,7 @@
       <Filter>Component\Child\Script</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCamera.h">
-      <Filter>Component\Child\Camera</Filter>
+      <Filter>Common\Camera</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineRenderer.h">
       <Filter>Renderer</Filter>
@@ -173,9 +173,6 @@
     <Filter Include="Component\Child\Script">
       <UniqueIdentifier>{8ffc7c88-0aee-477e-a6c3-5d3557c5a3b8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Component\Child\Camera">
-      <UniqueIdentifier>{f772f464-29a0-4d84-adf2-432a7a55a1aa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Renderer">
       <UniqueIdentifier>{4f6bb6cc-1d0f-4ccc-84cb-66b72470d83b}</UniqueIdentifier>
     </Filter>
@@ -184,6 +181,9 @@
     </Filter>
     <Filter Include="Application">
       <UniqueIdentifier>{b3638536-48bd-4bbc-b202-ed60ff574c9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Camera">
+      <UniqueIdentifier>{f772f464-29a0-4d84-adf2-432a7a55a1aa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

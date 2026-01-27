@@ -4,8 +4,8 @@
 #include "framework.h"
 #include "DXEngine.h"
 #include "..\\Engine_Source\DXEngineApplication.h"
-#include "..\\Engine\DXEngineLoadScene.h"
 #include "..\\Engine\DXEngineLoadResources.h"
+#include "..\\Engine\DXEngineLoadScene.h"
 
 DXEngine::Application application;
 
