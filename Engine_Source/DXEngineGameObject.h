@@ -49,6 +49,7 @@ namespace DXEngine
 		}
 
 		EStateType GetActive() { return stateType; }
+		bool IsActive() { return stateType == EStateType::Active; }
 
 		void SetActive(bool power)
 		{

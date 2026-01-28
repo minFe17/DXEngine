@@ -18,7 +18,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineAnimation.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineBoxCollider2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCamera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCircleCollider2D.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCollider.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEnum.h" />
@@ -42,7 +46,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineAnimation.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineAnimator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineBoxCollider2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCamera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCircleCollider2D.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCollider.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineGameObject.cpp" />

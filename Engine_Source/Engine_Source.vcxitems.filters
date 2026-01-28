@@ -61,6 +61,16 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineAnimation.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCollider.cpp">
+      <Filter>Component\Child\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineBoxCollider2D.cpp">
+      <Filter>Component\Child\Collider\BoxCollider2D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCircleCollider2D.cpp">
+      <Filter>Component\Child\Collider\CircleCollider</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCollisionManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -132,6 +142,16 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineAnimation.h">
       <Filter>Resource</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCollider.h">
+      <Filter>Component\Child\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineBoxCollider2D.h">
+      <Filter>Component\Child\Collider\BoxCollider2D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCircleCollider2D.h">
+      <Filter>Component\Child\Collider\CircleCollider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCollisionManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -184,6 +204,15 @@
     </Filter>
     <Filter Include="Common\Camera">
       <UniqueIdentifier>{f772f464-29a0-4d84-adf2-432a7a55a1aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Child\Collider">
+      <UniqueIdentifier>{5d397b1a-61a4-4c81-a5ed-b54df40f25b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Child\Collider\BoxCollider2D">
+      <UniqueIdentifier>{cd24e8b0-9ab4-49d7-9980-68113f5d2f54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Child\Collider\CircleCollider">
+      <UniqueIdentifier>{22fd60c2-4e52-4cda-b6cf-f8e7e08f3ec1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

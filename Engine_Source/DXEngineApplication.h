@@ -38,7 +38,5 @@ namespace DXEngine
 
 		UINT width;
 		UINT height;
-
-		Time time;
 	};
 }

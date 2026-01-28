@@ -2,6 +2,7 @@
 #include "DXEngineInput.h"
 #include "DXEngineSceneManager.h"
 #include "DXEngineResources.h"
+#include <DXEngineCollisionManager.h>
 
 namespace DXEngine
 {
@@ -20,12 +21,14 @@ namespace DXEngine
 		hWnd = hwnd;
 		hdc = GetDC(hwnd);
 
-		
+
 		AdjustWindow(width, height);
 		CreateBuffer();
 
 		Input::Init();
 		Time::Init();
+
+		CollisionManager::Init();
 		SceneManager::Init();
 	}
 
@@ -42,12 +45,13 @@ namespace DXEngine
 	{
 		Input::Update();
 		Time::Update();
-
+		CollisionManager::Update();
 		SceneManager::Update();
 	}
 
 	void Application::LateUpdate()
 	{
+		CollisionManager::LateUpdate();
 		SceneManager::LateUpdate();
 	}
 
@@ -55,7 +59,8 @@ namespace DXEngine
 	{
 		ClearRenderTarget();
 
-		time.Render(backHdc);
+		Time::Render(backHdc);
+		CollisionManager::Render(backHdc);
 		SceneManager::Render(backHdc);
 
 		CopyRenderTarget(backHdc, hdc);
@@ -98,6 +103,8 @@ namespace DXEngine
 
 	void Application::ClearRenderTarget()
 	{
+		HBRUSH brush = (HBRUSH)CreateSolidBrush(RGB(128, 128, 128));
+		HBRUSH oldBrush = (HBRUSH)SelectObject(backHdc, brush);
 		Rectangle(backHdc, -1, -1, 1601, 901);
 	}
 

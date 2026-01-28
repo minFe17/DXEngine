@@ -5,9 +5,10 @@ namespace DXEngine::Enum
 	enum class EComponentType
 	{
 		Transform,
+		Collider,
+		Script,
 		SpriteRenderer,
 		Aniimator,
-		Script,
 		Camera,
 		Max,
 	};
@@ -27,6 +28,13 @@ namespace DXEngine::Enum
 		AudioClip,
 		Animation,
 		Prefab,
+		Max,
+	};
+
+	enum class EColliderType
+	{
+		Circle2D,
+		Rect2D,
 		Max,
 	};
 }
