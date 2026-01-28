@@ -70,7 +70,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCircleCollider2D.cpp">
       <Filter>Component\Child\Collider\CircleCollider</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCollisionManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCollisionManager.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineDontDestroyOnLoad.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -151,7 +156,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCircleCollider2D.h">
       <Filter>Component\Child\Collider\CircleCollider</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCollisionManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCollisionManager.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineDontDestroyOnLoad.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -213,6 +223,9 @@
     </Filter>
     <Filter Include="Component\Child\Collider\CircleCollider">
       <UniqueIdentifier>{22fd60c2-4e52-4cda-b6cf-f8e7e08f3ec1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{07373ef1-226c-40bc-875a-cc0d724ae3cc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

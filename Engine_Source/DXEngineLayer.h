@@ -18,8 +18,13 @@ namespace DXEngine
 		virtual void Destroy();
 
 		void AddGameObject(GameObject* gameObject);
+		void EraseGameObject(GameObject* eraseGameObj);
 		const std::vector<GameObject*> GetGameObjects() { return gameObjects; }
 
+	private:
+		void FindDeadGameObjects(OUT std::vector<GameObject*>& findGameObjects);
+		void DeleteGameObjects(std::vector<GameObject*> deleteObjects);
+		void EraseDeadGameObject();
 
 	private:
 		std::vector<GameObject*> gameObjects;

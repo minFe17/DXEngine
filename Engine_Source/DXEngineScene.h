@@ -21,6 +21,7 @@ namespace DXEngine
 		virtual void OnExit();
 
 		void AddGameObject(GameObject* gameObject, Enum::ELayerType type);
+		void EraseGameObject(GameObject* gameObject);
 		Layer* GetLayer(Enum::ELayerType type) { return layers[(UINT)type]; }
 
 	private:

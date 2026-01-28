@@ -83,4 +83,10 @@ namespace DXEngine
 	{
 		layers[(UINT)type]->AddGameObject(gameObject);
 	}
+
+	void Scene::EraseGameObject(GameObject* gameObject)
+	{
+		Enum::ELayerType layerType = gameObject->GetLayerType();
+		layers[(UINT)layerType]->EraseGameObject(gameObject);
+	}
 }

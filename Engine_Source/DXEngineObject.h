@@ -9,9 +9,11 @@
 namespace DXEngine::Object
 {
 	template <typename T>
-	static T* Instantiate(DXEngine::Enum::ELayerType type)
+	static T* Instantiate(Enum::ELayerType type)
 	{
 		T* gameObject = new T();
+		gameObject->SetLayerType(type);
+
 		Scene* activeScene = SceneManager::GetActiveScene();
 		Layer* layer = activeScene->GetLayer(type);
 		layer->AddGameObject(gameObject);
@@ -20,9 +22,11 @@ namespace DXEngine::Object
 	}
 
 	template <typename T>
-	static T* Instantiate(DXEngine::Enum::ELayerType type, Math::Vector2 position)
+	static T* Instantiate(Enum::ELayerType type, Math::Vector2 position)
 	{
 		T* gameObject = new T();
+		gameObject->SetLayerType(type);
+
 		Scene* activeScene = SceneManager::GetActiveScene();
 		Layer* layer = activeScene->GetLayer(type);
 		layer->AddGameObject(gameObject);
@@ -36,5 +40,14 @@ namespace DXEngine::Object
 	static void Destroy(GameObject* gameObject)
 	{
 		gameObject->Death();
+	}
+
+	void DontDestroyOnLoad(GameObject* gameObject)
+	{
+		Scene* activeScene = SceneManager::GetActiveScene();
+		activeScene->EraseGameObject(gameObject);
+
+		Scene* dontDestroyOnLoad = SceneManager::GetDontDestroyOnLoad();
+		dontDestroyOnLoad->AddGameObject(gameObject, gameObject->GetLayerType());
 	}
 }

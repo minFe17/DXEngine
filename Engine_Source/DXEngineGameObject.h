@@ -48,8 +48,11 @@ namespace DXEngine
 			return component;
 		}
 
-		EStateType GetActive() { return stateType; }
+		Enum::ELayerType GetLayerType() { return layerType; }
+		void SetLayerType(Enum::ELayerType layer) { layerType = layer; }
+		EStateType GetState() { return stateType; }
 		bool IsActive() { return stateType == EStateType::Active; }
+		bool IsDead() { return stateType == EStateType::Dead; }
 
 		void SetActive(bool power)
 		{
@@ -67,5 +70,6 @@ namespace DXEngine
 	private:
 		EStateType stateType;
 		std::vector<Component*> components;
+		Enum::ELayerType layerType;
 	};
 }

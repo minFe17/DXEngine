@@ -24,6 +24,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCollider.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineComponent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineDontDestroyOnLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEnum.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGameObject.h" />
@@ -52,6 +53,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCollider.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineComponent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineDontDestroyOnLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineInput.cpp" />

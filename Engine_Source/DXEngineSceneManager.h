@@ -22,6 +22,7 @@ namespace DXEngine
 
 		static Scene* LoadScene(const std::wstring& name);
 		static Scene* GetActiveScene() { return activeScene; }
+		static Scene* GetDontDestroyOnLoad() { return dontDestroyScene; }
 
 		 static void Init();
 		 static void Update();
@@ -33,5 +34,6 @@ namespace DXEngine
 	private:
 		static std::map<const std::wstring, Scene*> scenes;
 		static Scene* activeScene;
+		static Scene* dontDestroyScene;
 	};
 }
