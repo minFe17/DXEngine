@@ -1,4 +1,5 @@
 #include "DXEngineScene.h"
+#include "DXEngineCollisionManager.h"
 
 namespace DXEngine
 {
@@ -76,7 +77,7 @@ namespace DXEngine
 
 	void Scene::OnExit()
 	{
-
+		CollisionManager::Clear();
 	}
 
 	void Scene::AddGameObject(GameObject* gameObject, Enum::ELayerType type)

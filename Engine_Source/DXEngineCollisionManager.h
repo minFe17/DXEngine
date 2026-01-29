@@ -24,6 +24,7 @@ namespace DXEngine
 		static void Update();
 		static void LateUpdate();
 		static void Render(HDC hdc);
+		static void Clear();
 
 		static void CollisionLayerCheck(ELayerType left, ELayerType right, bool enable);
 		static void LayerCollision(class Scene* scene, ELayerType left, ELayerType right);

@@ -4,7 +4,7 @@
 
 namespace DXEngine
 {
-	class GameObject
+	class GameObject : public Entity
 	{
 	public:
 		enum class EStateType

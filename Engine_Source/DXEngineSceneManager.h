@@ -23,6 +23,7 @@ namespace DXEngine
 		static Scene* LoadScene(const std::wstring& name);
 		static Scene* GetActiveScene() { return activeScene; }
 		static Scene* GetDontDestroyOnLoad() { return dontDestroyScene; }
+		static std::vector<GameObject*> GetGameObjects(Enum::ELayerType layer);
 
 		 static void Init();
 		 static void Update();

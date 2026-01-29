@@ -95,8 +95,16 @@ namespace DXEngine
 		GetCursorPos(&mousePos);
 		ScreenToClient(application.GetHwnd(), &mousePos);
 
-		mousePosition.x = mousePos.x;
-		mousePosition.y = mousePos.y;
+		UINT width = application.GetWidth();
+		UINT height = application.GetHeight();
+
+		mousePosition.x = -1;
+		mousePosition.y = -1;
+
+		if(mousePos.x > 0 && mousePos.x < width)
+			mousePosition.x = mousePos.x;
+		if (mousePos.y > 0 && mousePos.y < height)
+			mousePosition.y = mousePos.y;
 	}
 
 	void Input::ClearKeys()

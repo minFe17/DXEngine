@@ -35,6 +35,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineResources.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineRigidbody.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineSceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineScript.h" />
@@ -62,6 +63,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineResources.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineRigidbody.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineSceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineScript.cpp" />

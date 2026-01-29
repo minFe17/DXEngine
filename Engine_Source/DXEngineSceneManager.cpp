@@ -21,6 +21,16 @@ namespace DXEngine
 		return iter->second;
 	}
 
+	std::vector<GameObject*> SceneManager::GetGameObjects(Enum::ELayerType layer)
+	{
+		std::vector<GameObject*> gameObjects = activeScene->GetLayer(layer)->GetGameObjects();
+		std::vector<GameObject*> dontDestroyGameObjects = dontDestroyScene->GetLayer(layer)->GetGameObjects();
+
+		gameObjects.insert(gameObjects.end(), dontDestroyGameObjects.begin(), dontDestroyGameObjects.end());
+
+		return gameObjects;
+	}
+
 	void SceneManager::Init()
 	{
 		dontDestroyScene = CreateScene<DontDestroyOnLoad>(L"DontDestroyOnLoad");

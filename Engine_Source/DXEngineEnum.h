@@ -6,6 +6,7 @@ namespace DXEngine::Enum
 	{
 		Transform,
 		Collider,
+		Rigidbody,
 		Script,
 		SpriteRenderer,
 		Aniimator,

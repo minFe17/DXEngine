@@ -40,6 +40,12 @@ namespace DXEngine
 
 	}
 
+	void CollisionManager::Clear()
+	{
+		collisionLayerMatrix->reset();
+		collisionMap.clear();
+	}
+
 	void CollisionManager::CollisionLayerCheck(ELayerType left, ELayerType right, bool enable)
 	{
 		int row = 0;
@@ -61,8 +67,8 @@ namespace DXEngine
 
 	void CollisionManager::LayerCollision(Scene* scene, ELayerType left, ELayerType right)
 	{
-		const std::vector<GameObject*>& lefts = scene->GetLayer(left)->GetGameObjects();
-		const std::vector<GameObject*>& rights = scene->GetLayer(right)->GetGameObjects();
+		const std::vector<GameObject*>& lefts = SceneManager::GetGameObjects(left);
+		const std::vector<GameObject*>& rights = SceneManager::GetGameObjects(right);
 
 		for (GameObject* leftGameObject : lefts)
 		{

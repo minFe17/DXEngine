@@ -58,9 +58,20 @@ namespace DXEngine::Math
 			y += other.y;
 		}
 
+		Vector2 operator-()
+		{
+			return Vector2(-x, -y);
+		}
+
 		Vector2 operator-(Vector2 other)
 		{
 			return Vector2(x - other.x, y - other.y);
+		}
+
+		void operator-=(Vector2 other)
+		{
+			x -= other.x;
+			y -= other.y;
 		}
 
 		Vector2 operator*(Vector2 other)
@@ -73,14 +84,31 @@ namespace DXEngine::Math
 			return Vector2(x * value, y * value);
 		}
 
+		void operator *=(Vector2 other)
+		{
+			x *= other.x;
+			y *= other.y;
+		}
+
+		void operator *=(float other)
+		{
+			x *= other;
+			y *= other;
+		}
+
 		Vector2 operator/(float value)
 		{
 			return Vector2(x / value, y / value);
 		}
 
+		bool operator==(Vector2 other)
+		{
+			return (x == other.x) && (y == other.y);
+		}
+
 		void Clear()
 		{
-			x = 0.0f; 
+			x = 0.0f;
 			y = 0.0f;
 		}
 

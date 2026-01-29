@@ -76,6 +76,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineDontDestroyOnLoad.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineRigidbody.cpp">
+      <Filter>Component\Child\Rigidbody</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -162,6 +165,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineDontDestroyOnLoad.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineRigidbody.h">
+      <Filter>Component\Child\Rigidbody</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -226,6 +232,9 @@
     </Filter>
     <Filter Include="Collision">
       <UniqueIdentifier>{07373ef1-226c-40bc-875a-cc0d724ae3cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Child\Rigidbody">
+      <UniqueIdentifier>{a4943f9d-4ec8-4bc0-8221-f86006587000}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
