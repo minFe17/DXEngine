@@ -3,6 +3,7 @@
 #include "DXEngineSceneManager.h"
 #include "DXEngineResources.h"
 #include <DXEngineCollisionManager.h>
+#include <DXEngineUIManager.h>
 
 namespace DXEngine
 {
@@ -29,6 +30,7 @@ namespace DXEngine
 		Time::Init();
 
 		CollisionManager::Init();
+		UIManager::Init();
 		SceneManager::Init();
 	}
 
@@ -46,12 +48,14 @@ namespace DXEngine
 		Input::Update();
 		Time::Update();
 		CollisionManager::Update();
+		UIManager::Update();
 		SceneManager::Update();
 	}
 
 	void Application::LateUpdate()
 	{
 		CollisionManager::LateUpdate();
+		UIManager::LateUpdate();
 		SceneManager::LateUpdate();
 	}
 
@@ -61,6 +65,7 @@ namespace DXEngine
 
 		Time::Render(backHdc);
 		CollisionManager::Render(backHdc);
+		UIManager::Render(backHdc);
 		SceneManager::Render(backHdc);
 
 		CopyRenderTarget(backHdc, hdc);
@@ -69,6 +74,7 @@ namespace DXEngine
 	void Application::Release()
 	{
 		SceneManager::Release();
+		UIManager::Release();
 		Resources::Release();
 	}
 

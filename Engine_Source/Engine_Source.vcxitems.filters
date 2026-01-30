@@ -79,6 +79,13 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineRigidbody.cpp">
       <Filter>Component\Child\Rigidbody</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineUIManager.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineUIBase.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineUIButton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -168,6 +175,13 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineRigidbody.h">
       <Filter>Component\Child\Rigidbody</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineUIManager.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineUIBase.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineUIButton.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -187,9 +201,6 @@
     </Filter>
     <Filter Include="Component\Child">
       <UniqueIdentifier>{0cb26b8e-26d5-4735-9c8a-80194e5b1bf6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Time">
-      <UniqueIdentifier>{8953f03d-de47-472e-95b2-38daa49d94e2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Layer">
       <UniqueIdentifier>{39eee8d8-6836-40b8-9fab-9f3da82e2ef9}</UniqueIdentifier>
@@ -235,6 +246,12 @@
     </Filter>
     <Filter Include="Component\Child\Rigidbody">
       <UniqueIdentifier>{a4943f9d-4ec8-4bc0-8221-f86006587000}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{3810fa0c-f7ab-4858-8104-2dbbc5e89084}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Time">
+      <UniqueIdentifier>{8953f03d-de47-472e-95b2-38daa49d94e2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

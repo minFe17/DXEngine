@@ -38,4 +38,10 @@ namespace DXEngine::Enum
 		Rect2D,
 		Max,
 	};
+
+	enum class EUIType
+	{
+		Button,
+		Max,
+	};
 }

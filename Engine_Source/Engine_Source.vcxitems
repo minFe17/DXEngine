@@ -43,6 +43,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTransform.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineUIBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineUIButton.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineUIManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineAnimation.cpp" />
@@ -71,5 +74,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTransform.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineUIBase.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineUIButton.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineUIManager.cpp" />
   </ItemGroup>
 </Project>

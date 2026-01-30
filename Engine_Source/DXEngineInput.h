@@ -37,7 +37,7 @@ namespace DXEngine
 		__forceinline static bool GetKeyDown(EKeyCode code) { return keys[(UINT)code].state == EKeyState::Down; }
 		__forceinline static bool GetKeyUp(EKeyCode code) { return keys[(UINT)code].state == EKeyState::Up; }
 		__forceinline static bool GetKey(EKeyCode code) { return keys[(UINT)code].state == EKeyState::Pressed; }
-		__forceinline static Math::Vector2 GetmousePosition() { return mousePosition; }
+		__forceinline static Math::Vector2 GetMousePosition() { return mousePosition; }
 
 	private:
 		static void CreateKeys();
