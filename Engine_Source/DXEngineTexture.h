@@ -19,6 +19,7 @@ namespace DXEngine::Graphcis
 		static Texture* Create(const std::wstring& name, UINT width, UINT height);
 
 		HRESULT Load(const std::wstring& path) override;
+		COLORREF GetPixel(int x, int y);
 
 		UINT GetWidth() { return width; }
 		UINT GetHeight() { return height; }

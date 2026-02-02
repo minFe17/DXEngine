@@ -16,6 +16,7 @@
 #include "DXEngineMath.h"
 
 #include <mmsystem.h>
+#include <Wingdi.h>
 #include <dinput.h>
 #pragma comment(lib, "Msimg32.lib");
 #pragma comment(lib, "winmm.lib");
