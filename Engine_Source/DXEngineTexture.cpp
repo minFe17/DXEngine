@@ -32,7 +32,7 @@ namespace DXEngine::Graphcis
 
 		HBRUSH transparentBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
 		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, transparentBrush);
-		Rectangle(image->hdc, -1, -1, image->GetWidth() + 1, image->GetHeight() + 1);
+		::Rectangle(image->hdc, -1, -1, image->GetWidth() + 1, image->GetHeight() + 1);
 		SelectObject(hdc, oldBrush);
 
 		HBITMAP oldBitmap = (HBITMAP)SelectObject(image->hdc, image->bitmap);

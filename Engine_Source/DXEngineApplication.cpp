@@ -26,6 +26,9 @@ namespace DXEngine
 		AdjustWindow(width, height);
 		CreateBuffer();
 
+		GraphicDevice = std::make_unique<Graphics::GraphicDevice_DX11>();
+		GraphicDevice->Init();
+
 		Input::Init();
 		Time::Init();
 
@@ -61,14 +64,12 @@ namespace DXEngine
 
 	void Application::Render()
 	{
-		ClearRenderTarget();
+		GraphicDevice->Draw();
 
 		Time::Render(backHdc);
 		CollisionManager::Render(backHdc);
 		UIManager::Render(backHdc);
 		SceneManager::Render(backHdc);
-
-		CopyRenderTarget(backHdc, hdc);
 	}
 
 	void Application::Release()
@@ -111,7 +112,7 @@ namespace DXEngine
 	{
 		HBRUSH brush = (HBRUSH)CreateSolidBrush(RGB(128, 128, 128));
 		HBRUSH oldBrush = (HBRUSH)SelectObject(backHdc, brush);
-		Rectangle(backHdc, -1, -1, 1601, 901);
+		::Rectangle(backHdc, -1, -1, 1601, 901);
 	}
 
 	void Application::CopyRenderTarget(HDC source, HDC dest)

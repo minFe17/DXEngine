@@ -52,9 +52,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineAnimator.cpp">
       <Filter>Component\Child\Animator</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineMath.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineApplication.cpp">
       <Filter>Application</Filter>
     </ClCompile>
@@ -85,7 +82,15 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineUIBase.cpp">
       <Filter>UI</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineUIButton.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineMath.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineUIButton.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineGraphicDevice_DX11.cpp">
+      <Filter>GraphicDevice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -148,9 +153,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineAnimator.h">
       <Filter>Component\Child\Animator</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMath.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineApplication.h">
       <Filter>Application</Filter>
     </ClInclude>
@@ -181,7 +183,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineUIBase.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineUIButton.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMath.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineUIButton.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGraphicDevice_DX11.h">
+      <Filter>GraphicDevice</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -252,6 +262,9 @@
     </Filter>
     <Filter Include="Time">
       <UniqueIdentifier>{8953f03d-de47-472e-95b2-38daa49d94e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GraphicDevice">
+      <UniqueIdentifier>{2ac88110-ac94-47e5-8598-4ef79fbaa464}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

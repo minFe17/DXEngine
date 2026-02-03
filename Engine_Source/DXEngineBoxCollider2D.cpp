@@ -42,7 +42,7 @@ namespace DXEngine
 		HPEN greenPen = CreatePen(PS_SOLID, 2, RGB(0, 255, 0));
 		HPEN oldPen = (HPEN)SelectObject(hdc, greenPen);
 
-		Rectangle(hdc, position.x + offset.x, position.y + offset.y, position.x + offset.x + 100, position.y + offset.y + 100);
+		::Rectangle(hdc, position.x + offset.x, position.y + offset.y, position.x + offset.x + 100, position.y + offset.y + 100);
 		SelectObject(hdc, oldBrush);
 		SelectObject(hdc, oldPen);
 		DeleteObject(greenPen);

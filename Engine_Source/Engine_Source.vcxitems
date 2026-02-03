@@ -28,9 +28,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEnum.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGameObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGraphicDevice_DX11.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineLayer.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineResource.h" />
@@ -46,6 +46,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineUIBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineUIButton.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineUIManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMath.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineAnimation.cpp" />
@@ -60,9 +61,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineDontDestroyOnLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineGameObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineGraphicDevice_DX11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineLayer.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineResources.cpp" />
@@ -77,5 +78,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineUIBase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineUIButton.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineUIManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineMath.cpp" />
   </ItemGroup>
 </Project>

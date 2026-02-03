@@ -2,6 +2,7 @@
 #include "CommonInclude.h"
 #include "DXEngineGameObject.h"
 #include "DXEngineTime.h"
+#include "DXEngineGraphicDevice_DX11.h"
 
 namespace DXEngine
 {
@@ -30,6 +31,8 @@ namespace DXEngine
 		void ClearRenderTarget();
 		void CopyRenderTarget(HDC source, HDC dest);
 	private:
+		std::unique_ptr<Graphics::GraphicDevice_DX11> GraphicDevice;
+
 		HWND hWnd;
 		HDC hdc;
 

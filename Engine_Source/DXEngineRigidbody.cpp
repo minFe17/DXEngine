@@ -29,7 +29,7 @@ namespace DXEngine
 		{
 			Vector2 gravityValue = gravity;
 			gravityValue.Normalize();
-			float dot = Vector2::Dot(velocity, gravityValue);
+			float dot = velocity.Vector2::Dot(gravityValue);
 			velocity -= gravity * dot;
 		}
 		else
@@ -37,7 +37,7 @@ namespace DXEngine
 
 		Vector2 gravityValue = gravity;
 		gravityValue.Normalize();
-		float dot = Vector2::Dot(velocity, gravityValue);
+		float dot = velocity.Vector2::Dot(gravityValue);
 		gravity = gravity * dot;
 
 		Vector2 sideVelocity = velocity - gravity;
@@ -57,7 +57,8 @@ namespace DXEngine
 		if (!(velocity == Vector2::Zero))
 		{
 			Vector2 frictionValue = -velocity;
-			frictionValue = frictionValue.Normalize() * friction * mass * Time::DeltaTime();
+			frictionValue.Normalize();
+			frictionValue = frictionValue * friction * mass * Time::DeltaTime();
 
 			if (velocity.Length() <= frictionValue.Length())
 				velocity = Vector2::Zero;
@@ -70,7 +71,7 @@ namespace DXEngine
 		position = position + velocity * Time::DeltaTime();
 		transform->SetPosition(position);
 
-		force.Clear();
+		force = Vector2::One;
 	}
 
 	void Rigidbody::LateUpdate()
