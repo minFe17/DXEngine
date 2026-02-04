@@ -2,8 +2,9 @@
 #include "DXEngineInput.h"
 #include "DXEngineSceneManager.h"
 #include "DXEngineResources.h"
-#include <DXEngineCollisionManager.h>
-#include <DXEngineUIManager.h>
+#include "DXEngineRenderer.h"
+#include "DXEngineCollisionManager.h"
+#include "DXEngineUIManager.h"
 
 namespace DXEngine
 {
@@ -22,11 +23,11 @@ namespace DXEngine
 		hWnd = hwnd;
 		hdc = GetDC(hwnd);
 
-
 		AdjustWindow(width, height);
 		CreateBuffer();
 
 		GraphicDevice = std::make_unique<Graphics::GraphicDevice_DX11>();
+		Renderer::Init();
 		GraphicDevice->Init();
 
 		Input::Init();

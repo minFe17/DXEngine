@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="VS">
+      <UniqueIdentifier>{c828ef84-2deb-4dde-9129-1678d1e3d362}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PS">
+      <UniqueIdentifier>{5b4c929d-e6e7-4b9e-80f2-d2c038d3857a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LIB">
+      <UniqueIdentifier>{884e8fba-88fd-4b8c-b7ef-a6c82227ec43}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)TriangleVS.hlsl">
+      <Filter>VS</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)TrianglePS.hlsl">
+      <Filter>PS</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)ConstantBuffers.hlsli">
+      <Filter>LIB</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -192,6 +192,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGraphicDevice_DX11.h">
       <Filter>GraphicDevice</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGraphics.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">

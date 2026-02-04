@@ -29,6 +29,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEnum.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGraphicDevice_DX11.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGraphics.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineObject.h" />

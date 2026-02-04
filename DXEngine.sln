@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine_Source", "Engine_Source\Engine_Source.vcxitems", "{EEDDBB2D-9B96-4C6A-8C2B-C3D640C43D01}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shaders_SOURCE", "Shaders_SOURCE\Shaders_SOURCE.vcxitems", "{C65FBB2D-48BE-49D4-BE9D-4249AF4BBEB8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -42,6 +44,7 @@ Global
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Engine_Source\Engine_Source.vcxitems*{a74cd310-6d4d-4699-a0ba-1068a5a12536}*SharedItemsImports = 4
+		Shaders_SOURCE\Shaders_SOURCE.vcxitems*{c65fbb2d-48be-49d4-be9d-4249af4bbeb8}*SharedItemsImports = 9
 		Engine_Source\Engine_Source.vcxitems*{eeddbb2d-9b96-4c6a-8c2b-c3d640c43d01}*SharedItemsImports = 9
 	EndGlobalSection
 EndGlobal

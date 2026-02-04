@@ -24,4 +24,5 @@
 
 #include "DXEngineEnum.h"
 #include "DXEngineMath.h"
+#include "DXEngineGraphics.h"
 #include <wrl.h>
