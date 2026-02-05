@@ -1,11 +1,5 @@
 #pragma once
-#include <d3d11.h>
-#include <d3dcompiler.h>
-
-#pragma comment(lib, "d3d11.lib")
-#pragma comment(lib, "d3dcompiler.lib")
-
-#include "CommonInclude.h"
+#include "DXEngineGraphics.h"
 
 namespace DXEngine::Graphics
 {
@@ -26,6 +20,8 @@ namespace DXEngine::Graphics
 		bool CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* inputElementDescs, UINT numElements, const void* shaderBytecodeWithInputSignature, SIZE_T bytecodeLength, ID3D11InputLayout** inputLayout);
 		bool CreateBuffer(const D3D11_BUFFER_DESC* desc, const D3D11_SUBRESOURCE_DATA* initData, ID3D11Buffer** buffer);
 
+		void BindVertexShader(ID3D11VertexShader* vertexShader);
+		void BindPixelShader(ID3D11PixelShader* pixelShader);
 		void BindConstantBuffer(EShaderStage stage, ECBType type, ID3D11Buffer* buffer);
 
 		void Init();

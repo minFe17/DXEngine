@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include <assert.h>
+#include <iostream>
 
 #include <vector>
 #include <algorithm>
@@ -10,11 +11,8 @@
 #include <map>
 #include <bitset>
 #include <functional>
-#include <filesystem>
-#include <math.h>
 
 #include <mmsystem.h>
-#include <Wingdi.h>
 #include <dinput.h>
 #pragma comment(lib, "Msimg32.lib")
 #pragma comment(lib, "winmm.lib")
@@ -24,5 +22,3 @@
 
 #include "DXEngineEnum.h"
 #include "DXEngineMath.h"
-#include "DXEngineGraphics.h"
-#include <wrl.h>

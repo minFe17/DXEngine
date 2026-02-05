@@ -1,4 +1,6 @@
 #include "DXEngineRenderer.h"
+#include "DXEngineResources.h"
+#include "DXEngineShader.h"
 
 namespace DXEngine::Renderer
 {
@@ -11,10 +13,6 @@ namespace DXEngine::Renderer
 	ID3D11Buffer* indexBuffer = nullptr;
 	ID3D11Buffer* constantBuffer = nullptr;
 
-	ID3DBlob* vsBlob = nullptr;
-	ID3D11VertexShader* vsShader = nullptr;
-	ID3DBlob* psBlob = nullptr;
-	ID3D11PixelShader* psShader = nullptr;
 	ID3D11InputLayout* inputLayouts = nullptr;
 
 	void LoadTriangleMesh()
@@ -42,18 +40,22 @@ namespace DXEngine::Renderer
 		LoadTriangleMesh();
 	}
 
+	void LoadShaders()
+	{
+		Resources::Load<Graphics::Shader>(L"TriangleShader", L"..\\Shaders_SOURCE\\Triangle");
+	}
+
 	void Init()
 	{
 		LoadMeshes();
+		LoadShaders();
 	}
 
 	void Release()
 	{
 		vertexBuffer->Release();
-		vsBlob->Release();
-		vsShader->Release();
-		psBlob->Release();
-		psShader->Release();
 		inputLayouts->Release();
+		indexBuffer->Release();
+		constantBuffer->Release();
 	}
 }

@@ -32,6 +32,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGraphics.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineLayer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMaterial.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineResource.h" />
@@ -40,6 +42,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineSceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineScript.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineSpriteRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTime.h" />
@@ -65,6 +68,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineGraphicDevice_DX11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineLayer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineMaterial.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineMesh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineResources.cpp" />
@@ -72,6 +77,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineSceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineScript.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineSpriteRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTime.cpp" />

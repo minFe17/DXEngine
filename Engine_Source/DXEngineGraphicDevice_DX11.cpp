@@ -1,6 +1,8 @@
 #include "DXEngineGraphicDevice_DX11.h"
 #include "DXEngineApplication.h"
 #include "DXEngineRenderer.h"
+#include "DXEngineShader.h"
+#include "DXEngineResources.h"
 
 extern DXEngine::Application application;
 
@@ -9,6 +11,9 @@ namespace DXEngine::Graphics
 	GraphicDevice_DX11::GraphicDevice_DX11()
 	{
 		DXEngine::Graphics::GetDevice() = this;
+
+		if (!(CreateDevice()))
+			assert(NULL && "Create Device Failed!");
 	}
 
 	GraphicDevice_DX11::~GraphicDevice_DX11()
@@ -89,8 +94,7 @@ namespace DXEngine::Graphics
 
 		ID3DBlob* errorBlob = nullptr;
 		const std::wstring shaderFilePath = L"..\\Shaders_SOURCE\\";
-		D3DCompileFromFile((shaderFilePath + fileName).c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
-			, "main", "vs_5_0", shaderFlags, 0, code, &errorBlob);
+		D3DCompileFromFile((shaderFilePath + fileName + L"VS.hlsl").c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE, "main", "vs_5_0", shaderFlags, 0, code, &errorBlob);
 
 		if (errorBlob)
 		{
@@ -114,8 +118,7 @@ namespace DXEngine::Graphics
 
 		ID3DBlob* errorBlob = nullptr;
 		const std::wstring shaderFilePath = L"..\\Shaders_SOURCE\\";
-		D3DCompileFromFile((shaderFilePath + fileName).c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
-			, "main", "ps_5_0", shaderFlags, 0, code, &errorBlob);
+		D3DCompileFromFile((shaderFilePath + fileName + L"PS.hlsl").c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE, "main", "ps_5_0", shaderFlags, 0, code, &errorBlob);
 
 		if (errorBlob)
 		{
@@ -145,6 +148,16 @@ namespace DXEngine::Graphics
 			return false;
 
 		return true;
+	}
+
+	void GraphicDevice_DX11::BindVertexShader(ID3D11VertexShader* vertexShader)
+	{
+		deviceContext->VSSetShader(vertexShader, 0, 0);
+	}
+
+	void GraphicDevice_DX11::BindPixelShader(ID3D11PixelShader* pixelShader)
+	{
+		deviceContext->PSSetShader(pixelShader, 0, 0);
 	}
 
 	void GraphicDevice_DX11::BindConstantBuffer(EShaderStage stage, ECBType type, ID3D11Buffer* buffer)
@@ -185,9 +198,6 @@ namespace DXEngine::Graphics
 
 	void GraphicDevice_DX11::Init()
 	{
-		if (!(CreateDevice()))
-			assert(NULL && "Create Device Failed!");
-
 #pragma region swapchain desc
 		DXGI_SWAP_CHAIN_DESC swapChainDesc = {};
 
@@ -241,12 +251,6 @@ namespace DXEngine::Graphics
 		if (!(CreateDepthStencilView(depthStencil.Get(), nullptr, depthStencilView.GetAddressOf())))
 			assert(NULL && "Create depthstencilview failed!");
 
-		if (!(CreateVertexShader(L"TriangleVS.hlsl", &Renderer::vsBlob, &Renderer::vsShader)))
-			assert(NULL && "Create vertex shader failed!");
-
-		if (!(CreatePixelShader(L"TrianglePS.hlsl", &Renderer::psBlob, &Renderer::psShader)))
-			assert(NULL && "Create pixel shader failed!");
-
 #pragma region inputLayout Desc
 		D3D11_INPUT_ELEMENT_DESC inputLayoutDesces[2] = {};
 
@@ -264,10 +268,9 @@ namespace DXEngine::Graphics
 		inputLayoutDesces[1].SemanticName = "COLOR";
 		inputLayoutDesces[1].SemanticIndex = 0;
 #pragma endregion
-		if (!(CreateInputLayout(inputLayoutDesces, 2
-			, Renderer::vsBlob->GetBufferPointer()
-			, Renderer::vsBlob->GetBufferSize()
-			, &Renderer::inputLayouts)))
+
+		Graphics::Shader* triangle = Resources::Find<Graphics::Shader>(L"TriangleShader");
+		if (!(CreateInputLayout(inputLayoutDesces, 2, triangle->GetVSBlob()->GetBufferPointer(), triangle->GetVSBlob()->GetBufferSize(), &Renderer::inputLayouts)))
 			assert(NULL && "Create input layout failed!");
 
 #pragma region vertex buffer desc
@@ -336,8 +339,8 @@ namespace DXEngine::Graphics
 		deviceContext->IASetVertexBuffers(0, 1, &Renderer::vertexBuffer, &vertexSize, &offset);
 		deviceContext->IASetIndexBuffer(Renderer::indexBuffer, DXGI_FORMAT_R32_UINT, 0);
 
-		deviceContext->VSSetShader(Renderer::vsShader, 0, 0);
-		deviceContext->PSSetShader(Renderer::psShader, 0, 0);
+		Graphics::Shader* triangle = Resources::Find<Graphics::Shader>(L"TriangleShader");
+		triangle->Bind();
 
 		deviceContext->Draw(3, 0);
 

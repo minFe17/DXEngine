@@ -75,7 +75,7 @@ namespace DXEngine
 
 	void Animator::CreateAnimationByFolder(const std::wstring& name, const std::wstring& path, Vector2 offset, float duration)
 	{
-		Animation* animation = nullptr;
+		/*Animation* animation = nullptr;
 		animation = FindAnimation(name);
 
 		if (animation != nullptr)
@@ -103,7 +103,7 @@ namespace DXEngine
 		UINT imageHeight = images[0]->GetHeight();
 		for (size_t i = 0; i < images.size(); i++)
 			BitBlt(spriteSheet->GetHdc(), i * imageWidth, 0, imageWidth, imageHeight, images[i]->GetHdc(), 0, 0, SRCCOPY);
-		CreateAnimation(name, spriteSheet, Vector2::One, Vector2(imageWidth, imageHeight), offset, fileCount, duration);
+		CreateAnimation(name, spriteSheet, Vector2::One, Vector2(imageWidth, imageHeight), offset, fileCount, duration);*/
 	}
 
 	Animation* Animator::FindAnimation(const std::wstring& name)

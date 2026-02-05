@@ -32,7 +32,7 @@
       <Filter>Resource</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTexture.cpp">
-      <Filter>Resource\Texture</Filter>
+      <Filter>Resource\Graphics\Texture</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTransform.cpp">
       <Filter>Component\Child\Transform</Filter>
@@ -91,6 +91,15 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineGraphicDevice_DX11.cpp">
       <Filter>GraphicDevice</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineShader.cpp">
+      <Filter>Resource\Graphics\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineMaterial.cpp">
+      <Filter>Resource\Graphics\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineMesh.cpp">
+      <Filter>Resource\Graphics\Mesh</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -133,7 +142,7 @@
       <Filter>Resource</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTexture.h">
-      <Filter>Resource\Texture</Filter>
+      <Filter>Resource\Graphics\Texture</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTransform.h">
       <Filter>Component\Child\Transform</Filter>
@@ -192,7 +201,18 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGraphicDevice_DX11.h">
       <Filter>GraphicDevice</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGraphics.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGraphics.h">
+      <Filter>Resource\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineShader.h">
+      <Filter>Resource\Graphics\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMaterial.h">
+      <Filter>Resource\Graphics\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMesh.h">
+      <Filter>Resource\Graphics\Mesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -218,9 +238,6 @@
     </Filter>
     <Filter Include="Resource">
       <UniqueIdentifier>{26ae20df-bfe2-4676-97be-c79378d77ac5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource\Texture">
-      <UniqueIdentifier>{57c7faa5-7599-4ce4-83f9-0ab3d8552ac7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Component\Child\Transform">
       <UniqueIdentifier>{a8a172fa-9110-477a-a648-26a2a6249c82}</UniqueIdentifier>
@@ -266,6 +283,21 @@
     </Filter>
     <Filter Include="GraphicDevice">
       <UniqueIdentifier>{2ac88110-ac94-47e5-8598-4ef79fbaa464}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Graphics">
+      <UniqueIdentifier>{d23d432f-1770-47c4-ab88-22cb76d9cf1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Graphics\Mesh">
+      <UniqueIdentifier>{6879fc96-f832-4fa5-8769-600fe6181fba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Graphics\Shader">
+      <UniqueIdentifier>{dbb806cc-4120-4c6a-b29d-fa1baf9485fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Graphics\Material">
+      <UniqueIdentifier>{0572bddd-c29a-4e1a-82af-6bc047752400}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Graphics\Texture">
+      <UniqueIdentifier>{57c7faa5-7599-4ce4-83f9-0ab3d8552ac7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
