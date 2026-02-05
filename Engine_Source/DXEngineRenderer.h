@@ -1,21 +1,16 @@
 #pragma once
 #include "DXEngineCamera.h"
 #include "DXEngineGraphicDevice_DX11.h"
+#include "DXEngineVertexBuffer.h"
 
 namespace DXEngine::Renderer
 {
 	extern Camera* mainCamera;
 
-	struct Vertex
-	{
-		Vector3 position;
-		Vector4 color;
-	};
-
-	extern Vertex vertexes[3];
+	extern std::vector<Graphics::Vertex> vertexes;
 	extern std::vector<UINT> indices;
 
-	extern ID3D11Buffer* vertexBuffer;
+	extern Graphics::VertexBuffer vertexBuffer;
 	extern ID3D11Buffer* indexBuffer;
 	extern ID3D11Buffer* constantBuffer;
 

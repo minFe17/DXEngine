@@ -160,6 +160,11 @@ namespace DXEngine::Graphics
 		deviceContext->PSSetShader(pixelShader, 0, 0);
 	}
 
+	void GraphicDevice_DX11::BindVertexBuffer(UINT startSlot, UINT numBuffers, ID3D11Buffer* const* vertexBuffers, const UINT* strides, const UINT* offsets)
+	{
+		deviceContext->IASetVertexBuffers(startSlot, numBuffers, vertexBuffers, strides, offsets);
+	}
+
 	void GraphicDevice_DX11::BindConstantBuffer(EShaderStage stage, ECBType type, ID3D11Buffer* buffer)
 	{
 		UINT slot = (UINT)type;
@@ -273,19 +278,8 @@ namespace DXEngine::Graphics
 		if (!(CreateInputLayout(inputLayoutDesces, 2, triangle->GetVSBlob()->GetBufferPointer(), triangle->GetVSBlob()->GetBufferSize(), &Renderer::inputLayouts)))
 			assert(NULL && "Create input layout failed!");
 
-#pragma region vertex buffer desc
-		D3D11_BUFFER_DESC bufferDesc = {};
+		Renderer::vertexBuffer.Create(Renderer::vertexes);
 
-		bufferDesc.ByteWidth = sizeof(Renderer::Vertex) * 3;
-		bufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;
-		bufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;
-		bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
-
-		D3D11_SUBRESOURCE_DATA sub = { Renderer::vertexes };
-		//sub.pSysMem = Renderer::vertexes;
-#pragma endregion
-		if (!(CreateBuffer(&bufferDesc, &sub, &Renderer::vertexBuffer)))
-			assert(NULL, "Create vertex buffer failed!");
 
 #pragma region index buffer desc
 		D3D11_BUFFER_DESC indexBufferdesc = {};
@@ -334,9 +328,7 @@ namespace DXEngine::Graphics
 		deviceContext->IASetInputLayout(Renderer::inputLayouts);
 		deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-		UINT vertexSize = sizeof(Renderer::Vertex);
-		UINT offset = 0;
-		deviceContext->IASetVertexBuffers(0, 1, &Renderer::vertexBuffer, &vertexSize, &offset);
+		Renderer::vertexBuffer.Bind();
 		deviceContext->IASetIndexBuffer(Renderer::indexBuffer, DXGI_FORMAT_R32_UINT, 0);
 
 		Graphics::Shader* triangle = Resources::Find<Graphics::Shader>(L"TriangleShader");

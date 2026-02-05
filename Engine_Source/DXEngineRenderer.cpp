@@ -6,10 +6,10 @@ namespace DXEngine::Renderer
 {
 	Camera* mainCamera = nullptr;
 
-	Vertex vertexes[3] = {};
+	std::vector<Graphics::Vertex> vertexes = {};
 	std::vector<UINT> indices;
 
-	ID3D11Buffer* vertexBuffer = nullptr;
+	Graphics::VertexBuffer vertexBuffer;
 	ID3D11Buffer* indexBuffer = nullptr;
 	ID3D11Buffer* constantBuffer = nullptr;
 
@@ -17,6 +17,8 @@ namespace DXEngine::Renderer
 
 	void LoadTriangleMesh()
 	{
+		Renderer::vertexes.resize(3);
+
 		Renderer::vertexes[0].position = Vector3(0.f, 0.5f, 0.0f);
 		Renderer::vertexes[0].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
 
@@ -53,7 +55,6 @@ namespace DXEngine::Renderer
 
 	void Release()
 	{
-		vertexBuffer->Release();
 		inputLayouts->Release();
 		indexBuffer->Release();
 		constantBuffer->Release();

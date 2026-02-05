@@ -51,6 +51,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineUIButton.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineUIManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineVertexBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineAnimation.cpp" />
@@ -86,5 +87,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineUIButton.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineUIManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineVertexBuffer.cpp" />
   </ItemGroup>
 </Project>

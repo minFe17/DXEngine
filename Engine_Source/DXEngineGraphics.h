@@ -10,6 +10,12 @@
 
 namespace DXEngine::Graphics
 {
+	struct Vertex
+	{
+		Math::Vector3 position;
+		Math::Vector4 color;
+
+	};
 	enum class EShaderStage
 	{
 		VS,		// Vertex Shader
