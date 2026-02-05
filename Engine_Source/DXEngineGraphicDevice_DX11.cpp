@@ -150,6 +150,14 @@ namespace DXEngine::Graphics
 		return true;
 	}
 
+	void GraphicDevice_DX11::SetDataBuffer(ID3D11Buffer* buffer, void* data, UINT size)
+	{
+		D3D11_MAPPED_SUBRESOURCE sub = {};
+		deviceContext->Map(buffer, 0, D3D11_MAP::D3D11_MAP_WRITE_DISCARD, 0, &sub);
+		memcpy(sub.pData, data, size);
+		deviceContext->Unmap(buffer, 0);
+	}
+
 	void GraphicDevice_DX11::BindVertexShader(ID3D11VertexShader* vertexShader)
 	{
 		deviceContext->VSSetShader(vertexShader, 0, 0);
@@ -163,6 +171,11 @@ namespace DXEngine::Graphics
 	void GraphicDevice_DX11::BindVertexBuffer(UINT startSlot, UINT numBuffers, ID3D11Buffer* const* vertexBuffers, const UINT* strides, const UINT* offsets)
 	{
 		deviceContext->IASetVertexBuffers(startSlot, numBuffers, vertexBuffers, strides, offsets);
+	}
+
+	void GraphicDevice_DX11::BindIndexBuffer(ID3D11Buffer* indexBuffer, DXGI_FORMAT format, UINT offset)
+	{
+		deviceContext->IASetIndexBuffer(indexBuffer, format, offset);
 	}
 
 	void GraphicDevice_DX11::BindConstantBuffer(EShaderStage stage, ECBType type, ID3D11Buffer* buffer)
@@ -279,34 +292,7 @@ namespace DXEngine::Graphics
 			assert(NULL && "Create input layout failed!");
 
 		Renderer::vertexBuffer.Create(Renderer::vertexes);
-
-
-#pragma region index buffer desc
-		D3D11_BUFFER_DESC indexBufferdesc = {};
-		indexBufferdesc.ByteWidth = sizeof(UINT) * Renderer::indices.size();
-		indexBufferdesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_INDEX_BUFFER;
-		indexBufferdesc.Usage = D3D11_USAGE_DEFAULT;
-		indexBufferdesc.CPUAccessFlags = 0;
-
-		D3D11_SUBRESOURCE_DATA indicesData = {};
-		indicesData.pSysMem = Renderer::indices.data();
-#pragma endregion
-		if (!(Graphics::GetDevice()->CreateBuffer(&indexBufferdesc, &indicesData, &Renderer::indexBuffer)))
-			assert(NULL && "indices buffer create fail!!");
-
-#pragma region constant buffer desc
-		D3D11_BUFFER_DESC constantBufferDesc = {};
-		constantBufferDesc.ByteWidth = sizeof(Vector4); // constant buffer 
-		constantBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-		constantBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
-		constantBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-
-		Vector4 pos(0.5f, 0.0f, 0.0f, 1.0f);
-		D3D11_SUBRESOURCE_DATA constantBufferData = {};
-		constantBufferData.pSysMem = &pos;
-#pragma endregion
-		if (!(Graphics::GetDevice()->CreateBuffer(&constantBufferDesc, &constantBufferData, &Renderer::constantBuffer)))
-			assert(NULL && "indices buffer create fail!!");
+		Renderer::indexBuffer.Create(Renderer::indices);
 	}
 
 	void GraphicDevice_DX11::Draw()
@@ -329,7 +315,11 @@ namespace DXEngine::Graphics
 		deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 		Renderer::vertexBuffer.Bind();
-		deviceContext->IASetIndexBuffer(Renderer::indexBuffer, DXGI_FORMAT_R32_UINT, 0);
+		Renderer::indexBuffer.Bind();
+
+		Vector4 pos(0.5f, 0.0f, 0.0f, 1.0f);
+		Renderer::constantBuffers[(UINT)ECBType::Transform].SetData(&pos);
+		Renderer::constantBuffers[(UINT)ECBType::Transform].Bind(EShaderStage::VS);
 
 		Graphics::Shader* triangle = Resources::Find<Graphics::Shader>(L"TriangleShader");
 		triangle->Bind();

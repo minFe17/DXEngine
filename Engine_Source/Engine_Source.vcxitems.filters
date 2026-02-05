@@ -89,7 +89,7 @@
       <Filter>UI</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineGraphicDevice_DX11.cpp">
-      <Filter>GraphicDevice</Filter>
+      <Filter>Graphics\GraphicDevice</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineShader.cpp">
       <Filter>Resource\Graphics\Shader</Filter>
@@ -101,7 +101,13 @@
       <Filter>Resource\Graphics\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineVertexBuffer.cpp">
-      <Filter>Resource\Graphics</Filter>
+      <Filter>Graphics\GpuBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineConstantBuffer.cpp">
+      <Filter>Graphics\GpuBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineIndexBuffer.cpp">
+      <Filter>Graphics\GpuBuffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -202,10 +208,7 @@
       <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGraphicDevice_DX11.h">
-      <Filter>GraphicDevice</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGraphics.h">
-      <Filter>Resource\Graphics</Filter>
+      <Filter>Graphics\GraphicDevice</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineShader.h">
       <Filter>Resource\Graphics\Shader</Filter>
@@ -216,8 +219,17 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMesh.h">
       <Filter>Resource\Graphics\Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGraphics.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineVertexBuffer.h">
-      <Filter>Resource\Graphics</Filter>
+      <Filter>Graphics\GpuBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineConstantBuffer.h">
+      <Filter>Graphics\GpuBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineIndexBuffer.h">
+      <Filter>Graphics\GpuBuffer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -287,9 +299,6 @@
     <Filter Include="Time">
       <UniqueIdentifier>{8953f03d-de47-472e-95b2-38daa49d94e2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GraphicDevice">
-      <UniqueIdentifier>{2ac88110-ac94-47e5-8598-4ef79fbaa464}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource\Graphics">
       <UniqueIdentifier>{d23d432f-1770-47c4-ab88-22cb76d9cf1b}</UniqueIdentifier>
     </Filter>
@@ -304,6 +313,15 @@
     </Filter>
     <Filter Include="Resource\Graphics\Texture">
       <UniqueIdentifier>{57c7faa5-7599-4ce4-83f9-0ab3d8552ac7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{0826c588-5d37-4b56-b3b3-f9a92a84e1fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\GpuBuffer">
+      <UniqueIdentifier>{3d4704d0-867f-4af0-9dc3-67e2ac52a3cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\GraphicDevice">
+      <UniqueIdentifier>{2ac88110-ac94-47e5-8598-4ef79fbaa464}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

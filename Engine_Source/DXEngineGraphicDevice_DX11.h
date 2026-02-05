@@ -20,9 +20,12 @@ namespace DXEngine::Graphics
 		bool CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* inputElementDescs, UINT numElements, const void* shaderBytecodeWithInputSignature, SIZE_T bytecodeLength, ID3D11InputLayout** inputLayout);
 		bool CreateBuffer(const D3D11_BUFFER_DESC* desc, const D3D11_SUBRESOURCE_DATA* initData, ID3D11Buffer** buffer);
 
+		void SetDataBuffer(ID3D11Buffer* buffer, void* data, UINT size);
+
 		void BindVertexShader(ID3D11VertexShader* vertexShader);
 		void BindPixelShader(ID3D11PixelShader* pixelShader);
 		void BindVertexBuffer(UINT StartSlot, UINT NumBuffers, ID3D11Buffer* const* ppVertexBuffers, const UINT* pStrides, const UINT* pOffsets);
+		void BindIndexBuffer(ID3D11Buffer* indexBuffer, DXGI_FORMAT format, UINT offset);
 		void BindConstantBuffer(EShaderStage stage, ECBType type, ID3D11Buffer* buffer);
 
 		void Init();

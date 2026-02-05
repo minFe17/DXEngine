@@ -2,6 +2,11 @@
 #include "DXEngineCamera.h"
 #include "DXEngineGraphicDevice_DX11.h"
 #include "DXEngineVertexBuffer.h"
+#include "DXEngineIndexBuffer.h"
+#include "DXEngineConstantBuffer.h"
+
+using namespace DXEngine::Math;
+using namespace DXEngine::Graphics;
 
 namespace DXEngine::Renderer
 {
@@ -11,7 +16,9 @@ namespace DXEngine::Renderer
 	extern std::vector<UINT> indices;
 
 	extern Graphics::VertexBuffer vertexBuffer;
-	extern ID3D11Buffer* indexBuffer;
+	extern Graphics::IndexBuffer indexBuffer;
+	extern Graphics::ConstantBuffer constantBuffers[(UINT)ECBType::Max];
+
 	extern ID3D11Buffer* constantBuffer;
 
 	extern ID3D11InputLayout* inputLayouts;

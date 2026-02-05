@@ -10,7 +10,9 @@ namespace DXEngine::Renderer
 	std::vector<UINT> indices;
 
 	Graphics::VertexBuffer vertexBuffer;
-	ID3D11Buffer* indexBuffer = nullptr;
+	Graphics::IndexBuffer indexBuffer;
+	Graphics::ConstantBuffer constantBuffers[(UINT)ECBType::Max] = {};
+
 	ID3D11Buffer* constantBuffer = nullptr;
 
 	ID3D11InputLayout* inputLayouts = nullptr;
@@ -47,16 +49,20 @@ namespace DXEngine::Renderer
 		Resources::Load<Graphics::Shader>(L"TriangleShader", L"..\\Shaders_SOURCE\\Triangle");
 	}
 
+	void LoadConstantBuffers()
+	{
+		constantBuffers[(UINT)ECBType::Transform].Create(ECBType::Transform, sizeof(Vector4));
+	}
+
 	void Init()
 	{
 		LoadMeshes();
 		LoadShaders();
+		LoadConstantBuffers();
 	}
 
 	void Release()
 	{
 		inputLayouts->Release();
-		indexBuffer->Release();
-		constantBuffer->Release();
 	}
 }

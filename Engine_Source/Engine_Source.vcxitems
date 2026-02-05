@@ -24,12 +24,14 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCollider.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineComponent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineConstantBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineDontDestroyOnLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEnum.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGraphicDevice_DX11.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGraphics.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineIndexBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMaterial.h" />
@@ -63,10 +65,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCollider.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineComponent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineConstantBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineDontDestroyOnLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineGraphicDevice_DX11.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineIndexBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineLayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineMaterial.cpp" />
