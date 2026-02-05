@@ -79,7 +79,7 @@ namespace DXEngine
 
 	}
 
-	void Rigidbody::Render(HDC hdc)
+	void Rigidbody::Render()
 	{
 
 	}

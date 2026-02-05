@@ -52,13 +52,13 @@ namespace DXEngine
 		}
 	}
 
-	void GameObject::Render(HDC hdc)
+	void GameObject::Render()
 	{
 		for (size_t i = 0; i < components.size(); i++)
 		{
 			if (components[i] == nullptr)
 				continue;
-			components[i]->Render(hdc);
+			components[i]->Render();
 		}
 	}
 

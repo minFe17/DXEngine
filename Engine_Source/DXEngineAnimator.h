@@ -36,10 +36,10 @@ namespace DXEngine
 		void Init() override;
 		void Update() override;
 		void LateUpdate() override;
-		void Render(HDC hdc) override;
+		void Render() override;
 
 		void CreateAnimation(const std::wstring& name, Graphcis::Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration);
-		void CreateAnimationByFolder(const std::wstring& name, const std::wstring& path, Vector2 offset, float duration);
+		void CreateAnimationByFolder();
 		Animation* FindAnimation(const std::wstring& name);
 
 		Events* FindEvents(const std::wstring& name);

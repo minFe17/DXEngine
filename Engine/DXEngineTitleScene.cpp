@@ -29,14 +29,15 @@ namespace DXEngine
 			SceneManager::LoadScene(L"PlayScene");
 	}
 
-	void TitleScene::Render(HDC hdc)
+	void TitleScene::Render()
 	{
-		wchar_t text[50] = L"Title Scene";
-		TextOut(hdc, 0, 0, text, 11);
+		
 	}
+
 	void TitleScene::OnEnter()
 	{
 	}
+
 	void TitleScene::OnExit()
 	{
 	}

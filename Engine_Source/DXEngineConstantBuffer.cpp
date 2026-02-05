@@ -2,7 +2,7 @@
 
 namespace DXEngine::Graphics
 {
-	ConstantBuffer::ConstantBuffer() : size(0)
+	ConstantBuffer::ConstantBuffer() : size(0), type(ECBType::None)
 	{
 	}
 
@@ -29,17 +29,17 @@ namespace DXEngine::Graphics
 			succes = GetDevice()->CreateBuffer(&desc, &sub, buffer.GetAddressOf());
 
 		if (!succes)
-			assert(NULL, "Create constant buffer failed!");
+			assert(NULL);
 
 		return true;
 	}
 
-	void ConstantBuffer::SetData(void* data)
+	void ConstantBuffer::SetData(void* data) const
 	{
 		GetDevice()->SetDataBuffer(buffer.Get(), data, size);
 	}
 
-	void ConstantBuffer::Bind(EShaderStage stage)
+	void ConstantBuffer::Bind(EShaderStage stage) const
 	{
 		GetDevice()->BindConstantBuffer(stage, type, buffer.Get());
 	}

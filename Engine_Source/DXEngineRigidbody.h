@@ -13,13 +13,13 @@ namespace DXEngine
 		void Init() override;
 		void Update() override;
 		void LateUpdate() override;
-		void Render(HDC hdc) override;
+		void Render() override;
 
 		void SetMass(float massValue) { mass = massValue; }
 		void AddForce(Vector2 forceValue) { force = forceValue; }
 		void SetIsGround(bool value) { isGround = value; }
 		void SetVelocity(Vector2 velocityValue) { velocity = velocityValue; }
-		Vector2 GetVelocity() { return velocity; }
+		Vector2 GetVelocity() const { return velocity; }
 
 	private:
 		bool isGround;

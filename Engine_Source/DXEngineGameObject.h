@@ -20,7 +20,7 @@ namespace DXEngine
 		virtual void Init();
 		virtual void Update();
 		virtual void LateUpdate();
-		virtual void Render(HDC hdc);
+		virtual void Render();
 
 		template <typename T>
 		T* AddComponent()
@@ -50,9 +50,9 @@ namespace DXEngine
 
 		Enum::ELayerType GetLayerType() { return layerType; }
 		void SetLayerType(Enum::ELayerType layer) { layerType = layer; }
-		EStateType GetState() { return stateType; }
-		bool IsActive() { return stateType == EStateType::Active; }
-		bool IsDead() { return stateType == EStateType::Dead; }
+		EStateType GetState() const { return stateType; }
+		bool IsActive() const { return stateType == EStateType::Active; }
+		bool IsDead() const { return stateType == EStateType::Dead; }
 
 		void SetActive(bool power)
 		{

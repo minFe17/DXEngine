@@ -1,6 +1,9 @@
 #include "DXEngineCamera.h"
 #include "DXEngineGameObject.h"
 #include "DXEngineTransform.h"
+#include "DXEngineApplication.h"
+
+extern DXEngine::Application application;
 
 namespace DXEngine
 {
@@ -16,7 +19,8 @@ namespace DXEngine
 
 	void Camera::Init()
 	{
-
+		resolution.x = (float)application.GetWidth();
+		resolution.y = (float)application.GetHeight();
 	}
 
 	void Camera::Update()
@@ -40,7 +44,7 @@ namespace DXEngine
 		
 	}
 
-	void Camera::Render(HDC hdc)
+	void Camera::Render()
 	{
 
 	}

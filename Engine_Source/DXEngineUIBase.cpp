@@ -39,10 +39,10 @@ namespace DXEngine
 			OnLateUpdate();
 	}
 
-	void UIBase::Render(HDC hdc)
+	void UIBase::Render()
 	{
 		if (isEnabled)
-			OnRender(hdc);
+			OnRender();
 	}
 
 	void UIBase::UIClear()
@@ -70,7 +70,7 @@ namespace DXEngine
 	{
 	}
 
-	void UIBase::OnRender(HDC hdc)
+	void UIBase::OnRender()
 	{
 	}
 

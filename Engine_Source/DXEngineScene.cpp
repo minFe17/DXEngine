@@ -50,13 +50,13 @@ namespace DXEngine
 		}
 	}
 
-	void Scene::Render(HDC hdc)
+	void Scene::Render()
 	{
 		for (size_t i = 0; i < layers.size(); i++)
 		{
 			if (layers[i] == nullptr)
 				continue;
-			layers[i]->Render(hdc);
+			layers[i]->Render();
 		}
 	}
 

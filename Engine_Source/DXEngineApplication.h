@@ -20,10 +20,10 @@ namespace DXEngine
 		void Release();
 		void Destroy();
 
-		HDC GetHDC() { return hdc; }
-		HWND GetHwnd() { return hWnd; }
-		UINT GetWidth() { return width; }
-		UINT GetHeight() { return height; }
+		HWND GetHwnd() const { return hWnd; }
+		HDC GetHdc() const { return hdc; }
+		UINT GetWidth() const { return width; }
+		UINT GetHeight() const { return height; }
 
 	private:
 		void AdjustWindow(UINT width, UINT hewight);

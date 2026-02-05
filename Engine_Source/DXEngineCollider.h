@@ -12,18 +12,18 @@ namespace DXEngine
 		virtual void Init();
 		virtual void Update();
 		virtual void LateUpdate();
-		virtual void Render(HDC hdc);
+		virtual void Render();
 
 		virtual void OnCollisionEnter(Collider* other);
 		virtual void OnCollisionStay(Collider* other);
 		virtual void OnCollisionExit(Collider* other);
 
-		UINT32 GetID() { return id; }
-		Vector2 GetOffset() { return offset; }
-		void SetOffset(Vector2 offset) { this->offset = offset; }
-		Vector2 GetSize() { return size; }
+		UINT32 GetID() const { return id; }
+		Vector2 GetOffset() const { return offset; }
+		void SetOffset(Vector2 offset)  { this->offset = offset; }
+		Vector2 GetSize() const { return size; }
 		void SetSize(Vector2 size) { this->size = size; }
-		Enum::EColliderType GetColliderType() { return colliderType; }
+		Enum::EColliderType GetColliderType() const { return colliderType; }
 
 	private:
 		static UINT32 collisionID;

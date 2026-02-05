@@ -9,6 +9,6 @@ namespace DXEngine
 		void Init();
 		void Update();
 		void LateUpdate();
-		void Render(HDC hdc);
+		void Render();
 	};
 }

@@ -30,7 +30,7 @@ namespace DXEngine
 		void Init();
 		void Update();
 		void LateUpdate();
-		void Render(HDC hdc);
+		void Render();
 
 		void UIClear();
 
@@ -39,7 +39,7 @@ namespace DXEngine
 		virtual void OnInActive();
 		virtual void OnUpdate(); 
 		virtual void OnLateUpdate();
-		virtual void OnRender(HDC hdc);
+		virtual void OnRender();
 		virtual void OnClear();
 
 		EUIType GetUIType() { return uiType; }

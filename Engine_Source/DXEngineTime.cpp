@@ -27,14 +27,8 @@ namespace DXEngine
 		PrevFrequency.QuadPart = CurrentFrequency.QuadPart;
 	}
 
-	void Time::Render(HDC hdc)
+	void Time::Render()
 	{
-		float fps = 1.0f / DeltaTimeValue;
-
-		wchar_t fpsText[50] = L"";
-		swprintf_s(fpsText, 50, L"fps : %d", (int)fps);
-		int length = wcsnlen_s(fpsText, 50);
-
-		TextOut(hdc, 0, 0, fpsText, length);
+		
 	}
 }

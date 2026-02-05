@@ -29,22 +29,9 @@ namespace DXEngine
 
 	}
 
-	void BoxCollider2D::Render(HDC hdc)
+	void BoxCollider2D::Render()
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 position = tr->GetPosition();
-
-		Vector2 offset = GetOffset();
-
-		HBRUSH transparentBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, transparentBrush);
-
-		HPEN greenPen = CreatePen(PS_SOLID, 2, RGB(0, 255, 0));
-		HPEN oldPen = (HPEN)SelectObject(hdc, greenPen);
-
-		::Rectangle(hdc, position.x + offset.x, position.y + offset.y, position.x + offset.x + 100, position.y + offset.y + 100);
-		SelectObject(hdc, oldBrush);
-		SelectObject(hdc, oldPen);
-		DeleteObject(greenPen);
 	}
 }

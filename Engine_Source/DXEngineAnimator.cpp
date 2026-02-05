@@ -49,10 +49,9 @@ namespace DXEngine
 	{
 	}
 
-	void Animator::Render(HDC hdc)
+	void Animator::Render()
 	{
-		if (activeAnimation)
-			activeAnimation->Render(hdc);
+		
 	}
 
 	void Animator::CreateAnimation(const std::wstring& name, Graphcis::Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration)
@@ -73,37 +72,9 @@ namespace DXEngine
 		events.insert(std::make_pair(name, event));
 	}
 
-	void Animator::CreateAnimationByFolder(const std::wstring& name, const std::wstring& path, Vector2 offset, float duration)
+	void Animator::CreateAnimationByFolder()
 	{
-		/*Animation* animation = nullptr;
-		animation = FindAnimation(name);
-
-		if (animation != nullptr)
-			return;
-
-		int fileCount = 0;
-
-		std::filesystem::path animationPath(path);
-		std::vector<Graphcis::Texture*> images = {};
-		for (auto& entry : std::filesystem::recursive_directory_iterator(animationPath))
-		{
-			std::wstring fileName = entry.path().filename();
-			std::wstring fullName = entry.path();
-
-			Graphcis::Texture* texture = Resources::Load<Graphcis::Texture>(fileName, fullName);
-			images.push_back(texture);
-			fileCount++;
-		}
-
-		UINT sheetWidth = images[0]->GetWidth() * fileCount;
-		UINT sheetHeight = images[0]->GetHeight();
-		Graphcis::Texture* spriteSheet = Graphcis::Texture::Create(name, sheetWidth, sheetHeight);
-
-		UINT imageWidth = images[0]->GetWidth();
-		UINT imageHeight = images[0]->GetHeight();
-		for (size_t i = 0; i < images.size(); i++)
-			BitBlt(spriteSheet->GetHdc(), i * imageWidth, 0, imageWidth, imageHeight, images[i]->GetHdc(), 0, 0, SRCCOPY);
-		CreateAnimation(name, spriteSheet, Vector2::One, Vector2(imageWidth, imageHeight), offset, fileCount, duration);*/
+		
 	}
 
 	Animation* Animator::FindAnimation(const std::wstring& name)

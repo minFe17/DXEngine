@@ -26,12 +26,12 @@ namespace DXEngine
 		HRESULT Load(const std::wstring& path) override;
 
 		void Update();
-		void Render(HDC hdc);
+		void Render();
 
 		void CreateAnimation(const std::wstring& name, Graphcis::Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration);
 		void Reset();
 
-		bool IsComplete() { return isComplete; }
+		bool IsComplete() const { return isComplete; }
 		void SetAnimator(class Animator* animator) { this->animator = animator; }
 
 	private:

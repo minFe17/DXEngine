@@ -48,9 +48,9 @@ namespace DXEngine
 	{
 	}
 
-	void UIButton::OnRender(HDC hdc)
+	void UIButton::OnRender()
 	{
-		::Rectangle(hdc, (int)position.x, (int)position.y, position.x + size.x, position.y + size.y);
+
 	}
 
 	void UIButton::OnClear()

@@ -58,7 +58,7 @@ namespace DXEngine
 		}
 	}
 
-	void UIManager::Render(HDC hdc)
+	void UIManager::Render()
 	{
 		std::stack<UIBase*> uiStack = uiBases;
 		while (!uiStack.empty())
@@ -66,7 +66,7 @@ namespace DXEngine
 			UIBase* uiBase = uiStack.top();
 			if (uiBase)
 			{
-				uiBase->Render(hdc);
+				uiBase->Render();
 				uiStack.pop();
 			}
 		}

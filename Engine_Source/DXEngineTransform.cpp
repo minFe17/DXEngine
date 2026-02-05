@@ -22,7 +22,7 @@ namespace DXEngine
 	{
 	}
 
-	void Transform::Render(HDC hdc)
+	void Transform::Render()
 	{
 	}
 }

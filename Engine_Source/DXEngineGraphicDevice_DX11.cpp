@@ -29,7 +29,9 @@ namespace DXEngine::Graphics
 		creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
 
-		HRESULT hResult = D3D11CreateDevice(0, D3D_DRIVER_TYPE_HARDWARE, 0, creationFlags, featureLevels, ARRAYSIZE(featureLevels), D3D11_SDK_VERSION, device.GetAddressOf(), 0, deviceContext.GetAddressOf());
+		if(FAILED(D3D11CreateDevice(0, D3D_DRIVER_TYPE_HARDWARE, 0, creationFlags, featureLevels, ARRAYSIZE(featureLevels), D3D11_SDK_VERSION, device.GetAddressOf(), 0, deviceContext.GetAddressOf())))
+			return false;
+
 		return true;
 	}
 
@@ -303,7 +305,7 @@ namespace DXEngine::Graphics
 
 		D3D11_VIEWPORT viewPort =
 		{
-			0, 0, application.GetWidth(), application.GetHeight(),
+			0, 0, (float)application.GetWidth(), (float)application.GetHeight(),
 			0.0f, 1.0f
 		};
 		deviceContext->RSSetViewports(1, &viewPort);

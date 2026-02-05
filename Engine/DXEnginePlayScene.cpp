@@ -21,6 +21,7 @@ namespace DXEngine
 
 	PlayScene::~PlayScene()
 	{
+
 	}
 
 	void PlayScene::Init()
@@ -53,11 +54,9 @@ namespace DXEngine
 			SceneManager::LoadScene(L"TitleScene");
 	}
 
-	void PlayScene::Render(HDC hdc)
+	void PlayScene::Render()
 	{
-		Scene::Render(hdc);
-		wchar_t text[50] = L"Play Scene";
-		TextOut(hdc, 0, 0, text, 10);
+		Scene::Render();
 	}
 
 	void PlayScene::OnEnter()

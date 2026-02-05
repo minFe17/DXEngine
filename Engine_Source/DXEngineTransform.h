@@ -14,12 +14,12 @@ namespace DXEngine
 		void Init() override;
 		void Update() override;
 		void LateUpdate() override;
-		void Render(HDC hdc) override;
+		void Render() override;
 
 		void SetPosition(Vector2 pos) { position.x = pos.x, position.y = pos.y; }
-		Vector2 GetPosition() { return position; }
-		float GetRotation() { return rotation; }
-		Vector2 GetScale() { return scale; }
+		Vector2 GetPosition() const { return position; }
+		float GetRotation() const { return rotation; }
+		Vector2 GetScale() const { return scale; }
 		void SetRotation(float rotate) { rotation = rotate; }
 		void SetScale(Vector2 scale) { this->scale = scale; }
 

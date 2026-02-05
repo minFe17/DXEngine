@@ -8,7 +8,7 @@ namespace DXEngine
 	public:
 		static void Init();
 		static void Update();
-		static void Render(HDC hdc);
+		static void Render();
 
 		__forceinline static float DeltaTime() { return DeltaTimeValue; }
 

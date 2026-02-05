@@ -13,11 +13,11 @@ namespace DXEngine
 		virtual void Init();
 		virtual void Update();
 		virtual void LateUpdate();
-		virtual void Render(HDC hdc);
+		virtual void Render();
 
 		void SetOwner(GameObject* gameObject) { owner = gameObject; }
-		GameObject* GetOwner() { return owner; }
-		Enum::EComponentType GetType() { return type; }
+		GameObject* GetOwner() const { return owner; }
+		Enum::EComponentType GetType() const { return type; }
 
 	private:
 		GameObject* owner;

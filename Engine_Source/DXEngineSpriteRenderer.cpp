@@ -27,43 +27,9 @@ namespace DXEngine
 	{
 	}
 
-	void SpriteRenderer::Render(HDC hdc)
+	void SpriteRenderer::Render()
 	{
 		if (texture == nullptr)
 			assert(false);
-
-		Transform* transform = GetOwner()->GetComponent<Transform>();
-		Vector2 position = transform->GetPosition();
-		float rotation = transform->GetRotation();
-		Vector2 scale = transform->GetScale();
-
-		position = Renderer::mainCamera->CalculatePosition(position);
-
-		if (texture->GetTextureType() == Graphcis::Texture::ETextureType::Bmp)
-		{
-			if (texture->IsAlpha())
-			{
-				BLENDFUNCTION func = {};
-				func.BlendOp = AC_SRC_OVER;
-				func.BlendFlags = 0;
-				func.AlphaFormat = AC_SRC_ALPHA;
-				func.SourceConstantAlpha = 255;
-
-				AlphaBlend(hdc, position.x, position.y, texture->GetWidth() * size.x * scale.x, texture->GetHeight() * size.y * scale.y, texture->GetHdc(), 0, 0, texture->GetWidth(), texture->GetHeight(), func);
-			}
-			else
-				GdiTransparentBlt(hdc, position.x, position.y, texture->GetWidth() * size.x * scale.x, texture->GetHeight() * size.y * scale.y, texture->GetHdc(), 0, 0, texture->GetWidth(), texture->GetHeight(), RGB(255, 0, 255));
-		}
-		else if (texture->GetTextureType() == Graphcis::Texture::ETextureType::Png)
-		{
-			Gdiplus::ImageAttributes imageAttribute = {};
-			imageAttribute.SetColorKey(Gdiplus::Color(100, 100, 100), Gdiplus::Color(255, 255, 255));
-			Gdiplus::Graphics graphics(hdc);
-			graphics.TranslateTransform(position.x, position.y);
-			graphics.RotateTransform(rotation);
-			graphics.TranslateTransform(-position.x, -position.y);
-
-			graphics.DrawImage(texture->GetImage(), Gdiplus::Rect(position.x, position.y, texture->GetWidth() * size.x * scale.x, texture->GetHeight() * size.x * scale.y), 0, 0, texture->GetWidth(), texture->GetHeight(), Gdiplus::UnitPixel, nullptr);
-		}
 	}	
 }

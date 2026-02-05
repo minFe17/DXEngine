@@ -52,7 +52,7 @@ namespace DXEngine
 		}
 	}
 
-	void Layer::Render(HDC hdc)
+	void Layer::Render()
 	{
 		for (size_t i = 0; i < gameObjects.size(); i++)
 		{
@@ -63,7 +63,7 @@ namespace DXEngine
 			if (state == GameObject::EStateType::Paused || state == GameObject::EStateType::Dead)
 				continue;
 
-			gameObjects[i]->Render(hdc);
+			gameObjects[i]->Render();
 		}
 	}
 

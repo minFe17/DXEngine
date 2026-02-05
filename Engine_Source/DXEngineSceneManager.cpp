@@ -48,10 +48,10 @@ namespace DXEngine
 		dontDestroyScene->LateUpdate();
 	}
 
-	void SceneManager::Render(HDC hdc)
+	void SceneManager::Render()
 	{
-		activeScene->Render(hdc);
-		dontDestroyScene->Render(hdc);
+		activeScene->Render();
+		dontDestroyScene->Render();
 	}
 
 	void SceneManager::Release()

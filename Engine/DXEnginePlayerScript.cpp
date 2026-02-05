@@ -23,20 +23,7 @@ namespace DXEngine
 
 	void PlayerScript::Update()
 	{
-		if (Input::GetKey(EKeyCode::Right))
-		{
-			Transform* transform = GetOwner()->GetComponent<Transform>();
-			Vector2 pos = transform->GetPosition();
-			pos.x += 100.0f * Time::DeltaTime();
-			transform->SetPosition(pos);
-		}
-		if (Input::GetKey(EKeyCode::Left))
-		{
-			Transform* transform = GetOwner()->GetComponent<Transform>();
-			Vector2 pos = transform->GetPosition();
-			pos.x -= 100.0f * Time::DeltaTime();
-			transform->SetPosition(pos);
-		}
+		
 	}
 
 	void PlayerScript::LateUpdate()
@@ -44,10 +31,8 @@ namespace DXEngine
 
 	}
 
-	void PlayerScript::Render(HDC hdc)
+	void PlayerScript::Render()
 	{
 
 	}
-
-
 }

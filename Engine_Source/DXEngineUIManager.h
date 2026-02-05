@@ -12,7 +12,7 @@ namespace DXEngine
 		static void OnLoad(EUIType type);
 		static void Update();
 		static void LateUpdate();
-		static void Render(HDC hdc);
+		static void Render();
 		static void OnComplete(UIBase* addUI);
 		static void OnFail();
 		static void Release();

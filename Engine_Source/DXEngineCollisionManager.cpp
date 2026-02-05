@@ -17,14 +17,13 @@ namespace DXEngine
 
 	void CollisionManager::Update()
 	{
-		Scene* scene = SceneManager::GetActiveScene();
 		for (UINT row = 0; row < (UINT)ELayerType::Max; row++)
 		{
 			for (UINT col = 0; col < (UINT)ELayerType::Max; col++)
 			{
 				if (collisionLayerMatrix[row][col])
 				{
-					LayerCollision(scene, (ELayerType)row, (ELayerType)col);
+					LayerCollision((ELayerType)row, (ELayerType)col);
 				}
 			}
 		}
@@ -35,7 +34,7 @@ namespace DXEngine
 
 	}
 
-	void CollisionManager::Render(HDC hdc)
+	void CollisionManager::Render()
 	{
 
 	}
@@ -65,28 +64,28 @@ namespace DXEngine
 		collisionLayerMatrix[row][col] = enable;
 	}
 
-	void CollisionManager::LayerCollision(Scene* scene, ELayerType left, ELayerType right)
+	void CollisionManager::LayerCollision(ELayerType left, ELayerType right)
 	{
-		const std::vector<GameObject*>& lefts = SceneManager::GetGameObjects(left);
-		const std::vector<GameObject*>& rights = SceneManager::GetGameObjects(right);
+		const std::vector<GameObject*>& leftObjects = SceneManager::GetGameObjects(left);
+		const std::vector<GameObject*>& rightObjects = SceneManager::GetGameObjects(right);
 
-		for (GameObject* leftGameObject : lefts)
+		for (GameObject* leftObject : leftObjects)
 		{
-			if (leftGameObject->IsActive() == false)
+			if (leftObject->IsActive() == false)
 				continue;
 
-			Collider* leftCollider = leftGameObject->GetComponent<Collider>();
+			Collider* leftCollider = leftObject->GetComponent<Collider>();
 			if (leftCollider == nullptr)
 				continue;
 
-			for (GameObject* rightGameObject : rights)
+			for (GameObject* rightObject : rightObjects)
 			{
-				if (leftGameObject == rightGameObject)
+				if (leftObject == rightObject)
 					continue;
-				if (rightGameObject->IsActive() == false)
+				if (rightObject->IsActive() == false)
 					continue;
 
-				Collider* rightCollider = rightGameObject->GetComponent<Collider>();
+				Collider* rightCollider = rightObject->GetComponent<Collider>();
 				if (rightCollider == nullptr)
 					continue;
 

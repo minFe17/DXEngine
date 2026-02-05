@@ -23,11 +23,11 @@ namespace DXEngine
 		static void Init();
 		static void Update();
 		static void LateUpdate();
-		static void Render(HDC hdc);
+		static void Render();
 		static void Clear();
 
 		static void CollisionLayerCheck(ELayerType left, ELayerType right, bool enable);
-		static void LayerCollision(class Scene* scene, ELayerType left, ELayerType right);
+		static void LayerCollision(ELayerType left, ELayerType right);
 		static void ColliderCollision(Collider* left, Collider* right);
 		static bool Intersect(Collider* left, Collider* right);
 

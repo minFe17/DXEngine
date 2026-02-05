@@ -67,10 +67,10 @@ namespace DXEngine
 	{
 		GraphicDevice->Draw();
 
-		Time::Render(backHdc);
-		CollisionManager::Render(backHdc);
-		UIManager::Render(backHdc);
-		SceneManager::Render(backHdc);
+		Time::Render();
+		CollisionManager::Render();
+		UIManager::Render();
+		SceneManager::Render();
 	}
 
 	void Application::Release()
@@ -87,7 +87,7 @@ namespace DXEngine
 
 	void Application::AdjustWindow(UINT width, UINT height)
 	{
-		RECT rect = { 0,0, width, height };
+		RECT rect = { 0, 0, (LONG)width, (LONG)height };
 		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
 
 		this->width = rect.right - rect.left;

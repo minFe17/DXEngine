@@ -28,7 +28,7 @@ namespace DXEngine
 		 static void Init();
 		 static void Update();
 		 static void LateUpdate();
-		 static void Render(HDC hdc);
+		 static void Render();
 		 static void Release();
 		 static void Destroy();
 

@@ -7,7 +7,7 @@ namespace DXEngine
 	class Camera : public Component
 	{
 	public:
-		Vector2 CalculatePosition(Vector2 pos) { return pos - distance; }
+		Vector2 CalculatePosition(Vector2 pos) const { return pos - distance; }
 
 		Camera();
 		~Camera();
@@ -15,7 +15,7 @@ namespace DXEngine
 		void Init() override;
 		void Update() override;
 		void LateUpdate() override;
-		void Render(HDC hdc) override;
+		void Render() override;
 
 		void SetTarget(GameObject* target) { this->target = target; }
 
