@@ -18,7 +18,8 @@ namespace DXEngine::Graphcis
 
 		static Texture* Create(const std::wstring& name, UINT width, UINT height);
 
-		HRESULT Load(const std::wstring& path) override;
+		virtual HRESULT Save(const std::wstring& path) override;
+		virtual HRESULT Load(const std::wstring& path) override;
 
 		UINT GetWidth() const { return width; }
 		UINT GetHeight() const { return height; }

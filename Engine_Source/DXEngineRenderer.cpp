@@ -9,8 +9,7 @@ namespace DXEngine::Renderer
 	std::vector<Graphics::Vertex> vertexes = {};
 	std::vector<UINT> indices;
 
-	Graphics::VertexBuffer vertexBuffer;
-	Graphics::IndexBuffer indexBuffer;
+	Mesh* mesh = nullptr;
 	Graphics::ConstantBuffer constantBuffers[(UINT)ECBType::Max] = {};
 
 	ID3D11Buffer* constantBuffer = nullptr;
@@ -19,6 +18,8 @@ namespace DXEngine::Renderer
 
 	void LoadTriangleMesh()
 	{
+		mesh = new Mesh();
+
 		Renderer::vertexes.resize(3);
 
 		Renderer::vertexes[0].position = Vector3(0.f, 0.5f, 0.0f);
@@ -37,6 +38,9 @@ namespace DXEngine::Renderer
 		indices.push_back(0);
 		indices.push_back(1);
 		indices.push_back(2);
+
+		mesh->CreateVertexBuffer(vertexes);
+		mesh->CreateIndexBuffer(indices);
 	}
 
 	void LoadMeshes()
@@ -64,5 +68,6 @@ namespace DXEngine::Renderer
 	void Release()
 	{
 		inputLayouts->Release();
+		delete mesh;
 	}
 }

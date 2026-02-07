@@ -170,6 +170,11 @@ namespace DXEngine::Graphics
 		deviceContext->PSSetShader(pixelShader, 0, 0);
 	}
 
+	void GraphicDevice_DX11::BindPrimitiveTopology(const D3D11_PRIMITIVE_TOPOLOGY topology)
+	{
+		deviceContext->IASetPrimitiveTopology(topology);
+	}
+
 	void GraphicDevice_DX11::BindVertexBuffer(UINT startSlot, UINT numBuffers, ID3D11Buffer* const* vertexBuffers, const UINT* strides, const UINT* offsets)
 	{
 		deviceContext->IASetVertexBuffers(startSlot, numBuffers, vertexBuffers, strides, offsets);
@@ -314,10 +319,7 @@ namespace DXEngine::Graphics
 		BindConstantBuffer(EShaderStage::VS, ECBType::Transform, Renderer::constantBuffer);
 
 		deviceContext->IASetInputLayout(Renderer::inputLayouts);
-		deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-		Renderer::vertexBuffer.Bind();
-		Renderer::indexBuffer.Bind();
+		Renderer::mesh->Bind();
 
 		Vector4 pos(0.5f, 0.0f, 0.0f, 1.0f);
 		Renderer::constantBuffers[(UINT)ECBType::Transform].SetData(&pos);

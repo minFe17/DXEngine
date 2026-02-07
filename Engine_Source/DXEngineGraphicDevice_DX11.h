@@ -24,6 +24,7 @@ namespace DXEngine::Graphics
 
 		void BindVertexShader(ID3D11VertexShader* vertexShader);
 		void BindPixelShader(ID3D11PixelShader* pixelShader);
+		void BindPrimitiveTopology(const D3D11_PRIMITIVE_TOPOLOGY topology);
 		void BindVertexBuffer(UINT StartSlot, UINT NumBuffers, ID3D11Buffer* const* ppVertexBuffers, const UINT* pStrides, const UINT* pOffsets);
 		void BindIndexBuffer(ID3D11Buffer* indexBuffer, DXGI_FORMAT format, UINT offset);
 		void BindConstantBuffer(EShaderStage stage, ECBType type, ID3D11Buffer* buffer);

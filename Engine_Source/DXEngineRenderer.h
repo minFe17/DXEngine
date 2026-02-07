@@ -1,8 +1,8 @@
 #pragma once
 #include "DXEngineCamera.h"
 #include "DXEngineGraphicDevice_DX11.h"
-#include "DXEngineVertexBuffer.h"
-#include "DXEngineIndexBuffer.h"
+
+#include "DXEngineMesh.h"
 #include "DXEngineConstantBuffer.h"
 
 using namespace DXEngine::Math;
@@ -15,8 +15,7 @@ namespace DXEngine::Renderer
 	extern std::vector<Graphics::Vertex> vertexes;
 	extern std::vector<UINT> indices;
 
-	extern Graphics::VertexBuffer vertexBuffer;
-	extern Graphics::IndexBuffer indexBuffer;
+	extern Mesh* mesh;
 	extern Graphics::ConstantBuffer constantBuffers[(UINT)ECBType::Max];
 
 	extern ID3D11Buffer* constantBuffer;

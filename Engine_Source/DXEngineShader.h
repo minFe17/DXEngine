@@ -10,6 +10,7 @@ namespace DXEngine::Graphics
 		Shader();
 		virtual ~Shader();
 
+		virtual HRESULT Save(const std::wstring& path) override;
 		virtual HRESULT Load(const std::wstring& path) override;
 
 		bool Create(const EShaderStage stage, const std::wstring& fileName);

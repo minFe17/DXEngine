@@ -5,7 +5,7 @@
       <Filter>Common</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineComponent.cpp">
-      <Filter>Component</Filter>
+      <Filter>GameObject\Component</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineGameObject.cpp">
       <Filter>GameObject</Filter>
@@ -35,13 +35,13 @@
       <Filter>Resource\Graphics\Texture</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineTransform.cpp">
-      <Filter>Component\Child\Transform</Filter>
+      <Filter>GameObject\Component\Child\Transform</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineSpriteRenderer.cpp">
-      <Filter>Component\Child\SpriteRenderer</Filter>
+      <Filter>GameObject\Component\Child\SpriteRenderer</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineScript.cpp">
-      <Filter>Component\Child\Script</Filter>
+      <Filter>GameObject\Component\Child\Script</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCamera.cpp">
       <Filter>Common\Camera</Filter>
@@ -50,7 +50,7 @@
       <Filter>Renderer</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineAnimator.cpp">
-      <Filter>Component\Child\Animator</Filter>
+      <Filter>GameObject\Component\Child\Animator</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineApplication.cpp">
       <Filter>Application</Filter>
@@ -59,13 +59,13 @@
       <Filter>Resource</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCollider.cpp">
-      <Filter>Component\Child\Collider</Filter>
+      <Filter>GameObject\Component\Child\Collider</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineBoxCollider2D.cpp">
-      <Filter>Component\Child\Collider\BoxCollider2D</Filter>
+      <Filter>GameObject\Component\Child\Collider\BoxCollider2D</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCircleCollider2D.cpp">
-      <Filter>Component\Child\Collider\CircleCollider</Filter>
+      <Filter>GameObject\Component\Child\Collider\CircleCollider</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCollisionManager.cpp">
       <Filter>Collision</Filter>
@@ -74,7 +74,7 @@
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineRigidbody.cpp">
-      <Filter>Component\Child\Rigidbody</Filter>
+      <Filter>GameObject\Component\Child\Rigidbody</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineUIManager.cpp">
       <Filter>UI</Filter>
@@ -118,7 +118,7 @@
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineComponent.h">
-      <Filter>Component</Filter>
+      <Filter>GameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGameObject.h">
       <Filter>GameObject</Filter>
@@ -154,13 +154,13 @@
       <Filter>Resource\Graphics\Texture</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineTransform.h">
-      <Filter>Component\Child\Transform</Filter>
+      <Filter>GameObject\Component\Child\Transform</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineSpriteRenderer.h">
-      <Filter>Component\Child\SpriteRenderer</Filter>
+      <Filter>GameObject\Component\Child\SpriteRenderer</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineScript.h">
-      <Filter>Component\Child\Script</Filter>
+      <Filter>GameObject\Component\Child\Script</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCamera.h">
       <Filter>Common\Camera</Filter>
@@ -169,7 +169,7 @@
       <Filter>Renderer</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineAnimator.h">
-      <Filter>Component\Child\Animator</Filter>
+      <Filter>GameObject\Component\Child\Animator</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineApplication.h">
       <Filter>Application</Filter>
@@ -178,13 +178,13 @@
       <Filter>Resource</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCollider.h">
-      <Filter>Component\Child\Collider</Filter>
+      <Filter>GameObject\Component\Child\Collider</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineBoxCollider2D.h">
-      <Filter>Component\Child\Collider\BoxCollider2D</Filter>
+      <Filter>GameObject\Component\Child\Collider\BoxCollider2D</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCircleCollider2D.h">
-      <Filter>Component\Child\Collider\CircleCollider</Filter>
+      <Filter>GameObject\Component\Child\Collider\CircleCollider</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCollisionManager.h">
       <Filter>Collision</Filter>
@@ -193,7 +193,7 @@
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineRigidbody.h">
-      <Filter>Component\Child\Rigidbody</Filter>
+      <Filter>GameObject\Component\Child\Rigidbody</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineUIManager.h">
       <Filter>UI</Filter>
@@ -236,9 +236,6 @@
     <Filter Include="Common">
       <UniqueIdentifier>{761a2e86-85b1-4090-87ab-09eb4597acf9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Component">
-      <UniqueIdentifier>{ae726cf6-0b80-459e-9407-7935c2f2b922}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameObject">
       <UniqueIdentifier>{23bfb30d-2ea2-40aa-a5b5-1651ea3e7ab4}</UniqueIdentifier>
     </Filter>
@@ -248,29 +245,14 @@
     <Filter Include="Input">
       <UniqueIdentifier>{62611bf6-b0c6-4065-89bb-2278f4cac07f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Component\Child">
-      <UniqueIdentifier>{0cb26b8e-26d5-4735-9c8a-80194e5b1bf6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Layer">
       <UniqueIdentifier>{39eee8d8-6836-40b8-9fab-9f3da82e2ef9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource">
       <UniqueIdentifier>{26ae20df-bfe2-4676-97be-c79378d77ac5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Component\Child\Transform">
-      <UniqueIdentifier>{a8a172fa-9110-477a-a648-26a2a6249c82}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Component\Child\SpriteRenderer">
-      <UniqueIdentifier>{41a7ec45-ab53-4ca4-8581-f45afb802728}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Component\Child\Script">
-      <UniqueIdentifier>{8ffc7c88-0aee-477e-a6c3-5d3557c5a3b8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Renderer">
       <UniqueIdentifier>{4f6bb6cc-1d0f-4ccc-84cb-66b72470d83b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Component\Child\Animator">
-      <UniqueIdentifier>{80bba98b-8263-42e8-bde2-c054297719be}</UniqueIdentifier>
     </Filter>
     <Filter Include="Application">
       <UniqueIdentifier>{b3638536-48bd-4bbc-b202-ed60ff574c9d}</UniqueIdentifier>
@@ -278,20 +260,8 @@
     <Filter Include="Common\Camera">
       <UniqueIdentifier>{f772f464-29a0-4d84-adf2-432a7a55a1aa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Component\Child\Collider">
-      <UniqueIdentifier>{5d397b1a-61a4-4c81-a5ed-b54df40f25b2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Component\Child\Collider\BoxCollider2D">
-      <UniqueIdentifier>{cd24e8b0-9ab4-49d7-9980-68113f5d2f54}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Component\Child\Collider\CircleCollider">
-      <UniqueIdentifier>{22fd60c2-4e52-4cda-b6cf-f8e7e08f3ec1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Collision">
       <UniqueIdentifier>{07373ef1-226c-40bc-875a-cc0d724ae3cc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Component\Child\Rigidbody">
-      <UniqueIdentifier>{a4943f9d-4ec8-4bc0-8221-f86006587000}</UniqueIdentifier>
     </Filter>
     <Filter Include="UI">
       <UniqueIdentifier>{3810fa0c-f7ab-4858-8104-2dbbc5e89084}</UniqueIdentifier>
@@ -322,6 +292,36 @@
     </Filter>
     <Filter Include="Graphics\GraphicDevice">
       <UniqueIdentifier>{2ac88110-ac94-47e5-8598-4ef79fbaa464}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component">
+      <UniqueIdentifier>{ae726cf6-0b80-459e-9407-7935c2f2b922}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\Child">
+      <UniqueIdentifier>{0cb26b8e-26d5-4735-9c8a-80194e5b1bf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\Child\Transform">
+      <UniqueIdentifier>{a8a172fa-9110-477a-a648-26a2a6249c82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\Child\SpriteRenderer">
+      <UniqueIdentifier>{41a7ec45-ab53-4ca4-8581-f45afb802728}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\Child\Script">
+      <UniqueIdentifier>{8ffc7c88-0aee-477e-a6c3-5d3557c5a3b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\Child\Animator">
+      <UniqueIdentifier>{80bba98b-8263-42e8-bde2-c054297719be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\Child\Collider">
+      <UniqueIdentifier>{5d397b1a-61a4-4c81-a5ed-b54df40f25b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\Child\Collider\BoxCollider2D">
+      <UniqueIdentifier>{cd24e8b0-9ab4-49d7-9980-68113f5d2f54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\Child\Collider\CircleCollider">
+      <UniqueIdentifier>{22fd60c2-4e52-4cda-b6cf-f8e7e08f3ec1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\Child\Rigidbody">
+      <UniqueIdentifier>{a4943f9d-4ec8-4bc0-8221-f86006587000}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -26,6 +26,7 @@ namespace DXEngine::Enum
 	enum class EResourceType
 	{
 		Texture,
+		Mesh,
 		Animation,
 		AudioClip,
 		Shader,

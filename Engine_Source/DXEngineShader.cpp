@@ -10,6 +10,11 @@ namespace DXEngine::Graphics
 	{
 	}
 
+	HRESULT Shader::Save(const std::wstring& path)
+	{
+		return E_NOTIMPL;
+	}
+
 	HRESULT Shader::Load(const std::wstring& path)
 	{
 		size_t  fineNameBeginOffset = path.rfind(L"\\") + 1;
