@@ -19,7 +19,7 @@ namespace DXEngine::Graphics
 
 		void Bind();
 
-		Microsoft::WRL::ComPtr<ID3DBlob> GetVSBlob() { return vertexShaderBlob; }
+		Microsoft::WRL::ComPtr<ID3DBlob> GetVertexShaderBlob() { return vertexShaderBlob; }
 
 	private:
 		Microsoft::WRL::ComPtr<ID3DBlob> vertexShaderBlob;

@@ -38,7 +38,7 @@ namespace DXEngine
 		void LateUpdate() override;
 		void Render() override;
 
-		void CreateAnimation(const std::wstring& name, Graphcis::Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration);
+		void CreateAnimation(const std::wstring& name, Graphics::Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration);
 		void CreateAnimationByFolder();
 		Animation* FindAnimation(const std::wstring& name);
 

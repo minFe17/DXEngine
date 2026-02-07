@@ -54,7 +54,7 @@ namespace DXEngine
 		
 	}
 
-	void Animator::CreateAnimation(const std::wstring& name, Graphcis::Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration)
+	void Animator::CreateAnimation(const std::wstring& name, Graphics::Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration)
 	{
 		Animation* animation = nullptr;
 		animation = FindAnimation(name);

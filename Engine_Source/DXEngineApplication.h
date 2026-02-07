@@ -25,12 +25,13 @@ namespace DXEngine
 		UINT GetWidth() const { return width; }
 		UINT GetHeight() const { return height; }
 
-	private:
 		void AdjustWindow(UINT width, UINT hewight);
-		void CreateBuffer();
-		void ClearRenderTarget();
-		void CopyRenderTarget(HDC source, HDC dest);
+		void InitEtc();
+		bool IsLoaded() const { return isLoad; }
+		void IsLoaded(bool load) { isLoad = load; }
+
 	private:
+		bool isLoad;
 		std::unique_ptr<Graphics::GraphicDevice_DX11> GraphicDevice;
 
 		HWND hWnd;

@@ -36,7 +36,7 @@ namespace DXEngine::Graphics
 
 	void ConstantBuffer::SetData(void* data) const
 	{
-		GetDevice()->SetDataBuffer(buffer.Get(), data, size);
+		GetDevice()->SetDataGpuBuffer(buffer.Get(), data, size);
 	}
 
 	void ConstantBuffer::Bind(EShaderStage stage) const

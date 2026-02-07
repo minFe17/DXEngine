@@ -3,6 +3,7 @@
 #include "DXEngineRenderer.h"
 #include "DXEngineShader.h"
 #include "DXEngineResources.h"
+#include "DXEngineTexture.h"
 
 extern DXEngine::Application application;
 
@@ -29,7 +30,7 @@ namespace DXEngine::Graphics
 		creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
 
-		if(FAILED(D3D11CreateDevice(0, D3D_DRIVER_TYPE_HARDWARE, 0, creationFlags, featureLevels, ARRAYSIZE(featureLevels), D3D11_SDK_VERSION, device.GetAddressOf(), 0, deviceContext.GetAddressOf())))
+		if (FAILED(D3D11CreateDevice(0, D3D_DRIVER_TYPE_HARDWARE, 0, creationFlags, featureLevels, ARRAYSIZE(featureLevels), D3D11_SDK_VERSION, device.GetAddressOf(), 0, deviceContext.GetAddressOf())))
 			return false;
 
 		return true;
@@ -152,12 +153,41 @@ namespace DXEngine::Graphics
 		return true;
 	}
 
-	void GraphicDevice_DX11::SetDataBuffer(ID3D11Buffer* buffer, void* data, UINT size)
+	bool GraphicDevice_DX11::CreateShaderResourceView(ID3D11Resource* resource, const D3D11_SHADER_RESOURCE_VIEW_DESC* desc, ID3D11ShaderResourceView** ShaderResourceView)
+	{
+		if (FAILED(device->CreateShaderResourceView(resource, desc, ShaderResourceView)))
+			return false;
+
+		return true;
+	}
+
+	void GraphicDevice_DX11::SetDataGpuBuffer(ID3D11Buffer* buffer, void* data, UINT size)
 	{
 		D3D11_MAPPED_SUBRESOURCE sub = {};
 		deviceContext->Map(buffer, 0, D3D11_MAP::D3D11_MAP_WRITE_DISCARD, 0, &sub);
 		memcpy(sub.pData, data, size);
 		deviceContext->Unmap(buffer, 0);
+	}
+
+	void GraphicDevice_DX11::SetShaderResource(EShaderStage stage, UINT startSlot, ID3D11ShaderResourceView** shaderResourceView)
+	{
+		if ((UINT)EShaderStage::VS & (UINT)stage)
+			deviceContext->VSSetShaderResources(startSlot, 1, shaderResourceView);
+
+		if ((UINT)EShaderStage::HS & (UINT)stage)
+			deviceContext->HSSetShaderResources(startSlot, 1, shaderResourceView);
+
+		if ((UINT)EShaderStage::DS & (UINT)stage)
+			deviceContext->DSSetShaderResources(startSlot, 1, shaderResourceView);
+
+		if ((UINT)EShaderStage::GS & (UINT)stage)
+			deviceContext->GSSetShaderResources(startSlot, 1, shaderResourceView);
+
+		if ((UINT)EShaderStage::PS & (UINT)stage)
+			deviceContext->PSSetShaderResources(startSlot, 1, shaderResourceView);
+
+		if ((UINT)EShaderStage::CS & (UINT)stage)
+			deviceContext->CSSetShaderResources(startSlot, 1, shaderResourceView);
 	}
 
 	void GraphicDevice_DX11::BindVertexShader(ID3D11VertexShader* vertexShader)
@@ -277,7 +307,7 @@ namespace DXEngine::Graphics
 			assert(NULL && "Create depthstencilview failed!");
 
 #pragma region inputLayout Desc
-		D3D11_INPUT_ELEMENT_DESC inputLayoutDesces[2] = {};
+		D3D11_INPUT_ELEMENT_DESC inputLayoutDesces[3] = {};
 
 		inputLayoutDesces[0].AlignedByteOffset = 0;
 		inputLayoutDesces[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
@@ -292,14 +322,22 @@ namespace DXEngine::Graphics
 		inputLayoutDesces[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 		inputLayoutDesces[1].SemanticName = "COLOR";
 		inputLayoutDesces[1].SemanticIndex = 0;
+
+		inputLayoutDesces[2].AlignedByteOffset = 28; //12 + 16
+		inputLayoutDesces[2].Format = DXGI_FORMAT_R32G32_FLOAT;
+		inputLayoutDesces[2].InputSlot = 0;
+		inputLayoutDesces[2].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		inputLayoutDesces[2].SemanticName = "TEXCOORD";
+		inputLayoutDesces[2].SemanticIndex = 0;
 #pragma endregion
 
 		Graphics::Shader* triangle = Resources::Find<Graphics::Shader>(L"TriangleShader");
-		if (!(CreateInputLayout(inputLayoutDesces, 2, triangle->GetVSBlob()->GetBufferPointer(), triangle->GetVSBlob()->GetBufferSize(), &Renderer::inputLayouts)))
+		if (!(CreateInputLayout(inputLayoutDesces, 2, triangle->GetVertexShaderBlob()->GetBufferPointer(), triangle->GetVertexShaderBlob()->GetBufferSize(), &Renderer::inputLayouts)))
 			assert(NULL && "Create input layout failed!");
 
-		Renderer::vertexBuffer.Create(Renderer::vertexes);
-		Renderer::indexBuffer.Create(Renderer::indices);
+		Graphics::Shader* sprite = Resources::Find<Graphics::Shader>(L"SpriteShader");
+		if (!(CreateInputLayout(inputLayoutDesces, 3, sprite->GetVertexShaderBlob()->GetBufferPointer(), sprite->GetVertexShaderBlob()->GetBufferSize(), &Renderer::inputLayouts)))
+			assert(NULL && "Create input layout failed!");
 	}
 
 	void GraphicDevice_DX11::Draw()
@@ -321,14 +359,18 @@ namespace DXEngine::Graphics
 		deviceContext->IASetInputLayout(Renderer::inputLayouts);
 		Renderer::mesh->Bind();
 
-		Vector4 pos(0.5f, 0.0f, 0.0f, 1.0f);
+		Vector4 pos(0.0f, 0.0f, 0.0f, 1.0f);
 		Renderer::constantBuffers[(UINT)ECBType::Transform].SetData(&pos);
 		Renderer::constantBuffers[(UINT)ECBType::Transform].Bind(EShaderStage::VS);
 
-		Graphics::Shader* triangle = Resources::Find<Graphics::Shader>(L"TriangleShader");
+		Graphics::Shader* triangle = Resources::Find<Graphics::Shader>(L"SpriteShader");
 		triangle->Bind();
 
-		deviceContext->Draw(3, 0);
+		Graphics::Texture* texture = Resources::Find<Graphics::Texture>(L"Player");
+		if (texture)
+			texture->Bind(EShaderStage::PS, 0);
+
+		deviceContext->DrawIndexed(6, 0, 0);
 
 		swapChain->Present(1, 0);
 	}

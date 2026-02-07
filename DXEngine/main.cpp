@@ -52,6 +52,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	MSG msg;
 
+	DXEngine::LoadResources();
+	DXEngine::LoadScenes();
+
 	while (true)
 	{
 		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
@@ -73,7 +76,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		}
 	}
 
-	Gdiplus::GdiplusShutdown(gpToken);
 	application.Release();
 	return (int)msg.wParam;
 }
@@ -126,8 +128,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, 0, width, height, nullptr, nullptr, hInstance, nullptr);
 
-	application.Init(hWnd, width, height);
-
 	if (!hWnd)
 	{
 		return FALSE;
@@ -136,10 +136,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
 
-	Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
-
-	DXEngine::LoadResources();
-	DXEngine::LoadScenes();
+	application.Init(hWnd, width, height);
 
 	return TRUE;
 }

@@ -21,7 +21,7 @@ namespace DXEngine
 		virtual void ButtonClick();
 
 	private:
-		Graphcis::Texture* texture;
+		Graphics::Texture* texture;
 		Event onClick;
 	};
 }

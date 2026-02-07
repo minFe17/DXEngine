@@ -8,7 +8,7 @@
 
 namespace DXEngine
 {
-	Application::Application() : hWnd(nullptr), hdc(nullptr), width(0), height(0), backHdc(NULL), backBuffer(NULL)
+	Application::Application() : hWnd(nullptr), hdc(nullptr), width(0), height(0), backHdc(NULL), backBuffer(NULL), isLoad(false)
 	{
 
 	}
@@ -24,7 +24,7 @@ namespace DXEngine
 		hdc = GetDC(hwnd);
 
 		AdjustWindow(width, height);
-		CreateBuffer();
+		InitEtc();
 
 		GraphicDevice = std::make_unique<Graphics::GraphicDevice_DX11>();
 		Renderer::Init();
@@ -40,6 +40,9 @@ namespace DXEngine
 
 	void Application::Run()
 	{
+		if (isLoad == false)
+			isLoad = true;
+
 		Update();
 		LateUpdate();
 		Render();
@@ -65,8 +68,6 @@ namespace DXEngine
 
 	void Application::Render()
 	{
-		GraphicDevice->Draw();
-
 		Time::Render();
 		CollisionManager::Render();
 		UIManager::Render();
@@ -97,27 +98,7 @@ namespace DXEngine
 		ShowWindow(hWnd, true);
 	}
 
-	void Application::CreateBuffer()
+	void Application::InitEtc()
 	{
-		// 윈도우 해상도에 맞는 백버퍼 생성
-		backBuffer = CreateCompatibleBitmap(hdc, width, height);
-
-		// 백버퍼를 가르킬 DC 생성
-		backHdc = CreateCompatibleDC(hdc);
-
-		HBITMAP oldBitmap = (HBITMAP)SelectObject(backHdc, backBuffer);
-		DeleteObject(oldBitmap);
-	}
-
-	void Application::ClearRenderTarget()
-	{
-		HBRUSH brush = (HBRUSH)CreateSolidBrush(RGB(128, 128, 128));
-		HBRUSH oldBrush = (HBRUSH)SelectObject(backHdc, brush);
-		::Rectangle(backHdc, -1, -1, 1601, 901);
-	}
-
-	void Application::CopyRenderTarget(HDC source, HDC dest)
-	{
-		BitBlt(dest, 0, 0, width, height, source, 0, 0, SRCCOPY);
 	}
 }

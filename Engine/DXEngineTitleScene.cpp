@@ -31,7 +31,6 @@ namespace DXEngine
 
 	void TitleScene::Render()
 	{
-		
 	}
 
 	void TitleScene::OnEnter()

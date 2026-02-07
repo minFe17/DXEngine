@@ -6,6 +6,6 @@ namespace DXEngine
 {
 	void LoadResources()
 	{
-		Resources::Load<Graphcis::Texture>(L"Background", L"Resources/CloudOcean.png");
+		Resources::Load<Graphics::Texture>(L"Player", L"Resources/CloudOcean.png");
 	}
 }

@@ -29,7 +29,7 @@ namespace DXEngine
 		void Update();
 		void Render();
 
-		void CreateAnimation(const std::wstring& name, Graphcis::Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration);
+		void CreateAnimation(const std::wstring& name, Graphics::Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration);
 		void Reset();
 
 		bool IsComplete() const { return isComplete; }
@@ -37,7 +37,7 @@ namespace DXEngine
 
 	private:
 		class Animator* animator;
-		Graphcis::Texture* texture;
+		Graphics::Texture* texture;
 
 		std::vector<Sprite> animationSheet;
 		int index;

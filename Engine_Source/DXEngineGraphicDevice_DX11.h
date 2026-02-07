@@ -20,7 +20,9 @@ namespace DXEngine::Graphics
 		bool CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* inputElementDescs, UINT numElements, const void* shaderBytecodeWithInputSignature, SIZE_T bytecodeLength, ID3D11InputLayout** inputLayout);
 		bool CreateBuffer(const D3D11_BUFFER_DESC* desc, const D3D11_SUBRESOURCE_DATA* initData, ID3D11Buffer** buffer);
 
-		void SetDataBuffer(ID3D11Buffer* buffer, void* data, UINT size);
+		bool CreateShaderResourceView(ID3D11Resource* resource, const D3D11_SHADER_RESOURCE_VIEW_DESC* desc, ID3D11ShaderResourceView** ShaderResourceView);
+		void SetDataGpuBuffer(ID3D11Buffer* buffer, void* data, UINT size);
+		void SetShaderResource(EShaderStage stage, UINT startSlot, ID3D11ShaderResourceView** shaderResourceView);
 
 		void BindVertexShader(ID3D11VertexShader* vertexShader);
 		void BindPixelShader(ID3D11PixelShader* pixelShader);
@@ -31,6 +33,9 @@ namespace DXEngine::Graphics
 
 		void Init();
 		void Draw();
+
+	public:
+		Microsoft::WRL::ComPtr<ID3D11Device> GetID3D11Device() { return device; }
 
 	private:
 		Microsoft::WRL::ComPtr<ID3D11Device> device;

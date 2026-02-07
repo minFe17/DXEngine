@@ -14,7 +14,7 @@ namespace DXEngine::Graphics
 	{
 		Math::Vector3 position;
 		Math::Vector4 color;
-
+		Math::Vector2 uv; //texture coordinate
 	};
 	enum class EShaderStage
 	{

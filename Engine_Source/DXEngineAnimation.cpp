@@ -49,7 +49,7 @@ namespace DXEngine
 			return;
 	}
 
-	void Animation::CreateAnimation(const std::wstring& name, Graphcis::Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration)
+	void Animation::CreateAnimation(const std::wstring& name, Graphics::Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration)
 	{
 		SetName(name);
 		texture = spriteSheet;

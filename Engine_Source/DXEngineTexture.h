@@ -1,39 +1,32 @@
 #pragma once
-#include "DXEngineResource.h"
+#include <DirectXTex.h>
+#include <DirectXTex.inl>
+#include <DirectXTexEXR.h>
 
-namespace DXEngine::Graphcis
+#include "DXEngineResource.h"
+#include "DXEngineGraphicDevice_DX11.h"
+
+namespace DXEngine::Graphics
 {
 	class Texture : public Resource 
 	{
 	public:
-		enum class ETextureType
-		{
-			Bmp,
-			Png,
-			Max,
-		};
-
+		
 		Texture();
 		~Texture();
-
-		static Texture* Create(const std::wstring& name, UINT width, UINT height);
 
 		virtual HRESULT Save(const std::wstring& path) override;
 		virtual HRESULT Load(const std::wstring& path) override;
 
-		UINT GetWidth() const { return width; }
-		UINT GetHeight() const { return height; }
-		ETextureType GetTextureType() const { return textureType; }
-		bool IsAlpha() const { return isAlpha; }
-
-		void SetWidth(UINT width) { this->width = width; }
-		void SetHeight(UINT height) { this->height = height; }
+		void Bind(EShaderStage stage, UINT startSlot);
 	
 	private:
-		bool isAlpha;
-		ETextureType textureType;
+		ScratchImage image;
 
-		UINT width;
-		UINT height;
+		D3D11_TEXTURE2D_DESC desc;
+		Microsoft::WRL::ComPtr<ID3D11Texture2D> texture;
+
+		Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> shaderResourceView;
+		Microsoft::WRL::ComPtr<ID3D11RenderTargetView> renderTargetView;
 	};
 }

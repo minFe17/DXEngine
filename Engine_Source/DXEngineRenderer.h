@@ -12,9 +12,6 @@ namespace DXEngine::Renderer
 {
 	extern Camera* mainCamera;
 
-	extern std::vector<Graphics::Vertex> vertexes;
-	extern std::vector<UINT> indices;
-
 	extern Mesh* mesh;
 	extern Graphics::ConstantBuffer constantBuffers[(UINT)ECBType::Max];
 

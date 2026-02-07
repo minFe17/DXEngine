@@ -15,11 +15,11 @@ namespace DXEngine
 		void LateUpdate() override;
 		void Render() override;
 
-		void SetTexture(Graphcis::Texture* texture) { this->texture = texture; }
+		void SetTexture(Graphics::Texture* texture) { this->texture = texture; }
 		void SetScale(Math::Vector2 value) { size = value; }
 
 	private:
-		Graphcis::Texture* texture;
+		Graphics::Texture* texture;
 		Math::Vector2 size;
 	};
 }
