@@ -30,8 +30,35 @@ namespace DXEngine::Graphics
 
 	enum class ECBType
 	{
-		None,
 		Transform,
+		Max,
+	};
+
+	enum class ESamplerType
+	{
+		Point,
+		Linear,
+		Anisotropic,
+		PostProcess,
+		Max,
+	};
+
+	enum class ERenderingMode
+	{
+		Opaque,
+		CutOut,
+		Transparent,
+		PostProcess,
+		Max,
+	};
+
+	enum class ETextureType
+	{
+		Albedo,
+		Normal,
+		Specular,
+		Smoothness,
+		Metallic,
 		Max,
 	};
 

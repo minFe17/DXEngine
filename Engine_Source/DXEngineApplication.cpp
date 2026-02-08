@@ -2,7 +2,6 @@
 #include "DXEngineInput.h"
 #include "DXEngineSceneManager.h"
 #include "DXEngineResources.h"
-#include "DXEngineRenderer.h"
 #include "DXEngineCollisionManager.h"
 #include "DXEngineUIManager.h"
 
@@ -27,7 +26,6 @@ namespace DXEngine
 		InitEtc();
 
 		GraphicDevice = std::make_unique<Graphics::GraphicDevice_DX11>();
-		Renderer::Init();
 		GraphicDevice->Init();
 
 		Input::Init();

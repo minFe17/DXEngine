@@ -7,6 +7,7 @@
 #include "..\\Engine\DXEngineLoadResources.h"
 #include "..\\Engine\DXEngineLoadScene.h"
 
+
 DXEngine::Application application;
 
 ULONG_PTR gpToken;

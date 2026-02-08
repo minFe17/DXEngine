@@ -2,7 +2,7 @@
 
 namespace DXEngine::Graphics
 {
-	ConstantBuffer::ConstantBuffer() : size(0), type(ECBType::None)
+	ConstantBuffer::ConstantBuffer() : size(0), type(ECBType::Max)
 	{
 	}
 

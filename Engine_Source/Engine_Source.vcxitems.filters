@@ -109,6 +109,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineIndexBuffer.cpp">
       <Filter>Graphics\GpuBuffer</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineInputLayout.cpp">
+      <Filter>Graphics\InputLayout</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -231,6 +234,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineIndexBuffer.h">
       <Filter>Graphics\GpuBuffer</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineInputLayout.h">
+      <Filter>Graphics\InputLayout</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -322,6 +328,9 @@
     </Filter>
     <Filter Include="GameObject\Component\Child\Rigidbody">
       <UniqueIdentifier>{a4943f9d-4ec8-4bc0-8221-f86006587000}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\InputLayout">
+      <UniqueIdentifier>{69ee6ca7-5ac2-445d-8f41-893c5aac2eeb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

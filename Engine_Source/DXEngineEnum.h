@@ -27,6 +27,7 @@ namespace DXEngine::Enum
 	{
 		Texture,
 		Mesh,
+		Material,
 		Animation,
 		AudioClip,
 		Shader,

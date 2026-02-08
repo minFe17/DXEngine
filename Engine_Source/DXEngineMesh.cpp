@@ -44,8 +44,15 @@ namespace DXEngine
 		return indexBuffer.Create(indices);
 	}
 
+	void Mesh::SetVertexBufferParams(UINT vertexCount, D3D11_INPUT_ELEMENT_DESC* layout, const void* pShaderBytecodeWithInputSignature, SIZE_T BytecodeLength)
+	{
+		inputLayout.CreateInputLayout(vertexCount, layout, pShaderBytecodeWithInputSignature, BytecodeLength);
+	}
+
 	void Mesh::Bind()
 	{
+		inputLayout.Bind();
+
 		vertexBuffer.Bind();
 		indexBuffer.Bind();
 

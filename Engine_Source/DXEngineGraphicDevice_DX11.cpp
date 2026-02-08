@@ -2,8 +2,10 @@
 #include "DXEngineApplication.h"
 #include "DXEngineRenderer.h"
 #include "DXEngineShader.h"
-#include "DXEngineResources.h"
+#include "DXEngineMesh.h"
 #include "DXEngineTexture.h"
+#include "DXEngineMaterial.h"
+#include "DXEngineResources.h"
 
 extern DXEngine::Application application;
 
@@ -84,6 +86,14 @@ namespace DXEngine::Graphics
 	bool GraphicDevice_DX11::CreateTexture2D(const D3D11_TEXTURE2D_DESC* desc, const D3D11_SUBRESOURCE_DATA* initData, ID3D11Texture2D** texture2D)
 	{
 		if (FAILED(device->CreateTexture2D(desc, initData, texture2D)))
+			return false;
+
+		return true;
+	}
+
+	bool GraphicDevice_DX11::CreateSamplerState(const D3D11_SAMPLER_DESC* samplerDesc, ID3D11SamplerState** samplerState)
+	{
+		if (FAILED(device->CreateSamplerState(samplerDesc, samplerState)))
 			return false;
 
 		return true;
@@ -200,14 +210,19 @@ namespace DXEngine::Graphics
 		deviceContext->PSSetShader(pixelShader, 0, 0);
 	}
 
+	void GraphicDevice_DX11::BindInputLayout(ID3D11InputLayout* inputLayout)
+	{
+		deviceContext->IASetInputLayout(inputLayout);
+	}
+
 	void GraphicDevice_DX11::BindPrimitiveTopology(const D3D11_PRIMITIVE_TOPOLOGY topology)
 	{
 		deviceContext->IASetPrimitiveTopology(topology);
 	}
 
-	void GraphicDevice_DX11::BindVertexBuffer(UINT startSlot, UINT numBuffers, ID3D11Buffer* const* vertexBuffers, const UINT* strides, const UINT* offsets)
+	void GraphicDevice_DX11::BindVertexBuffer(UINT startSlot, UINT numBuffers, ID3D11Buffer* const* vertexBuffers, const UINT* strides, const UINT* offset)
 	{
-		deviceContext->IASetVertexBuffers(startSlot, numBuffers, vertexBuffers, strides, offsets);
+		deviceContext->IASetVertexBuffers(startSlot, numBuffers, vertexBuffers, strides, offset);
 	}
 
 	void GraphicDevice_DX11::BindIndexBuffer(ID3D11Buffer* indexBuffer, DXGI_FORMAT format, UINT offset)
@@ -249,6 +264,33 @@ namespace DXEngine::Graphics
 		default:
 			break;
 		}
+	}
+
+	void GraphicDevice_DX11::BindSampler(EShaderStage stage, UINT startSlot, UINT numSamplers, ID3D11SamplerState* const* samplers)
+	{
+		if (EShaderStage::VS == stage)
+			deviceContext->VSSetSamplers(startSlot, numSamplers, samplers);
+
+		if (EShaderStage::HS == stage)
+			deviceContext->HSSetSamplers(startSlot, numSamplers, samplers);
+
+		if (EShaderStage::DS == stage)
+			deviceContext->DSSetSamplers(startSlot, numSamplers, samplers);
+
+		if (EShaderStage::GS == stage)
+			deviceContext->GSSetSamplers(startSlot, numSamplers, samplers);
+
+		if (EShaderStage::PS == stage)
+			deviceContext->PSSetSamplers(startSlot, numSamplers, samplers);
+	}
+
+	void GraphicDevice_DX11::BindSamplers(UINT startSlot, UINT numSamplers, ID3D11SamplerState* const* samplers)
+	{
+		BindSampler(EShaderStage::VS, startSlot, numSamplers, samplers);
+		BindSampler(EShaderStage::HS, startSlot, numSamplers, samplers);
+		BindSampler(EShaderStage::DS, startSlot, numSamplers, samplers);
+		BindSampler(EShaderStage::GS, startSlot, numSamplers, samplers);
+		BindSampler(EShaderStage::PS, startSlot, numSamplers, samplers);
 	}
 
 	void GraphicDevice_DX11::Init()
@@ -305,39 +347,6 @@ namespace DXEngine::Graphics
 
 		if (!(CreateDepthStencilView(depthStencil.Get(), nullptr, depthStencilView.GetAddressOf())))
 			assert(NULL && "Create depthstencilview failed!");
-
-#pragma region inputLayout Desc
-		D3D11_INPUT_ELEMENT_DESC inputLayoutDesces[3] = {};
-
-		inputLayoutDesces[0].AlignedByteOffset = 0;
-		inputLayoutDesces[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
-		inputLayoutDesces[0].InputSlot = 0;
-		inputLayoutDesces[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-		inputLayoutDesces[0].SemanticName = "POSITION";
-		inputLayoutDesces[0].SemanticIndex = 0;
-
-		inputLayoutDesces[1].AlignedByteOffset = 12;
-		inputLayoutDesces[1].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
-		inputLayoutDesces[1].InputSlot = 0;
-		inputLayoutDesces[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-		inputLayoutDesces[1].SemanticName = "COLOR";
-		inputLayoutDesces[1].SemanticIndex = 0;
-
-		inputLayoutDesces[2].AlignedByteOffset = 28; //12 + 16
-		inputLayoutDesces[2].Format = DXGI_FORMAT_R32G32_FLOAT;
-		inputLayoutDesces[2].InputSlot = 0;
-		inputLayoutDesces[2].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-		inputLayoutDesces[2].SemanticName = "TEXCOORD";
-		inputLayoutDesces[2].SemanticIndex = 0;
-#pragma endregion
-
-		Graphics::Shader* triangle = Resources::Find<Graphics::Shader>(L"TriangleShader");
-		if (!(CreateInputLayout(inputLayoutDesces, 2, triangle->GetVertexShaderBlob()->GetBufferPointer(), triangle->GetVertexShaderBlob()->GetBufferSize(), &Renderer::inputLayouts)))
-			assert(NULL && "Create input layout failed!");
-
-		Graphics::Shader* sprite = Resources::Find<Graphics::Shader>(L"SpriteShader");
-		if (!(CreateInputLayout(inputLayoutDesces, 3, sprite->GetVertexShaderBlob()->GetBufferPointer(), sprite->GetVertexShaderBlob()->GetBufferSize(), &Renderer::inputLayouts)))
-			assert(NULL && "Create input layout failed!");
 	}
 
 	void GraphicDevice_DX11::Draw()
@@ -354,24 +363,31 @@ namespace DXEngine::Graphics
 		deviceContext->RSSetViewports(1, &viewPort);
 		deviceContext->OMSetRenderTargets(1, renderTargetView.GetAddressOf(), depthStencilView.Get());
 
-		BindConstantBuffer(EShaderStage::VS, ECBType::Transform, Renderer::constantBuffer);
+		Mesh* mesh = Resources::Find<Mesh>(L"RectMesh");
+		mesh->Bind();
 
-		deviceContext->IASetInputLayout(Renderer::inputLayouts);
-		Renderer::mesh->Bind();
-
-		Vector4 pos(0.0f, 0.0f, 0.0f, 1.0f);
+		Vector4 pos(-0.2f, 0.0f, 0.0f, 1.0f);
 		Renderer::constantBuffers[(UINT)ECBType::Transform].SetData(&pos);
 		Renderer::constantBuffers[(UINT)ECBType::Transform].Bind(EShaderStage::VS);
 
-		Graphics::Shader* triangle = Resources::Find<Graphics::Shader>(L"SpriteShader");
-		triangle->Bind();
-
-		Graphics::Texture* texture = Resources::Find<Graphics::Texture>(L"Player");
-		if (texture)
-			texture->Bind(EShaderStage::PS, 0);
-
+		Material* material = Resources::Find<Material>(L"SpriteMaterial");
+		material->Bind();
 		deviceContext->DrawIndexed(6, 0, 0);
 
+		// Draw Triangle
+		mesh = Resources::Find<Mesh>(L"TriangleMesh");
+		mesh->Bind();
+
+		pos = Vector4(0.2f, 0.0f, 0.0f, 1.0f);
+		Renderer::constantBuffers[(UINT)ECBType::Transform].SetData(&pos);
+		Renderer::constantBuffers[(UINT)ECBType::Transform].Bind(EShaderStage::VS);
+
+		material = Resources::Find<Material>(L"TriangleMaterial");
+		material->Bind();
+
+		deviceContext->DrawIndexed(3, 0, 0);
+
+		// Present the backbuffer
 		swapChain->Present(1, 0);
 	}
 }

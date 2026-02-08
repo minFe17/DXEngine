@@ -33,6 +33,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGraphics.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineIndexBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineInput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineInputLayout.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMaterial.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMesh.h" />
@@ -72,6 +73,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineGraphicDevice_DX11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineIndexBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineInput.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineInputLayout.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineLayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineMaterial.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineMesh.cpp" />
