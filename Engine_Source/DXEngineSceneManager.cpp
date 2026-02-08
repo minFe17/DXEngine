@@ -17,6 +17,8 @@ namespace DXEngine
 			return nullptr;
 
 		activeScene = iter->second;
+
+		activeScene->Init();
 		activeScene->OnEnter();
 		return iter->second;
 	}

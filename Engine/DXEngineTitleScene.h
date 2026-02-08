@@ -18,6 +18,5 @@ namespace DXEngine
 		void OnExit() override;
 
 	private:
-
 	};
 }

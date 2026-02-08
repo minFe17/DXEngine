@@ -3,20 +3,23 @@
 #include "DXEngineTransform.h"
 #include "DXEngineTexture.h"
 #include "DXEngineRenderer.h"
+#include "DXEngineResources.h"
 
 namespace DXEngine
 {
-	SpriteRenderer::SpriteRenderer() : Component(Enum::EComponentType::SpriteRenderer), texture(nullptr), size(Vector2::One)
+	SpriteRenderer::SpriteRenderer() : Component(Enum::EComponentType::SpriteRenderer), sprite(nullptr), material(nullptr), mesh(nullptr)
 	{
 
 	}
 
 	SpriteRenderer::~SpriteRenderer()
 	{
+
 	}
 
 	void SpriteRenderer::Init()
 	{
+		mesh = Resources::Find<Mesh>(L"RectMesh");
 	}
 
 	void SpriteRenderer::Update()
@@ -29,7 +32,13 @@ namespace DXEngine
 
 	void SpriteRenderer::Render()
 	{
-		if (texture == nullptr)
-			assert(false);
-	}	
+		if (mesh)
+			mesh->Bind();
+		if (material)
+			material->Bind();
+		if (sprite)
+			sprite->Bind(EShaderStage::PS, (UINT)ETextureType::Albedo);
+		if (mesh)
+			Graphics::GetDevice()->DrawIndexed(mesh->GetIndexCount(), 0, 0);
+	}
 }

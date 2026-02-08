@@ -34,9 +34,17 @@ namespace DXEngine::Graphics
 		void BindConstantBuffer(EShaderStage stage, ECBType type, ID3D11Buffer* buffer);
 		void BindSampler(EShaderStage stage, UINT startSlot, UINT numSamplers, ID3D11SamplerState* const* samplers);
 		void BindSamplers(UINT startSlot, UINT numSamplers, ID3D11SamplerState* const* samplers);
+		void BindViewPort();
+		void BindRenderTargets(UINT numViews = 1, ID3D11RenderTargetView* const* renderTargetViews = nullptr, ID3D11DepthStencilView* depthStencilView = nullptr);
+		void BindDefaultRenderTarget();
+
+		void ClearRenderTargetView();
+		void ClearDepthStencilView();
 
 		void Init();
 		void Draw();
+		void DrawIndexed(UINT indexCount, UINT startIndexLocation, INT baseVertexLocation);
+		void Present();
 
 	public:
 		Microsoft::WRL::ComPtr<ID3D11Device> GetID3D11Device() { return device; }

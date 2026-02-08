@@ -2,6 +2,9 @@
 #include "DXEngineEntity.h"
 #include "DXEngineComponent.h"
 #include "DXEngineTexture.h"
+#include "DXengineMaterial.h"
+#include "DXEngineMesh.h"
+
 namespace DXEngine
 {
 	class SpriteRenderer : public Component
@@ -15,11 +18,12 @@ namespace DXEngine
 		void LateUpdate() override;
 		void Render() override;
 
-		void SetTexture(Graphics::Texture* texture) { this->texture = texture; }
-		void SetScale(Math::Vector2 value) { size = value; }
+		void SetSprite(Graphics::Texture* sprite) { this->sprite = sprite; }
+		void SetMaterial(Material* material) { this->material = material; }
 
 	private:
-		Graphics::Texture* texture;
-		Math::Vector2 size;
+		Graphics::Texture* sprite;
+		Material* material;
+		Mesh* mesh;
 	};
 }

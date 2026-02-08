@@ -27,16 +27,10 @@ namespace DXEngine
 	void PlayScene::Init()
 	{
 		background = Object::Instantiate<Player>(Enum::ELayerType::Background);
+		Object::DontDestroyOnLoad(background);
 		SpriteRenderer* spriteRenderer = background->AddComponent<SpriteRenderer>();
-		Graphics::Texture* texture = Resources::Find<Graphics::Texture>(L"Player");
-		spriteRenderer->SetTexture(texture);
-
-		GameObject* camera = Object::Instantiate<GameObject>(Enum::ELayerType::None);
-		Camera* cameraComponent = camera->AddComponent<Camera>();
-		Renderer::mainCamera = cameraComponent;
-		camera->AddComponent<PlayerScript>();
-
-
+		spriteRenderer->SetMaterial(Resources::Find<Material>(L"SpriteMaterial"));
+		spriteRenderer->SetSprite(Resources::Find<Graphics::Texture>(L"Player"));
 		Scene::Init();
 	}
 
@@ -56,12 +50,11 @@ namespace DXEngine
 	void PlayScene::Render()
 	{
 		Scene::Render();
-		Graphics::GetDevice()->Draw();
-
 	}
 
 	void PlayScene::OnEnter()
 	{
+		Scene::OnEnter();
 	}
 
 	void PlayScene::OnExit()

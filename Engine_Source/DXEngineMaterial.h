@@ -20,6 +20,8 @@ namespace DXEngine
 		virtual HRESULT Load(const std::wstring& path) override;
 
 		void Bind();
+		void BindShader();
+		void BindTextures();
 
 		void SetShader(Graphics::Shader* shader) { this->shader = shader; }
 		void SetAlbedoTexture(Graphics::Texture* texture)

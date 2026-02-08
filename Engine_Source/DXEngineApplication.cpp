@@ -66,10 +66,17 @@ namespace DXEngine
 
 	void Application::Render()
 	{
+		Graphics::GetDevice()->ClearRenderTargetView();
+		Graphics::GetDevice()->ClearDepthStencilView();
+		Graphics::GetDevice()->BindViewPort();
+		Graphics::GetDevice()->BindDefaultRenderTarget();
+
 		Time::Render();
 		CollisionManager::Render();
 		UIManager::Render();
 		SceneManager::Render();
+
+		Graphics::GetDevice()->Present();
 	}
 
 	void Application::Release()

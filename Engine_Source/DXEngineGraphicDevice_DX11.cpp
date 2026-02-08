@@ -293,6 +293,39 @@ namespace DXEngine::Graphics
 		BindSampler(EShaderStage::PS, startSlot, numSamplers, samplers);
 	}
 
+	void GraphicDevice_DX11::BindViewPort()
+	{
+		D3D11_VIEWPORT viewPort =
+		{
+			0, 0,
+			(float)application.GetWidth(), (float)application.GetHeight(),
+			0.0f, 1.0f
+		};
+
+		deviceContext->RSSetViewports(1, &viewPort);
+	}
+
+	void GraphicDevice_DX11::BindRenderTargets(UINT numViews, ID3D11RenderTargetView* const* renderTargetViews, ID3D11DepthStencilView* depthStencilView)
+	{
+		deviceContext->OMSetRenderTargets(numViews, renderTargetViews, depthStencilView);
+	}
+
+	void GraphicDevice_DX11::BindDefaultRenderTarget()
+	{
+		deviceContext->OMSetRenderTargets(1, renderTargetView.GetAddressOf(), depthStencilView.Get());
+	}
+
+	void GraphicDevice_DX11::ClearRenderTargetView()
+	{
+		FLOAT backgroundColor[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
+		deviceContext->ClearRenderTargetView(renderTargetView.Get(), backgroundColor);
+	}
+
+	void GraphicDevice_DX11::ClearDepthStencilView()
+	{
+		deviceContext->ClearDepthStencilView(depthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+	}
+
 	void GraphicDevice_DX11::Init()
 	{
 #pragma region swapchain desc
@@ -351,18 +384,6 @@ namespace DXEngine::Graphics
 
 	void GraphicDevice_DX11::Draw()
 	{
-		FLOAT backgroundColor[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
-		deviceContext->ClearRenderTargetView(renderTargetView.Get(), backgroundColor);
-		deviceContext->ClearDepthStencilView(depthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
-
-		D3D11_VIEWPORT viewPort =
-		{
-			0, 0, (float)application.GetWidth(), (float)application.GetHeight(),
-			0.0f, 1.0f
-		};
-		deviceContext->RSSetViewports(1, &viewPort);
-		deviceContext->OMSetRenderTargets(1, renderTargetView.GetAddressOf(), depthStencilView.Get());
-
 		Mesh* mesh = Resources::Find<Mesh>(L"RectMesh");
 		mesh->Bind();
 
@@ -386,8 +407,15 @@ namespace DXEngine::Graphics
 		material->Bind();
 
 		deviceContext->DrawIndexed(3, 0, 0);
+	}
 
-		// Present the backbuffer
+	void GraphicDevice_DX11::DrawIndexed(UINT indexCount, UINT startIndexLocation, INT baseVertexLocation)
+	{
+		deviceContext->DrawIndexed(indexCount, startIndexLocation, baseVertexLocation);
+	}
+
+	void GraphicDevice_DX11::Present()
+	{
 		swapChain->Present(1, 0);
 	}
 }

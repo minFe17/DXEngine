@@ -28,4 +28,16 @@ namespace DXEngine
 		if (albedoTexture)
 			albedoTexture->Bind(Graphics::EShaderStage::PS, (UINT)Graphics::ETextureType::Albedo);
 	}
+
+	void Material::BindShader()
+	{
+		if (shader)
+			shader->Bind();
+	}
+
+	void Material::BindTextures()
+	{
+		if (albedoTexture)
+			albedoTexture->Bind(Graphics::EShaderStage::PS, (UINT)Graphics::ETextureType::Albedo);
+	}
 }

@@ -30,6 +30,8 @@ namespace DXEngine
 		void SetVertexBufferParams(UINT vertexCount, D3D11_INPUT_ELEMENT_DESC* layout, const void* shaderBytecodeWithInputSignature, SIZE_T bytecodeLength);
 		void Bind();
 
+		UINT GetIndexCount() const { return indexBuffer.GetIndexCount(); }
+
 	private:
 		Graphics::InputLayout inputLayout;
 		Graphics::VertexBuffer vertexBuffer;

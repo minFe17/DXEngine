@@ -12,6 +12,9 @@ namespace DXEngine::Graphics
 		bool Create(const std::vector<UINT>& indices);
 		void Bind() const;
 
+		UINT GetIndexCount() const { return indexCount; }
+
 	private:
+		UINT indexCount;
 	};
 }
