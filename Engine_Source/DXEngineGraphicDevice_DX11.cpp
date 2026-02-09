@@ -171,6 +171,28 @@ namespace DXEngine::Graphics
 		return true;
 	}
 
+	bool GraphicDevice_DX11::CreateRasterizerState(const D3D11_RASTERIZER_DESC* rasterizerDesc, ID3D11RasterizerState** rasterizerState)
+	{
+		if (FAILED(device->CreateRasterizerState(rasterizerDesc, rasterizerState)))
+			return false;
+
+		return true;
+	}
+	bool GraphicDevice_DX11::CreateBlendState(const D3D11_BLEND_DESC* blendDesc, ID3D11BlendState** blendState)
+	{
+		if (FAILED(device->CreateBlendState(blendDesc, blendState)))
+			return false;
+
+		return true;
+	}
+	bool GraphicDevice_DX11::CreateDepthStencilState(const D3D11_DEPTH_STENCIL_DESC* depthStencilDesc, ID3D11DepthStencilState** depthStencilState)
+	{
+		if (FAILED(device->CreateDepthStencilState(depthStencilDesc, depthStencilState)))
+			return false;
+
+		return true;
+	}
+
 	void GraphicDevice_DX11::SetDataGpuBuffer(ID3D11Buffer* buffer, void* data, UINT size)
 	{
 		D3D11_MAPPED_SUBRESOURCE sub = {};
@@ -313,6 +335,21 @@ namespace DXEngine::Graphics
 	void GraphicDevice_DX11::BindDefaultRenderTarget()
 	{
 		deviceContext->OMSetRenderTargets(1, renderTargetView.GetAddressOf(), depthStencilView.Get());
+	}
+
+	void GraphicDevice_DX11::BindRasterizerState(ID3D11RasterizerState* rasterizerState)
+	{
+		deviceContext->RSSetState(rasterizerState);
+	}
+
+	void GraphicDevice_DX11::BindBlendState(ID3D11BlendState* blendState, const FLOAT blendFactor[4], UINT sampleMask)
+	{
+		deviceContext->OMSetBlendState(blendState, blendFactor, sampleMask);
+	}
+
+	void GraphicDevice_DX11::BindDepthStencilState(ID3D11DepthStencilState* depthStencilState, UINT stencilRef)
+	{
+		deviceContext->OMSetDepthStencilState(depthStencilState, stencilRef);
 	}
 
 	void GraphicDevice_DX11::ClearRenderTargetView()

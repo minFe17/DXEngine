@@ -59,6 +59,30 @@ namespace DXEngine::Graphics
 		Specular,
 		Smoothness,
 		Metallic,
+		Sprite,
+		Max,
+	};
+
+	enum class ERasterizerState
+	{
+		SolidBack,
+		SolidFront,
+		SolidNone,
+		WireFrame,
+		Max,
+	};
+
+	enum class EBlendState
+	{
+		AlphaBlend,
+		OneOne,
+		Max,
+	};
+
+	enum class EDepthStencilState
+	{
+		DepthNone,
+		LessEqual,
 		Max,
 	};
 

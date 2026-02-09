@@ -20,6 +20,14 @@ namespace DXEngine::Graphics
 		void Bind();
 
 		Microsoft::WRL::ComPtr<ID3DBlob> GetVertexShaderBlob() { return vertexShaderBlob; }
+		Microsoft::WRL::ComPtr<ID3DBlob> GetHullShaderBlob() { return hullShaderBlob; }
+		Microsoft::WRL::ComPtr<ID3DBlob> GetDomainShaderBlob() { return domainShaderBlob; }
+		Microsoft::WRL::ComPtr<ID3DBlob> GetGeometryShaderBlob() { return geometryShaderBlob; }
+		Microsoft::WRL::ComPtr<ID3DBlob> GetPixelShaderBlob() { return pixelShaderBlob; }
+
+		void SetRasterizerState(const ERasterizerState state) { rasterizerState = state; }
+		void SetBlendState(const EBlendState state) { blendState = state; }
+		void SetDepthStencilState(const EDepthStencilState state) { depthStencilState = state; }
 
 	private:
 		Microsoft::WRL::ComPtr<ID3DBlob> vertexShaderBlob;
@@ -33,5 +41,9 @@ namespace DXEngine::Graphics
 		Microsoft::WRL::ComPtr<ID3D11DomainShader> domainShader;
 		Microsoft::WRL::ComPtr<ID3D11GeometryShader> geometryShader;
 		Microsoft::WRL::ComPtr<ID3D11PixelShader> pixelShader;
+
+		ERasterizerState rasterizerState;
+		EBlendState blendState;
+		EDepthStencilState depthStencilState;
 	};
 }

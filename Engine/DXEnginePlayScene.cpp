@@ -29,7 +29,6 @@ namespace DXEngine
 		background = Object::Instantiate<Player>(Enum::ELayerType::Background);
 		Object::DontDestroyOnLoad(background);
 		SpriteRenderer* spriteRenderer = background->AddComponent<SpriteRenderer>();
-		spriteRenderer->SetMaterial(Resources::Find<Material>(L"SpriteMaterial"));
 		spriteRenderer->SetSprite(Resources::Find<Graphics::Texture>(L"Player"));
 		Scene::Init();
 	}
@@ -59,6 +58,6 @@ namespace DXEngine
 
 	void PlayScene::OnExit()
 	{
-		
+
 	}
 }

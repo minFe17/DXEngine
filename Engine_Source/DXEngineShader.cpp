@@ -1,8 +1,9 @@
 #include "DXEngineShader.h"
+#include "DXEngineRenderer.h"
 
 namespace DXEngine::Graphics
 {
-	Shader::Shader() : Resource(Enum::EResourceType::Shader)
+	Shader::Shader() : Resource(Enum::EResourceType::Shader), rasterizerState(ERasterizerState::SolidBack), blendState(EBlendState::AlphaBlend), depthStencilState(EDepthStencilState::LessEqual)
 	{
 	}
 
@@ -41,7 +42,7 @@ namespace DXEngine::Graphics
 
 	bool Shader::CreateVertexShader(const std::wstring& fileName)
 	{
-		if(!GetDevice()->CreateVertexShader(fileName, vertexShaderBlob.GetAddressOf(), vertexShader.GetAddressOf()))
+		if (!GetDevice()->CreateVertexShader(fileName, vertexShaderBlob.GetAddressOf(), vertexShader.GetAddressOf()))
 			return false;
 
 		return true;
@@ -61,5 +62,9 @@ namespace DXEngine::Graphics
 			GetDevice()->BindVertexShader(vertexShader.Get());
 		if (pixelShader)
 			GetDevice()->BindPixelShader(pixelShader.Get());
+
+		GetDevice()->BindRasterizerState(Renderer::rasterizerStates[(UINT)rasterizerState].Get());
+		GetDevice()->BindBlendState(Renderer::blendStates[(UINT)blendState].Get(), nullptr, 0xffffff);
+		GetDevice()->BindDepthStencilState(Renderer::depthStencilStates[(UINT)depthStencilState].Get(), 0);
 	}
 }

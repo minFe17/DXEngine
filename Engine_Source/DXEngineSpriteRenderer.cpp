@@ -20,6 +20,7 @@ namespace DXEngine
 	void SpriteRenderer::Init()
 	{
 		mesh = Resources::Find<Mesh>(L"RectMesh");
+		material = Resources::Find<Material>(L"SpriteMaterial");
 	}
 
 	void SpriteRenderer::Update()
@@ -37,7 +38,7 @@ namespace DXEngine
 		if (material)
 			material->Bind();
 		if (sprite)
-			sprite->Bind(EShaderStage::PS, (UINT)ETextureType::Albedo);
+			sprite->Bind(EShaderStage::PS, (UINT)ETextureType::Sprite);
 		if (mesh)
 			Graphics::GetDevice()->DrawIndexed(mesh->GetIndexCount(), 0, 0);
 	}

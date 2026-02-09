@@ -20,8 +20,11 @@ namespace DXEngine::Graphics
 		bool CreatePixelShader(const std::wstring& fileName, ID3DBlob** code, ID3D11PixelShader** pixelShader);
 		bool CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* inputElementDescs, UINT numElements, const void* shaderBytecodeWithInputSignature, SIZE_T bytecodeLength, ID3D11InputLayout** inputLayout);
 		bool CreateBuffer(const D3D11_BUFFER_DESC* desc, const D3D11_SUBRESOURCE_DATA* initData, ID3D11Buffer** buffer);
-
 		bool CreateShaderResourceView(ID3D11Resource* resource, const D3D11_SHADER_RESOURCE_VIEW_DESC* desc, ID3D11ShaderResourceView** shaderResourceView);
+		bool CreateRasterizerState(const D3D11_RASTERIZER_DESC* rasterizerDesc, ID3D11RasterizerState** rasterizerState);
+		bool CreateBlendState(const D3D11_BLEND_DESC* blendDesc, ID3D11BlendState** blendState);
+		bool CreateDepthStencilState(const D3D11_DEPTH_STENCIL_DESC* depthStencilDesc, ID3D11DepthStencilState** depthStencilState);
+
 		void SetDataGpuBuffer(ID3D11Buffer* buffer, void* data, UINT size);
 		void SetShaderResource(EShaderStage stage, UINT startSlot, ID3D11ShaderResourceView** shaderResourceView);
 
@@ -34,6 +37,9 @@ namespace DXEngine::Graphics
 		void BindConstantBuffer(EShaderStage stage, ECBType type, ID3D11Buffer* buffer);
 		void BindSampler(EShaderStage stage, UINT startSlot, UINT numSamplers, ID3D11SamplerState* const* samplers);
 		void BindSamplers(UINT startSlot, UINT numSamplers, ID3D11SamplerState* const* samplers);
+		void BindRasterizerState(ID3D11RasterizerState* rasterizerState);
+		void BindBlendState(ID3D11BlendState* blendState, const FLOAT blendFactor[4], UINT sampleMask);
+		void BindDepthStencilState(ID3D11DepthStencilState* depthStencilState, UINT stencilRef);
 		void BindViewPort();
 		void BindRenderTargets(UINT numViews = 1, ID3D11RenderTargetView* const* renderTargetViews = nullptr, ID3D11DepthStencilView* depthStencilView = nullptr);
 		void BindDefaultRenderTarget();
