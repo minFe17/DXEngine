@@ -8,7 +8,7 @@ namespace DXEngine::Renderer
 {
 	Camera* mainCamera = nullptr;
 
-	ConstantBuffer constantBuffers[(UINT)ECBType::Max] = {};
+	ConstantBuffer* constantBuffers[(UINT)ECBType::Max] = {};
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerStates[(UINT)ESamplerType::Max] = {};
 	Microsoft::WRL::ComPtr<ID3D11RasterizerState> rasterizerStates[(UINT)ERasterizerState::Max] = {};
 	Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[(UINT)EBlendState::Max] = {};
@@ -122,7 +122,6 @@ namespace DXEngine::Renderer
 		dsDesc.StencilEnable = false;
 		GetDevice()->CreateDepthStencilState(&dsDesc, depthStencilStates[(UINT)EDepthStencilState::DepthNone].GetAddressOf());
 #pragma endregion
-
 	}
 
 	void LoadTriangleMesh()
@@ -262,7 +261,8 @@ namespace DXEngine::Renderer
 
 	void LoadConstantBuffers()
 	{
-		constantBuffers[(UINT)ECBType::Transform].Create(ECBType::Transform, sizeof(Vector4));
+		constantBuffers[CBSLOT_TRANSFORM] = new ConstantBuffer(ECBType::Transform);
+		constantBuffers[CBSLOT_TRANSFORM]->Create(sizeof(TransformCB));
 	}
 
 	void Init()
@@ -276,6 +276,10 @@ namespace DXEngine::Renderer
 
 	void Release()
 	{
-		
+		for (UINT i = 0; i < (UINT)ECBType::Max; i++)
+		{
+			delete constantBuffers[i];
+			constantBuffers[i] = nullptr;
+		}
 	}
 }

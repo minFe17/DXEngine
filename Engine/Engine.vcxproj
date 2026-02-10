@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DXEngineCameraScript.h" />
     <ClInclude Include="DXEngineLoadResources.h" />
     <ClInclude Include="DXEngineLoadScene.h" />
     <ClInclude Include="DXEnginePlayer.h" />
@@ -150,6 +151,7 @@
     <ClInclude Include="DXEngineTitleScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DXEngineCameraScript.cpp" />
     <ClCompile Include="DXEnginePlayer.cpp" />
     <ClCompile Include="DXEnginePlayerScript.cpp" />
     <ClCompile Include="DXEnginePlayScene.cpp" />

@@ -419,31 +419,9 @@ namespace DXEngine::Graphics
 			assert(NULL && "Create depthstencilview failed!");
 	}
 
-	void GraphicDevice_DX11::Draw()
+	void GraphicDevice_DX11::Draw(UINT vertexCount, UINT startVertexLocation)
 	{
-		Mesh* mesh = Resources::Find<Mesh>(L"RectMesh");
-		mesh->Bind();
-
-		Vector4 pos(-0.2f, 0.0f, 0.0f, 1.0f);
-		Renderer::constantBuffers[(UINT)ECBType::Transform].SetData(&pos);
-		Renderer::constantBuffers[(UINT)ECBType::Transform].Bind(EShaderStage::VS);
-
-		Material* material = Resources::Find<Material>(L"SpriteMaterial");
-		material->Bind();
-		deviceContext->DrawIndexed(6, 0, 0);
-
-		// Draw Triangle
-		mesh = Resources::Find<Mesh>(L"TriangleMesh");
-		mesh->Bind();
-
-		pos = Vector4(0.2f, 0.0f, 0.0f, 1.0f);
-		Renderer::constantBuffers[(UINT)ECBType::Transform].SetData(&pos);
-		Renderer::constantBuffers[(UINT)ECBType::Transform].Bind(EShaderStage::VS);
-
-		material = Resources::Find<Material>(L"TriangleMaterial");
-		material->Bind();
-
-		deviceContext->DrawIndexed(3, 0, 0);
+		deviceContext->Draw(vertexCount, startVertexLocation);
 	}
 
 	void GraphicDevice_DX11::DrawIndexed(UINT indexCount, UINT startIndexLocation, INT baseVertexLocation)

@@ -3,6 +3,7 @@
 #include "DXEngineTransform.h"
 #include "DXEngineTexture.h"
 #include "DXEngineRenderer.h"
+#include "DXEngineTransform.h"
 #include "DXEngineResources.h"
 
 namespace DXEngine
@@ -33,6 +34,10 @@ namespace DXEngine
 
 	void SpriteRenderer::Render()
 	{
+		Transform* transform = GetOwner()->GetComponent<Transform>();
+		if (transform)
+			transform->Bind();
+
 		if (mesh)
 			mesh->Bind();
 		if (material)

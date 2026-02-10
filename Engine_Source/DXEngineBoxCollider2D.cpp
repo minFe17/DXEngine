@@ -32,6 +32,6 @@ namespace DXEngine
 	void BoxCollider2D::Render()
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
-		Vector2 position = tr->GetPosition();
+		Vector3 position = tr->GetPosition();
 	}
 }

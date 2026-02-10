@@ -48,7 +48,7 @@ namespace DXEngine::Graphics
 		void ClearDepthStencilView();
 
 		void Init();
-		void Draw();
+		void Draw(UINT vertexCount, UINT startVertexLocation);
 		void DrawIndexed(UINT indexCount, UINT startIndexLocation, INT baseVertexLocation);
 		void Present();
 

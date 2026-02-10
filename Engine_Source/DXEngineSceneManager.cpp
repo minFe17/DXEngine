@@ -7,20 +7,29 @@ namespace DXEngine
 	Scene* SceneManager::activeScene = nullptr;
 	Scene* SceneManager::dontDestroyScene = nullptr;
 
-	Scene* SceneManager::LoadScene(const std::wstring& name)
+	bool SceneManager::SetActiveScene(const std::wstring& name)
 	{
-		if (activeScene != nullptr)
-			activeScene->OnExit();
 		std::map<const std::wstring, Scene*>::iterator iter = scenes.find(name);
 
 		if (iter == scenes.end())
-			return nullptr;
+			return false;
 
 		activeScene = iter->second;
+		return true;
+	}
+
+	Scene* SceneManager::LoadScene(const std::wstring& name)
+	{
+		if (activeScene)
+			activeScene->OnExit();
+
+		if (!SetActiveScene(name))
+			return nullptr;
 
 		activeScene->Init();
 		activeScene->OnEnter();
-		return iter->second;
+
+		return activeScene;
 	}
 
 	std::vector<GameObject*> SceneManager::GetGameObjects(Enum::ELayerType layer)

@@ -15,6 +15,9 @@
     <ClInclude Include="DXEnginePlayerScript.h">
       <Filter>Script</Filter>
     </ClInclude>
+    <ClInclude Include="DXEngineCameraScript.h">
+      <Filter>Script</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scene">
@@ -33,6 +36,9 @@
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="DXEnginePlayerScript.cpp">
+      <Filter>Script</Filter>
+    </ClCompile>
+    <ClCompile Include="DXEngineCameraScript.cpp">
       <Filter>Script</Filter>
     </ClCompile>
   </ItemGroup>

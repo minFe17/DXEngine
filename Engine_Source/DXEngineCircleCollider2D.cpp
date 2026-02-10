@@ -33,6 +33,6 @@ namespace DXEngine
 	void CircleCollider2D::Render()
 	{
 		Transform* transform = GetOwner()->GetComponent<Transform>();
-		Vector2 pos = transform->GetPosition();
+		Vector3 pos = transform->GetPosition();
 	}
 }

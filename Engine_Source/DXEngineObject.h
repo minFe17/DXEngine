@@ -22,7 +22,7 @@ namespace DXEngine::Object
 	}
 
 	template <typename T>
-	static T* Instantiate(Enum::ELayerType type, Math::Vector2 position)
+	static T* Instantiate(Enum::ELayerType type, Math::Vector3 position)
 	{
 		T* gameObject = new T();
 		gameObject->SetLayerType(type);

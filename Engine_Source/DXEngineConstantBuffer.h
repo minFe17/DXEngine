@@ -6,10 +6,10 @@ namespace DXEngine::Graphics
 	class ConstantBuffer : public GpuBuffer
 	{
 	public:
-		ConstantBuffer();
+		ConstantBuffer(ECBType typeValue);
 		~ConstantBuffer();
 
-		bool Create(ECBType type, UINT size, void* data = NULL);
+		bool Create(UINT size, void* data = NULL);
 
 		void SetData(void* data) const;
 		void Bind(EShaderStage stage) const;

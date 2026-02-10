@@ -4,10 +4,22 @@
 namespace DXEngine
 {
 	using namespace DXEngine::Math;
+
+
 	class Camera : public Component
 	{
 	public:
-		Vector2 CalculatePosition(Vector2 pos) const { return pos - distance; }
+		enum class EProjectionType
+		{
+			Perspective,
+			Orthographic,
+			Max,
+		};
+
+		static Matrix GetGpuViewMatrix() { return ViewMatrix; }
+		static Matrix GetGpuProjectionMatrix() { return ProjectionMatrix; }
+		static void SetGpuViewMatrix(Matrix matrix) { ViewMatrix = matrix; }
+		static void SetGpuProjectionMatrix(Matrix matrix) { ProjectionMatrix = matrix; }
 
 		Camera();
 		~Camera();
@@ -17,12 +29,23 @@ namespace DXEngine
 		void LateUpdate() override;
 		void Render() override;
 
-		void SetTarget(GameObject* target) { this->target = target; }
+		void CreateViewMatrix();
+		void CreateProjectionMatrix(EProjectionType type);
+
+		void SetProjectionType(EProjectionType type) { projectionType = type; }
+		void SetSize(float size) { this->size = size; }
 
 	private:
-		class GameObject* target;
-		Vector2 distance;
-		Vector2 resolution;
-		Vector2 lookPosition;
+		static Matrix ViewMatrix;
+		static Matrix ProjectionMatrix;
+
+		EProjectionType projectionType;
+
+		Matrix viewMatrix;
+		Matrix projectionMatrix;
+		float aspectRatio;
+		float nearValue;
+		float farValue;
+		float size;
 	};
 }

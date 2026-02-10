@@ -1,5 +1,6 @@
 #include "DXEngineScene.h"
 #include "DXEngineCollisionManager.h"
+#include "DXEngineSceneManager.h"
 
 namespace DXEngine
 {
@@ -22,12 +23,8 @@ namespace DXEngine
 
 	void Scene::Init()
 	{
-		for (size_t i = 0; i < layers.size(); i++)
-		{
-			if (layers[i] == nullptr)
-				continue;
-			layers[i]->Init();
-		}
+		const std::wstring& sceneName = GetName();
+		SceneManager::SetActiveScene(sceneName);
 	}
 
 	void Scene::Update()

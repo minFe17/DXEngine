@@ -16,16 +16,36 @@ namespace DXEngine
 		void LateUpdate() override;
 		void Render() override;
 
-		void SetPosition(Vector2 pos) { position.x = pos.x, position.y = pos.y; }
-		Vector2 GetPosition() const { return position; }
-		float GetRotation() const { return rotation; }
-		Vector2 GetScale() const { return scale; }
-		void SetRotation(float rotate) { rotation = rotate; }
-		void SetScale(Vector2 scale) { this->scale = scale; }
+		void Bind();
+
+		Transform* GetParent() { return parent; }
+		const Matrix GetWorldMatrix() { return worldMatrix; }
+
+		const Vector3 GetPosition() { return position; }
+		const Vector3 GetRotation() { return rotation; }
+		const Vector3 GetScale() { return scale; }
+
+		void SetPosition(Vector3 value) { position = value; }
+		void SetPosition(float x, float y, float z) { position = Vector3(x, y, z); }
+		void SetRotation(Vector3 value) { rotation = value; }
+		void SetRotation(float x, float y, float z) { rotation = Vector3(x, y, z); }
+		void SetScale(Vector3 value) { scale = value; }
+		void SetScale(float x, float y, float z) { scale = Vector3(x, y, z); }
+
+		const Vector3 Foward() { return forward; };
+		const Vector3 Right() { return right; };
+		const Vector3 Up() { return up; };
 
 	private:
-		Vector2 position;
-		float rotation;
-		Vector2 scale;
+		Transform* parent;
+		Matrix worldMatrix;
+
+		Vector3 position;
+		Vector3 rotation;
+		Vector3 scale;
+
+		Vector3 forward;
+		Vector3 right;
+		Vector3 up;
 	};
 }

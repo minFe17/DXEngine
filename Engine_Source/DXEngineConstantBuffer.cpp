@@ -2,7 +2,7 @@
 
 namespace DXEngine::Graphics
 {
-	ConstantBuffer::ConstantBuffer() : size(0), type(ECBType::Max)
+	ConstantBuffer::ConstantBuffer(ECBType typeValue) : size(0), type(typeValue)
 	{
 	}
 
@@ -10,7 +10,7 @@ namespace DXEngine::Graphics
 	{
 	}
 
-	bool ConstantBuffer::Create(ECBType type, UINT size, void* data)
+	bool ConstantBuffer::Create(UINT size, void* data)
 	{
 		this->type = type;
 		this->size = size;

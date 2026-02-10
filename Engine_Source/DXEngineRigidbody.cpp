@@ -22,56 +22,7 @@ namespace DXEngine
 
 	void Rigidbody::Update()
 	{
-		accelation = force / mass;
-		velocity += accelation * Time::DeltaTime();
-
-		if (isGround)
-		{
-			Vector2 gravityValue = gravity;
-			gravityValue.Normalize();
-			float dot = velocity.Vector2::Dot(gravityValue);
-			velocity -= gravity * dot;
-		}
-		else
-			velocity += gravity * Time::DeltaTime();
-
-		Vector2 gravityValue = gravity;
-		gravityValue.Normalize();
-		float dot = velocity.Vector2::Dot(gravityValue);
-		gravity = gravity * dot;
-
-		Vector2 sideVelocity = velocity - gravity;
-		if (limitedVelocity.y < gravity.Length())
-		{
-			gravity.Normalize();
-			gravity *= limitedVelocity.y;
-		}
-		if (limitedVelocity.x < sideVelocity.Length())
-		{
-			sideVelocity.Normalize();
-			sideVelocity *= limitedVelocity.x;
-		}
-
-		velocity = gravity + sideVelocity;
-
-		if (!(velocity == Vector2::Zero))
-		{
-			Vector2 frictionValue = -velocity;
-			frictionValue.Normalize();
-			frictionValue = frictionValue * friction * mass * Time::DeltaTime();
-
-			if (velocity.Length() <= frictionValue.Length())
-				velocity = Vector2::Zero;
-			else
-				velocity += frictionValue;
-		}
-
-		Transform* transform = GetOwner()->GetComponent<Transform>();
-		Vector2 position = transform->GetPosition();
-		position = position + velocity * Time::DeltaTime();
-		transform->SetPosition(position);
-
-		force = Vector2::One;
+		
 	}
 
 	void Rigidbody::LateUpdate()

@@ -12,6 +12,7 @@
 #include "DXEngineCamera.h"
 #include "DXEngineRenderer.h"
 #include "DXEngineAnimator.h"
+#include "DXEngineCameraScript.h"
 
 namespace DXEngine
 {
@@ -26,10 +27,21 @@ namespace DXEngine
 
 	void PlayScene::Init()
 	{
+
+		GameObject* camera = Object::Instantiate<GameObject>(Enum::ELayerType::None, Vector3(0.0f, 0.0f, -10.0f));
+		Camera* cameraComponent = camera->AddComponent<Camera>();
+		cameraComponent->SetProjectionType(Camera::EProjectionType::Orthographic);
+		cameraComponent->SetSize(200.0f);
+
+		CameraScript* cameraScript = camera->AddComponent<CameraScript>();
+		Renderer::mainCamera = cameraComponent;
+
 		background = Object::Instantiate<Player>(Enum::ELayerType::Background);
 		Object::DontDestroyOnLoad(background);
+
 		SpriteRenderer* spriteRenderer = background->AddComponent<SpriteRenderer>();
 		spriteRenderer->SetSprite(Resources::Find<Graphics::Texture>(L"Player"));
+
 		Scene::Init();
 	}
 

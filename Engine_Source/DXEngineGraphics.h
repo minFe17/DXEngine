@@ -8,6 +8,11 @@
 
 #include "CommonInclude.h"
 
+#define CB_GETBINDSLOT(name) __CBUFFERBINDSLOT__##name##__
+#define CBUFFER(name, slot) static const int CB_GETBINDSLOT(name) = slot; struct alignas(16) name 
+
+#define CBSLOT_TRANSFORM		0
+
 namespace DXEngine::Graphics
 {
 	struct Vertex
@@ -93,5 +98,12 @@ namespace DXEngine::Graphics
 
 		GpuBuffer() = default;
 		virtual ~GpuBuffer() = default;
+	};
+
+	CBUFFER(TransformCB, CBSLOT_TRANSFORM)
+	{
+		Math::Matrix world;
+		Math::Matrix view;
+		Math::Matrix projection;
 	};
 }

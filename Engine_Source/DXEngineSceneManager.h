@@ -10,14 +10,15 @@ namespace DXEngine
 		static Scene* CreateScene(const std::wstring& name)
 		{
 			T* scene = new T();
-			scene->SetName(name);
-
 			scenes.insert(std::make_pair(name, scene));
+			scene->SetName(name);
 
 			return scene;
 		}
 
+		static bool SetActiveScene(const std::wstring& name);
 		static Scene* LoadScene(const std::wstring& name);
+
 		static Scene* GetActiveScene() { return activeScene; }
 		static Scene* GetDontDestroyOnLoad() { return dontDestroyScene; }
 		static std::vector<GameObject*> GetGameObjects(Enum::ELayerType layer);
