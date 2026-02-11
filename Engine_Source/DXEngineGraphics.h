@@ -73,7 +73,7 @@ namespace DXEngine::Graphics
 		SolidBack,
 		SolidFront,
 		SolidNone,
-		WireFrame,
+		Wireframe,
 		Max,
 	};
 

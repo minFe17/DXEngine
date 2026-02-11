@@ -53,7 +53,7 @@ namespace DXEngine::Graphics
 		void Present();
 
 	public:
-		Microsoft::WRL::ComPtr<ID3D11Device> GetID3D11Device() { return device; }
+		[[nodiscard]] Microsoft::WRL::ComPtr<ID3D11Device> GetID3D11Device() { return device; }
 
 	private:
 		Microsoft::WRL::ComPtr<ID3D11Device> device;

@@ -1,8 +1,11 @@
 #include "DXEngineShader.h"
 #include "DXEngineRenderer.h"
+#include "DXEngineResources.h"
 
 namespace DXEngine::Graphics
 {
+	bool Shader::isWireframe = true;
+
 	Shader::Shader() : Resource(Enum::EResourceType::Shader), rasterizerState(ERasterizerState::SolidBack), blendState(EBlendState::AlphaBlend), depthStencilState(EDepthStencilState::LessEqual)
 	{
 	}
@@ -58,6 +61,22 @@ namespace DXEngine::Graphics
 
 	void Shader::Bind()
 	{
+		if (isWireframe)
+		{
+			Shader* wireframeShader = Resources::Find<Shader>(L"WireframeShader");
+			Microsoft::WRL::ComPtr<ID3D11VertexShader> wireframeShaderVS = wireframeShader->GetVertexShader();
+			Microsoft::WRL::ComPtr<ID3D11PixelShader> wireframeShaderPS = wireframeShader->GetPixelShader();
+			Microsoft::WRL::ComPtr<ID3D11RasterizerState> wireframeRasterizerState = Renderer::rasterizerStates[static_cast<UINT>(ERasterizerState::Wireframe)];
+
+			GetDevice()->BindVertexShader(wireframeShaderVS.Get());
+			GetDevice()->BindPixelShader(wireframeShaderPS.Get());
+			GetDevice()->BindRasterizerState(wireframeRasterizerState.Get());
+			GetDevice()->BindBlendState(Renderer::blendStates[static_cast<UINT>(blendState)].Get(), nullptr, 0xffffff);
+			GetDevice()->BindDepthStencilState(Renderer::depthStencilStates[static_cast<UINT>(depthStencilState)].Get(), 0);
+
+			return;
+		}
+
 		if (vertexShader)
 			GetDevice()->BindVertexShader(vertexShader.Get());
 		if (pixelShader)
@@ -65,6 +84,6 @@ namespace DXEngine::Graphics
 
 		GetDevice()->BindRasterizerState(Renderer::rasterizerStates[(UINT)rasterizerState].Get());
 		GetDevice()->BindBlendState(Renderer::blendStates[(UINT)blendState].Get(), nullptr, 0xffffff);
-		GetDevice()->BindDepthStencilState(Renderer::depthStencilStates[(UINT)depthStencilState].Get(), 0);
+		GetDevice()->BindDepthStencilState(Renderer::depthStencilStates[static_cast<UINT>(depthStencilState)].Get(), 0);
 	}
 }

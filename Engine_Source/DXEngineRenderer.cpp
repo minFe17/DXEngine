@@ -86,7 +86,7 @@ namespace DXEngine::Renderer
 
 		rsDesc.FillMode = D3D11_FILL_MODE::D3D11_FILL_WIREFRAME;
 		rsDesc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
-		GetDevice()->CreateRasterizerState(&rsDesc, rasterizerStates[(UINT)ERasterizerState::WireFrame].GetAddressOf());
+		GetDevice()->CreateRasterizerState(&rsDesc, rasterizerStates[(UINT)ERasterizerState::Wireframe].GetAddressOf());
 #pragma endregion
 
 #pragma region blend state
@@ -257,6 +257,7 @@ namespace DXEngine::Renderer
 	{
 		Resources::Load<Graphics::Shader>(L"TriangleShader", L"..\\Shaders_SOURCE\\Triangle");
 		Resources::Load<Graphics::Shader>(L"SpriteShader", L"..\\Shaders_SOURCE\\Sprite");
+		Resources::Load<Shader>(L"WireframeShader", L"..\\Shaders_SOURCE\\Wireframe");
 	}
 
 	void LoadConstantBuffers()

@@ -9,10 +9,10 @@ namespace DXEngine
 	class Mesh : public Resource
 	{
 	public:
-		struct Data
+		struct MeshData
 		{
-			Data();
-			~Data();
+			MeshData();
+			~MeshData();
 
 			D3D11_PRIMITIVE_TOPOLOGY topology;
 			std::vector<Graphics::Vertex> vertices;
@@ -37,6 +37,6 @@ namespace DXEngine
 		Graphics::VertexBuffer vertexBuffer;
 		Graphics::IndexBuffer indexBuffer;
 
-		Data data;
+		MeshData data;
 	};
 }

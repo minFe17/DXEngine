@@ -2,12 +2,12 @@
 
 namespace DXEngine
 {
-	Mesh::Data::Data() : topology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST), vertices{}, indices{}
+	Mesh::MeshData::MeshData() : topology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST), vertices{}, indices{}
 	{
 
 	}
 
-	Mesh::Data::~Data()
+	Mesh::MeshData::~MeshData()
 	{
 	}
 
