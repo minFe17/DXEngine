@@ -4,7 +4,7 @@
 
 namespace DXEngine::Graphics
 {
-	bool Shader::isWireframe = true;
+	bool Shader::isWireframe = false;
 
 	Shader::Shader() : Resource(Enum::EResourceType::Shader), rasterizerState(ERasterizerState::SolidBack), blendState(EBlendState::AlphaBlend), depthStencilState(EDepthStencilState::LessEqual)
 	{

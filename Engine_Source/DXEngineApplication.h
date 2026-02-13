@@ -17,6 +17,7 @@ namespace DXEngine
 		void Update();
 		void LateUpdate();
 		void Render();
+		void Present();
 		void Release();
 		void Destroy();
 

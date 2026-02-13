@@ -76,6 +76,10 @@ namespace DXEngine
 		UIManager::Render();
 		SceneManager::Render();
 
+	}
+
+	void Application::Present()
+	{
 		Graphics::GetDevice()->Present();
 	}
 
