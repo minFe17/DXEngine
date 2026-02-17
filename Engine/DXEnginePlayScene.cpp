@@ -16,7 +16,7 @@
 
 namespace DXEngine
 {
-	PlayScene::PlayScene() : background(nullptr)
+	PlayScene::PlayScene()
 	{
 	}
 
@@ -30,17 +30,19 @@ namespace DXEngine
 
 		GameObject* camera = Object::Instantiate<GameObject>(Enum::ELayerType::None, Vector3(0.0f, 0.0f, -10.0f));
 		Camera* cameraComponent = camera->AddComponent<Camera>();
-		cameraComponent->SetProjectionType(Camera::EProjectionType::Orthographic);
+		cameraComponent->SetProjectionType(Camera::EProjectionType::Perspective);
 		cameraComponent->SetSize(200.0f);
 
 		CameraScript* cameraScript = camera->AddComponent<CameraScript>();
 		Renderer::mainCamera = cameraComponent;
 
-		background = Object::Instantiate<Player>(Enum::ELayerType::Background);
+		GameObject* background = Object::Instantiate<Player>(Enum::ELayerType::Background);
 		Object::DontDestroyOnLoad(background);
 
 		SpriteRenderer* spriteRenderer = background->AddComponent<SpriteRenderer>();
 		spriteRenderer->SetSprite(Resources::Find<Graphics::Texture>(L"Player"));
+
+		Renderer::selectedObject = background;
 
 		Scene::Init();
 	}

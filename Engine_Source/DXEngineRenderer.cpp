@@ -7,6 +7,7 @@
 namespace DXEngine::Renderer
 {
 	Camera* mainCamera = nullptr;
+	GameObject* selectedObject = nullptr;
 
 	ConstantBuffer* constantBuffers[(UINT)ECBType::Max] = {};
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerStates[(UINT)ESamplerType::Max] = {};

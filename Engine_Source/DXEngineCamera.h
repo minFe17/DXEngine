@@ -30,7 +30,9 @@ namespace DXEngine
 		void Render() override;
 
 		void CreateViewMatrix();
-		void CreateProjectionMatrix(EProjectionType type);
+		void CreateProjectionMatrix(EProjectionType type); 
+		Matrix GetViewMatrix() { return viewMatrix; }
+		Matrix GetProjectionMatrix() { return projectionMatrix; }
 
 		void SetProjectionType(EProjectionType type) { projectionType = type; }
 		void SetSize(float size) { this->size = size; }

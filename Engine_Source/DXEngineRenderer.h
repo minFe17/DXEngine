@@ -10,6 +10,7 @@ using namespace DXEngine::Graphics;
 namespace DXEngine::Renderer
 {
 	extern Camera* mainCamera;
+	extern GameObject* selectedObject;
 	extern Graphics::ConstantBuffer* constantBuffers[(UINT)ECBType::Max];
 
 	extern Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerStates[(UINT)ESamplerType::Max];
