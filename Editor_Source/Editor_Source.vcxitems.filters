@@ -10,6 +10,30 @@
     <Filter Include="ImGuizmo">
       <UniqueIdentifier>{0738c471-5a02-4994-a844-01e06a12ac56}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{0ff2bee0-c0d3-4384-8508-d5be0083dcbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Component">
+      <UniqueIdentifier>{a8874430-1e87-4f81-b42a-736d6f742c72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{9c35c0b1-50de-491b-b49a-9470ccdb8cb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Component\Transform">
+      <UniqueIdentifier>{4384df34-fa05-4d94-936c-bff1b0cd2043}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Editor">
+      <UniqueIdentifier>{52f448fd-60db-43f5-852d-b6a702d60f3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\EditorWindow">
+      <UniqueIdentifier>{bc4ed3bf-ed6b-4aa7-8671-3d7111455d1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Entity">
+      <UniqueIdentifier>{b169c580-20b4-4d27-aa1f-35afebbc2a92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\GUILayout">
+      <UniqueIdentifier>{88f37cc1-bb51-41e7-b8aa-a6ca4ae1453e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)imconfig.h">
@@ -60,6 +84,27 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)stb_image.h">
       <Filter>ImGuizmo</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiComponent.h">
+      <Filter>GUI\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiEditor.h">
+      <Filter>GUI\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiEditorApplication.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiEditorWindow.h">
+      <Filter>GUI\EditorWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiEntity.h">
+      <Filter>GUI\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiGUILayout.h">
+      <Filter>GUI\GUILayout</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiTransform.h">
+      <Filter>GUI\Component\Transform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)imgui.cpp">
@@ -97,6 +142,27 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphEditor.cpp">
       <Filter>ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiComponent.cpp">
+      <Filter>GUI\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiEditor.cpp">
+      <Filter>GUI\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiEditorApplication.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiEditorWindow.cpp">
+      <Filter>GUI\EditorWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiEntity.cpp">
+      <Filter>GUI\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiGUILayout.cpp">
+      <Filter>GUI\GUILayout</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiTransform.cpp">
+      <Filter>GUI\Component\Transform</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

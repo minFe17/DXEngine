@@ -247,8 +247,6 @@ namespace DXEngine::Renderer
 		Resources::Insert(L"TriangleMaterial", triangleMaterial);
 
 		Material* spriteMaterial = new Material();
-		Graphics::Texture* texture = Resources::Find<Graphics::Texture>(L"Player");
-		spriteMaterial->SetAlbedoTexture(texture);
 		spriteMaterial->SetShader(Resources::Find<Graphics::Shader>(L"SpriteShader"));
 		Resources::Insert(L"SpriteMaterial", spriteMaterial);
 	}

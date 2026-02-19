@@ -15,6 +15,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphEditor.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiEditorApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiComponent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiEditor.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiEditorWindow.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiEntity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiGUILayout.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiTransform.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ImApp.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)imconfig.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ImCurveEdit.h" />
@@ -33,6 +40,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphEditor.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiEditorApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiComponent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiEditor.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiEditorWindow.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiEntity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiGUILayout.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiTransform.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ImCurveEdit.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ImGradient.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)imgui.cpp" />

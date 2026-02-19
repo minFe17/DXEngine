@@ -8,7 +8,5 @@ namespace DXEngine
 	void LoadResources()
 	{
 		Resources::Load<Graphics::Texture>(L"Player", L"Resources/CloudOcean.png");
-
-		Renderer::Init();
 	}
 }

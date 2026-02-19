@@ -4,29 +4,11 @@
 #include "framework.h"
 #include "DXEngine.h"
 #include "..\\Engine_Source\DXEngineApplication.h"
-#include "..\\Engine\DXEngineLoadResources.h"
 #include "..\\Engine\DXEngineLoadScene.h"
-#include "..\\Engine_Source\\DXEngineGraphicDevice_DX11.h"
-#include "..\\Engine_Source\\DXEngineRenderer.h"
 
-#include "..\\Engine_Source\\DXEngineGameObject.h"
-#include "..\\Engine_Source\\DXEngineTransform.h"
-
-#define IMGUI_DEFINE_MATH_OPERATORS
-#include "..\\Editor_Source\imgui.h"
-#include "..\\Editor_Source\imgui_impl_win32.h"
-#include "..\\Editor_Source\imgui_impl_dx11.h"
-
-#include "..\\Editor_Source\ImGuizmo.h"
-#include "..\\Editor_Source\ImSequencer.h"
-#include "..\\Editor_Source\ImZoomSlider.h"
-#include "..\\Editor_Source\ImCurveEdit.h"
-#include "..\\Editor_Source\GraphEditor.h"
+#include "..\\Editor_Source\GuiEditorApplication.h"
 
 DXEngine::Application application;
-
-ULONG_PTR gpToken;
-Gdiplus::GdiplusStartupInput gpsi;
 
 #define MAX_LOADSTRING 100
 
@@ -49,9 +31,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	//_CrtSetBreakAlloc();
-
-	// TODO: 여기에 코드를 입력합니다.
 
 	// 전역 문자열을 초기화합니다.
 	LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -60,51 +39,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	// 애플리케이션 초기화를 수행합니다:
 	if (!InitInstance(hInstance, nCmdShow))
-	{
 		return FALSE;
-	}
-
-	// Setup Dear ImGui context
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
-	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // Enable Docking
-	io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;       // Enable Multi-Viewport / Platform Windows
-
-	// Setup Dear ImGui style
-	ImGui::StyleColorsDark();
-	//ImGui::StyleColorsLight();
-
-	// When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
-	ImGuiStyle& style = ImGui::GetStyle();
-	if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-	{
-		style.WindowRounding = 0.0f;
-		style.Colors[ImGuiCol_WindowBg].w = 1.0f;
-	}
-
-	// Setup Platform/Renderer backends
-	ImGui_ImplWin32_Init(application.GetHwnd());
-
-	DXEngine::Graphics::GraphicDevice_DX11*& graphicdevice = DXEngine::Graphics::GetDevice();
-	ID3D11Device* device = graphicdevice->GetID3D11Device().Get();
-	ID3D11DeviceContext* device_context = graphicdevice->GetID3D11DeviceContext().Get();
-
-	ImGui_ImplDX11_Init(device, device_context);
-
-	// Our state
-	bool show_demo_window = true;
-	bool show_another_window = false;
-	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
 	HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_DXENGINE));
 
 	MSG msg;
-
-	DXEngine::LoadResources();
-	DXEngine::LoadScenes();
 
 	while (true)
 	{
@@ -121,105 +60,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		}
 		else
 		{
-			// 메세지가 없을 경우 처리
-			// 게임 로직이 들어가면 됨
+			// 애플리케이션 로직
 			application.Run();
-
-			ImGui_ImplDX11_NewFrame();
-			ImGui_ImplWin32_NewFrame();
-			ImGui::NewFrame();
-
-			ImGuiIO& io = ImGui::GetIO();
-
-			ImGuizmo::SetOrthographic(false/*!isPerspective*/);
-			ImGuizmo::SetDrawlist(ImGui::GetCurrentWindow()->DrawList);
-
-			ImGuizmo::BeginFrame();
-
-			UINT width = application.GetWidth();
-			UINT height = application.GetHeight();
-			float windowWidth = (float)ImGui::GetWindowWidth();
-			float windowHeight = (float)ImGui::GetWindowHeight();
-
-			RECT rect = { 0, 0, 0, 0 };
-			::GetClientRect(application.GetHwnd(), &rect);
-
-			// Transform start
-			ImGuizmo::SetRect(0, 0, width, height);
-			//ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, windowWidth, windowHeight);
-
-			Matrix viewMatirx;
-			Matrix projectionMatirx;
-
-			if (DXEngine::Renderer::mainCamera)
-			{
-				viewMatirx = DXEngine::Renderer::mainCamera->GetViewMatrix();
-				projectionMatirx = DXEngine::Renderer::mainCamera->GetProjectionMatrix();
-			}
-
-			Matrix modelMatrix;
-			if (DXEngine::Renderer::selectedObject)
-				modelMatrix = DXEngine::Renderer::selectedObject->GetComponent<DXEngine::Transform>()->GetWorldMatrix();
-
-			ImGuizmo::Manipulate(*viewMatirx.m, *projectionMatirx.m, ImGuizmo::OPERATION::TRANSLATE, ImGuizmo::LOCAL, *modelMatrix.m);
-
-			//ImGuizmo::SetDrawlist(ImGui::GetCurrentWindow()->DrawList);
-
-			// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
-			if (show_demo_window)
-				ImGui::ShowDemoWindow(&show_demo_window);
-
-			// 2. Show a simple window that we create ourselves. We use a Begin/End pair to create a named window.
-			{
-				static float f = 0.0f;
-				static int counter = 0;
-
-				ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
-
-				ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
-				ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
-				ImGui::Checkbox("Another Window", &show_another_window);
-
-				ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-				ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
-
-				if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
-					counter++;
-				ImGui::SameLine();
-				ImGui::Text("counter = %d", counter);
-
-				ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
-				ImGui::End();
-			}
-
-			// 3. Show another simple window.
-			if (show_another_window)
-			{
-				ImGui::Begin("Another Window", &show_another_window);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
-				ImGui::Text("Hello from another window!");
-				if (ImGui::Button("Close Me"))
-					show_another_window = false;
-				ImGui::End();
-			}
-
-			// Rendering
-			ImGui::Render();
-			ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
-
-			// Update and Render additional Platform Windows
-			if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-			{
-				ImGui::UpdatePlatformWindows();
-				ImGui::RenderPlatformWindowsDefault();
-			}
+			Gui::EditorApplication::Run();
+			
 			application.Present();
 		}
 	}
 
-	ImGui_ImplDX11_Shutdown();
-	ImGui_ImplWin32_Shutdown();
-	ImGui::DestroyContext();
-
+	Gui::EditorApplication::Release();
 	application.Release();
 	return (int)msg.wParam;
 }
@@ -280,6 +129,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	UpdateWindow(hWnd);
 
 	application.Init(hWnd, width, height);
+
+	DXEngine::LoadScenes();
+	Gui::EditorApplication::Init();
 
 	return TRUE;
 }

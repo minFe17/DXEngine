@@ -4,6 +4,7 @@
 #include "DXEngineResources.h"
 #include "DXEngineCollisionManager.h"
 #include "DXEngineUIManager.h"
+#include "DXEngineRenderer.h"
 
 namespace DXEngine
 {
@@ -27,6 +28,7 @@ namespace DXEngine
 
 		GraphicDevice = std::make_unique<Graphics::GraphicDevice_DX11>();
 		GraphicDevice->Init();
+		Renderer::Init();
 
 		Input::Init();
 		Time::Init();
