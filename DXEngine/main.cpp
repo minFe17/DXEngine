@@ -45,7 +45,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	MSG msg;
 
-	while (true)
+	while (application.IsRunning())
 	{
 		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
 		{
@@ -118,7 +118,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	const UINT width = 1600;
 	const UINT height = 900;
 
-	HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW, 0, 0, width, height, nullptr, nullptr, hInstance, nullptr);
+	HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, width, height, nullptr, nullptr, hInstance, nullptr);
 
 	if (!hWnd)
 	{
@@ -171,6 +171,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		default:
 			return DefWindowProc(hWnd, message, wParam, lParam);
 		}
+	}
+	break;
+	case WM_SIZE:
+	{
+		RECT rect = { 0, 0, 1600, 900 }; // 기본값 설정
+		GetWindowRect(hWnd, &rect); // 현재 윈도우의 좌표와 크기를 가져옴
+
+		int x = rect.left;
+		int y = rect.top;
+		int width = rect.right - rect.left;
+		int height = rect.bottom - rect.top;
+
+		application.ReszieGraphicDevice(width, height);
 	}
 	break;
 	case WM_PAINT:

@@ -33,20 +33,21 @@ namespace Gui
 		static void Update();
 		static void OnGUI();
 		static void Run();
-
 		static void Release();
+
+		static void OpenProject();
+		static void NewScene();
+		static void SaveScene();
+		static void SaveSceneAs();
 
 	private:
 		static bool ImGuiInit();
 		static void ImGuiRender();
-		static void DockSpaceUpdate();
-		static void DockSpaceOnGui();
 
 		static ImGuiWindowFlags flag;
 		static ImGuiDockNodeFlags dockspaceFlags;
 		static EStateType state;
 		static bool fullScreen;
-		static bool padding;
 
 		static std::map<std::wstring, EditorWindow*> editorWindows;
 	};

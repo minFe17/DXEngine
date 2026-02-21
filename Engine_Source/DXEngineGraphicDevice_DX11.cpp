@@ -178,6 +178,7 @@ namespace DXEngine::Graphics
 
 		return true;
 	}
+
 	bool GraphicDevice_DX11::CreateBlendState(const D3D11_BLEND_DESC* blendDesc, ID3D11BlendState** blendState)
 	{
 		if (FAILED(device->CreateBlendState(blendDesc, blendState)))
@@ -185,10 +186,59 @@ namespace DXEngine::Graphics
 
 		return true;
 	}
+
 	bool GraphicDevice_DX11::CreateDepthStencilState(const D3D11_DEPTH_STENCIL_DESC* depthStencilDesc, ID3D11DepthStencilState** depthStencilState)
 	{
 		if (FAILED(device->CreateDepthStencilState(depthStencilDesc, depthStencilState)))
 			return false;
+
+		return true;
+	}
+
+	bool GraphicDevice_DX11::Resize(D3D11_VIEWPORT viewport)
+	{
+		renderTargetView.Reset();
+		renderTarget.Reset();
+
+		depthStencilView.Reset();
+		depthStencil.Reset();
+
+		HRESULT hResult = swapChain->ResizeBuffers(0, (UINT)viewport.Width, (UINT)viewport.Height, DXGI_FORMAT_UNKNOWN, 0);
+
+		// Get render target by Swapchain
+		Microsoft::WRL::ComPtr<ID3D11Texture2D> renderTarget = nullptr;
+		hResult = swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)(renderTarget.GetAddressOf()));
+
+		D3D11_TEXTURE2D_DESC desc = {};
+		renderTarget->GetDesc(&desc);
+		renderTarget = renderTarget;
+
+		// Create RenderTargetView
+		hResult = device->CreateRenderTargetView(renderTarget.Get(), nullptr, renderTargetView.GetAddressOf());
+
+		// Create DepthStencil
+		D3D11_TEXTURE2D_DESC depthStencilDesc = {};
+		depthStencilDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+		depthStencilDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+		depthStencilDesc.Usage = D3D11_USAGE_DEFAULT;
+		depthStencilDesc.Width = (UINT)viewport.Width;
+		depthStencilDesc.Height = (UINT)viewport.Height;
+		depthStencilDesc.ArraySize = 1;
+		depthStencilDesc.SampleDesc.Count = 1;
+		depthStencilDesc.SampleDesc.Quality = 0;
+		depthStencilDesc.MipLevels = 1;
+		depthStencilDesc.MiscFlags = 0;
+
+		hResult = device->CreateTexture2D(&depthStencilDesc, nullptr, depthStencil.GetAddressOf());
+
+		// Create DepthStencilView
+		hResult = device->CreateDepthStencilView(depthStencil.Get(), nullptr, depthStencilView.GetAddressOf());
+
+		// Set Viewport
+		BindViewPort();
+
+		// Bind RenderTarget
+		BindRenderTargets(1, renderTargetView.GetAddressOf(), depthStencilView.Get());
 
 		return true;
 	}

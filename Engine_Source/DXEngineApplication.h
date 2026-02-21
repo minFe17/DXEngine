@@ -11,7 +11,7 @@ namespace DXEngine
 	public:
 		Application();
 		~Application();
-		void Init(HWND hwnd, UINT width, UINT height);
+		void Init(HWND hwnd, int width, int height);
 		void Run();
 
 		void Update();
@@ -26,13 +26,18 @@ namespace DXEngine
 		UINT GetWidth() const { return width; }
 		UINT GetHeight() const { return height; }
 
-		void AdjustWindow(UINT width, UINT hewight);
+		void AdjustWindow(int width, int hewight);
+		void ReszieGraphicDevice(int width, int height);
 		void InitEtc();
+		void Close();
+
 		bool IsLoaded() const { return isLoad; }
 		void IsLoaded(bool load) { isLoad = load; }
+		bool IsRunning() const { return isRunning; }
 
 	private:
 		bool isLoad;
+		bool isRunning;
 		std::unique_ptr<Graphics::GraphicDevice_DX11> GraphicDevice;
 
 		HWND hWnd;

@@ -8,7 +8,7 @@
 
 namespace DXEngine
 {
-	Application::Application() : hWnd(nullptr), hdc(nullptr), width(0), height(0), backHdc(NULL), backBuffer(NULL), isLoad(false)
+	Application::Application() : hWnd(nullptr), hdc(nullptr), width(0), height(0), backHdc(NULL), backBuffer(NULL), isLoad(false), isRunning(false)
 	{
 
 	}
@@ -18,7 +18,7 @@ namespace DXEngine
 
 	}
 
-	void Application::Init(HWND hwnd, UINT width, UINT height)
+	void Application::Init(HWND hwnd, int width, int height)
 	{
 		hWnd = hwnd;
 		hdc = GetDC(hwnd);
@@ -36,6 +36,8 @@ namespace DXEngine
 		CollisionManager::Init();
 		UIManager::Init();
 		SceneManager::Init();
+
+		isRunning = true;
 	}
 
 	void Application::Run()
@@ -97,19 +99,49 @@ namespace DXEngine
 		SceneManager::Destroy();
 	}
 
-	void Application::AdjustWindow(UINT width, UINT height)
+	void Application::AdjustWindow(int width, int height)
 	{
 		RECT rect = { 0, 0, (LONG)width, (LONG)height };
 		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+		GetWindowRect(hWnd, &rect); // 현재 윈도우의 좌표와 크기를 가져옴
+
+		int x = rect.left;
+		int y = rect.top;
 
 		this->width = rect.right - rect.left;
 		this->height = rect.bottom - rect.top;
 
-		SetWindowPos(hWnd, nullptr, 0, 0, width, height, 0);
+		SetWindowPos(hWnd, nullptr, x, y, width, height, 0);
 		ShowWindow(hWnd, true);
+	}
+
+	void Application::ReszieGraphicDevice(int width, int height)
+	{
+		if (GraphicDevice == nullptr)
+			return;
+
+		RECT winRect;
+		GetClientRect(hWnd, &winRect);
+		D3D11_VIEWPORT viewport = {};
+		viewport.TopLeftX = 0.0f;
+		viewport.TopLeftY = 0.0f;
+		viewport.Width = static_cast<float>(winRect.right - winRect.left);
+		viewport.Height = static_cast<float>(winRect.bottom - winRect.top);
+		viewport.MinDepth = 0.0f;
+		viewport.MaxDepth = 1.0f;
+
+		this->width = width;
+		this->height = height;
+
+		GraphicDevice->Resize(viewport);
 	}
 
 	void Application::InitEtc()
 	{
+	}
+
+	void Application::Close()
+	{
+		isRunning = false;
 	}
 }
