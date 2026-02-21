@@ -2,7 +2,7 @@
 
 namespace Gui
 {
-	Entity::Entity() : name(L"")
+	Entity::Entity() : name("")
 	{
 	}
 

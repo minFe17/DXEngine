@@ -34,6 +34,9 @@
     <Filter Include="GUI\GUILayout">
       <UniqueIdentifier>{88f37cc1-bb51-41e7-b8aa-a6ca4ae1453e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUI\View">
+      <UniqueIdentifier>{498dd1b7-c6bc-4a20-b49e-48c60581d4a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)imconfig.h">
@@ -105,6 +108,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GuiTransform.h">
       <Filter>GUI\Component\Transform</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiInspectorWindow.h">
+      <Filter>GUI\View</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)imgui.cpp">
@@ -163,6 +169,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GuiTransform.cpp">
       <Filter>GUI\Component\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiInspectorWindow.cpp">
+      <Filter>GUI\View</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

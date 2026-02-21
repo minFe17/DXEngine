@@ -2,7 +2,7 @@
 
 namespace Gui
 {
-	EditorWindow::EditorWindow() : Entity()
+	EditorWindow::EditorWindow() : Entity(), flag(ImGuiWindowFlags_None)
 	{
 
 	}
@@ -20,6 +20,10 @@ namespace Gui
 	void EditorWindow::Update()
 	{
 
+	}
+
+	void EditorWindow::Run()
+	{
 	}
 
 	void EditorWindow::OnGUI()

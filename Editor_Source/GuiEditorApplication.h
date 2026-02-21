@@ -11,6 +11,24 @@ namespace Gui
 	class EditorApplication
 	{
 	public:
+		enum class EStateType
+		{
+			Disable,
+			Active,
+			Destroy,
+			Max
+		};
+
+		template <typename T>
+		T* GetWindow(const std::wstring& name)
+		{
+			auto iter = editorWindows.find(name);
+			if (iter == editorWindows.end())
+				return nullptr;
+
+			return dynamic_cast<T*>(iter->second);
+		}
+
 		static bool Init();
 		static void Update();
 		static void OnGUI();
@@ -21,5 +39,15 @@ namespace Gui
 	private:
 		static bool ImGuiInit();
 		static void ImGuiRender();
+		static void DockSpaceUpdate();
+		static void DockSpaceOnGui();
+
+		static ImGuiWindowFlags flag;
+		static ImGuiDockNodeFlags dockspaceFlags;
+		static EStateType state;
+		static bool fullScreen;
+		static bool padding;
+
+		static std::map<std::wstring, EditorWindow*> editorWindows;
 	};
 }

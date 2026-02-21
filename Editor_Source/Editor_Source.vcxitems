@@ -21,6 +21,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GuiEditorWindow.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GuiEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GuiGUILayout.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiInspectorWindow.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GuiTransform.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ImApp.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)imconfig.h" />
@@ -46,6 +47,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GuiEditorWindow.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GuiEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GuiGUILayout.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiInspectorWindow.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GuiTransform.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ImCurveEdit.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ImGradient.cpp" />

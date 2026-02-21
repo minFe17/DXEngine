@@ -10,16 +10,33 @@ namespace Gui
 	class EditorWindow :public Entity
 	{
 	public:
+		enum class EStateType
+		{
+			Disable,
+			Active,
+			Destroy,
+		};
+
 		EditorWindow();
 		virtual ~EditorWindow();
 
 		virtual void Init();
 		virtual void Update();
 		virtual void OnGUI();
+		virtual void Run();
 		virtual void OnEnable();
 		virtual void OnDisable();
 		virtual void OnDestroy();
 
+		ImGuiWindowFlags GetFlag() const { return flag; }
+		EStateType GetState() const { return state; }
+		void SetState(EStateType type) { state = type; }
+		ImVec2 GetSize() { return size; }
+		void SetSize(ImVec2 value) { size = value; }
+
 	private:
+		ImGuiWindowFlags flag;
+		EStateType state;
+		ImVec2 size;
 	};
 }
