@@ -5,12 +5,14 @@
 #include "DXEngineCollisionManager.h"
 #include "DXEngineUIManager.h"
 #include "DXEngineRenderer.h"
+#include "DXEngineApplicationEvent.h"
+#include "DXEngineMouseEvent.h"
 
 namespace DXEngine
 {
-	Application::Application() : hWnd(nullptr), windowWidth(0), windowHeight(0), width(0), height(0), x(0), y(0), isLoad(false), isRunning(false)
+	Application::Application() : isLoad(false), isRunning(false)
 	{
-
+		window.SetEventCallBack(DXENGINE_BIND_EVENT_FN(Application::OnEvent));
 	}
 
 	Application::~Application()
@@ -20,9 +22,8 @@ namespace DXEngine
 
 	void Application::Init(HWND hwnd, int width, int height)
 	{
-		hWnd = hwnd;
-
-		AdjustWindow(width, height);
+		window.SetHwnd(hwnd);
+		AdjustWindow(hwnd, width, height);
 		InitEtc();
 
 		GraphicDevice = std::make_unique<Graphics::GraphicDevice_DX11>();
@@ -41,7 +42,7 @@ namespace DXEngine
 
 	void Application::InitWindow(HWND hwnd)
 	{
-		SetWindowPos(hwnd, nullptr, x, y, windowWidth, windowHeight, 0);
+		SetWindowPos(hwnd, nullptr, window.GetXPos(), window.GetYPos(), window.GetWindowWidth(), window.GetWindowHeight(), 0);
 		ShowWindow(hwnd, SW_SHOWDEFAULT);
 	}
 
@@ -109,48 +110,61 @@ namespace DXEngine
 		SceneManager::Destroy();
 	}
 
-	void Application::AdjustWindow(int width, int height)
+	void Application::AdjustWindow(HWND hwnd, int width, int height)
 	{
 		RECT rect = { 0, 0, (LONG)width, (LONG)height };
 		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
 
 		RECT winRect;
-		::GetWindowRect(hWnd, &winRect);
+		::GetWindowRect(window.GetHwnd(), &winRect);
 
 		//window position
-		x = winRect.left;
-		y = winRect.top;
+		window.SetPos(winRect.left, winRect.top);
 
 		// window size
-		windowWidth = rect.right - rect.left;
-		windowHeight = rect.bottom - rect.top;
+		window.SetWindowWidth(rect.right - rect.left);
+		window.SetWindowHeight(rect.bottom - rect.top);
 
-		this->width = width;
-		this->height = height;
+		window.SetWidth(width);
+		window.SetHeight(height);
 
-		InitWindow(hWnd);
+		InitWindow(hwnd);
 	}
 
-	void Application::ReszieGraphicDevice(int width, int height)
+	void Application::ReszieGraphicDevice(UINT width, UINT height)
 	{
 		if (GraphicDevice == nullptr)
 			return;
 
-		RECT winRect;
-		::GetClientRect(hWnd, &winRect);
 		D3D11_VIEWPORT viewport = {};
 		viewport.TopLeftX = 0.0f;
 		viewport.TopLeftY = 0.0f;
-		viewport.Width = static_cast<float>(winRect.right - winRect.left);
-		viewport.Height = static_cast<float>(winRect.bottom - winRect.top);
+		viewport.Width = static_cast<float>(width);
+		viewport.Height = static_cast<float>(height);
 		viewport.MinDepth = 0.0f;
 		viewport.MaxDepth = 1.0f;
 
-		this->width = width;
-		this->height = height;
+		window.SetWidth(viewport.Width);
+		window.SetHeight(viewport.Height);
 
 		GraphicDevice->Resize(viewport);
-		Renderer::FrameBuffer->Resize(this->width, this->height);
+		Renderer::FrameBuffer->Resize(viewport.Width, viewport.Height);
+	}
+
+	void Application::OnEvent(Event& e)
+	{
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<WindowResizeEvent>([this](WindowResizeEvent& e) -> bool
+		{
+			ReszieGraphicDevice(e.GetWidth(), e.GetHeight());
+			return true;
+		});
+
+		dispatcher.Dispatch<MouseMovedEvent>([this](MouseMovedEvent& e) -> bool
+		{
+			// Todo : MouseMovedEvent
+			return true;
+		});
 	}
 
 	void Application::InitEtc()

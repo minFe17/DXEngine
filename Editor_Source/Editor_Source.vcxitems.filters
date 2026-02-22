@@ -37,6 +37,9 @@
     <Filter Include="GUI\View">
       <UniqueIdentifier>{498dd1b7-c6bc-4a20-b49e-48c60581d4a1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUI\EditorWindow\ImGuiEditor">
+      <UniqueIdentifier>{8b6db504-6146-42bb-bd5e-e023acc14e65}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)imconfig.h">
@@ -111,6 +114,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GuiInspectorWindow.h">
       <Filter>GUI\View</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiImguiEditor.h">
+      <Filter>GUI\EditorWindow\ImGuiEditor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)imgui.cpp">
@@ -172,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GuiInspectorWindow.cpp">
       <Filter>GUI\View</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiImguiEditor.cpp">
+      <Filter>GUI\EditorWindow\ImGuiEditor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

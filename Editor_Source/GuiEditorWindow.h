@@ -27,6 +27,7 @@ namespace Gui
 		virtual void OnEnable();
 		virtual void OnDisable();
 		virtual void OnDestroy();
+		virtual void OnEvent(DXEngine::Event& e) {}
 
 		ImGuiWindowFlags GetFlag() const { return flag; }
 		EStateType GetState() const { return state; }

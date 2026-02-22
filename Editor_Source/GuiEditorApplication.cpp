@@ -6,11 +6,13 @@
 #include "..\\Engine_Source\\DXEngineTransform.h"
 #include "..\\Engine_Source\DXEngineApplication.h"
 #include "..\\Engine_Source\DXEngineInput.h"
+#include "..\\Engine_Source\\DXEngineMouseEvent.h"
 
 extern DXEngine::Application application;
 
 namespace Gui
 {
+	ImguiEditor* EditorApplication::imguiEditor = nullptr;
 	std::map<std::wstring, EditorWindow*> EditorApplication::editorWindows;
 	ImGuiWindowFlags EditorApplication::flag = ImGuiWindowFlags_None;
 	ImGuiDockNodeFlags EditorApplication::dockspaceFlags = ImGuiDockNodeFlags_None;
@@ -21,15 +23,19 @@ namespace Gui
 	bool EditorApplication::viewportFocused = false;
 	bool EditorApplication::viewportHovered = false;
 	int EditorApplication::guizmoType = -1;
+
 	DXEngine::Graphics::RenderTarget* EditorApplication::frameBuffer = nullptr;
+	DXEngine::EventCallbackFn EditorApplication::eventCallback = nullptr;
 
 	bool EditorApplication::Init()
 	{
-		ImGuiInit();
+		imguiEditor = new ImguiEditor();
 		frameBuffer = DXEngine::Renderer::FrameBuffer;
 
+		imguiEditor->Init();
 		InspectorWindow* inspector = new InspectorWindow();
 		editorWindows.insert(std::make_pair(L"InspectorWindow", inspector));
+		eventCallback = &EditorApplication::OnEvent;
 
 		return true;
 	}
@@ -40,7 +46,9 @@ namespace Gui
 
 	void EditorApplication::OnGUI()
 	{
-		ImGuiRender();
+		imguiEditor->Begin();
+		OnImGuiRender();
+		imguiEditor->End();
 	}
 
 	void EditorApplication::Run()
@@ -57,9 +65,14 @@ namespace Gui
 			iter.second = nullptr;
 		}
 
-		ImGui_ImplDX11_Shutdown();
-		ImGui_ImplWin32_Shutdown();
-		ImGui::DestroyContext();
+		delete imguiEditor;
+		imguiEditor = nullptr;
+	}
+
+	void EditorApplication::OnEvent(DXEngine::Event& e)
+	{
+		if (!e.Handled)
+			imguiEditor->OnEvent(e);
 	}
 
 	void EditorApplication::OpenProject()
@@ -87,50 +100,7 @@ namespace Gui
 
 	}
 
-	bool EditorApplication::ImGuiInit()
-	{
-		// Setup Dear ImGui context
-		IMGUI_CHECKVERSION();
-		ImGui::CreateContext();
-		ImGuiIO& io = ImGui::GetIO();
-		(void)io;
-		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
-		io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // Enable Docking
-		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;       // Enable Multi-Viewport / Platform Windows
-		//io.ConfigViewportsNoAutoMerge = true;
-		//io.ConfigViewportsNoTaskBarIcon = true;
-		//io.ConfigViewportsNoDefaultParent = true;
-		//io.ConfigDockingAlwaysTabBar = true;
-		//io.ConfigDockingTransparentPayload = true;
-		//io.ConfigFlags |= ImGuiConfigFlags_DpiEnableScaleFonts;     // FIXME-DPI: Experimental. THIS CURRENTLY DOESN'T WORK AS EXPECTED. DON'T USE IN USER APP!
-		//io.ConfigFlags |= ImGuiConfigFlags_DpiEnableScaleViewports; // FIXME-DPI: Experimental.
-
-		// Setup Dear ImGui style
-		ImGui::StyleColorsDark();
-		//ImGui::StyleColorsLight();
-
-		// When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
-		ImGuiStyle& style = ImGui::GetStyle();
-		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-		{
-			style.WindowRounding = 0.0f;
-			style.Colors[ImGuiCol_WindowBg].w = 1.0f;
-		}
-
-		// Setup Platform/Renderer backends
-		ImGui_ImplWin32_Init(application.GetHwnd());
-
-		DXEngine::Graphics::GraphicDevice_DX11*& graphicdevice = DXEngine::Graphics::GetDevice();
-		ID3D11Device* device = graphicdevice->GetID3D11Device().Get();
-		ID3D11DeviceContext* device_context = graphicdevice->GetID3D11DeviceContext().Get();
-
-		ImGui_ImplDX11_Init(device, device_context);
-
-		return false;
-	}
-
-	void EditorApplication::ImGuiRender()
+	void EditorApplication::OnImGuiRender()
 	{
 		// Load Fonts
 		// - If no fonts are loaded, dear imgui will use the default font. You can also load multiple fonts and use ImGui::PushFont()/PopFont() to select them.
@@ -152,12 +122,6 @@ namespace Gui
 		bool show_demo_window = true;
 		bool show_another_window = false;
 		ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-
-		// Start the Dear ImGui frame
-		ImGui_ImplDX11_NewFrame();
-		ImGui_ImplWin32_NewFrame();
-		ImGui::NewFrame();
-		ImGuizmo::BeginFrame();
 
 		// We are using the ImGuiWindowFlags_NoDocking flag to make the parent window not dockable into,
 		// because it would be confusing to have two docking targets within each others.
@@ -267,7 +231,7 @@ namespace Gui
 		viewportHovered = ImGui::IsWindowHovered();
 
 		// to do : mouse, keyboard event
-		// 
+		imguiEditor->BlockEvent(!viewportHovered);
 
 		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
 		viewportSize = { viewportPanelSize.x, viewportPanelSize.y };
@@ -341,16 +305,13 @@ namespace Gui
 		ImGui::PopStyleVar();
 
 		ImGui::End(); // dockspace end
+	}
 
-		// Rendering
-		ImGui::Render();
-		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+	void EditorApplication::SetCursorPos(double x, double y)
+	{
+		DXEngine::MouseMovedEvent mouseMovedEvent(x, y);
 
-		// Update and Render additional Platform Windows
-		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-		{
-			ImGui::UpdatePlatformWindows();
-			ImGui::RenderPlatformWindowsDefault();
-		}
+		if (eventCallback)
+			eventCallback(mouseMovedEvent);
 	}
 }

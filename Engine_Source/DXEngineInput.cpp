@@ -94,10 +94,10 @@ namespace DXEngine
 	{
 		POINT mousePos = { };
 		GetCursorPos(&mousePos);
-		ScreenToClient(application.GetHwnd(), &mousePos);
+		ScreenToClient(application.GetWindow().GetHwnd(), &mousePos);
 
-		UINT width = application.GetWidth();
-		UINT height = application.GetHeight();
+		UINT width = application.GetWindow().GetWidth();
+		UINT height = application.GetWindow().GetHeight();
 
 		mousePosition.x = -1;
 		mousePosition.y = -1;

@@ -1,5 +1,6 @@
 #pragma once
 #include "..\\Engine_Source\\CommonInclude.h"
+#include "..\\Engine_Source\\DXEngineEvent.h"
 
 #define IMGUI_DEFINE_MATH_OPERATORS
 #include "imgui.h"

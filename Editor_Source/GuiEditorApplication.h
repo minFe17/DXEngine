@@ -1,8 +1,10 @@
 #pragma once
 #include "GuiEditor.h"
 #include "GuiEditorWindow.h"
+#include "GuiImguiEditor.h"
 
 #include "..\\Engine_Source\\DXEngineRenderTarget.h"
+#include "..\\Engine_Source\\DXEngineEvent.h"
 
 namespace Gui
 {
@@ -37,15 +39,21 @@ namespace Gui
 		static void Run();
 		static void Release();
 
+		static void OnEvent(DXEngine::Event& e);
+
 		static void OpenProject();
 		static void NewScene();
 		static void SaveScene();
 		static void SaveSceneAs();
 		static void OpenScene(const std::filesystem::path& path);
 
+		static void OnImGuiRender();
+
+		//Event
+		static void SetCursorPos(double x, double y);
+
 	private:
-		static bool ImGuiInit();
-		static void ImGuiRender();
+		static ImguiEditor* imguiEditor;
 
 		static std::map<std::wstring, EditorWindow*> editorWindows;
 		static ImGuiWindowFlags flag;
@@ -60,5 +68,6 @@ namespace Gui
 		static int guizmoType;
 
 		static DXEngine::Graphics::RenderTarget* frameBuffer;
+		static DXEngine::EventCallbackFn eventCallback;
 	};
 }

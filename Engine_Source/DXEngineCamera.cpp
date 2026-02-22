@@ -58,7 +58,7 @@ namespace DXEngine
 	void Camera::CreateProjectionMatrix(EProjectionType type)
 	{
 		RECT winRect;
-		GetClientRect(application.GetHwnd(), &winRect);
+		GetClientRect(application.GetWindow().GetHwnd(), &winRect);
 		float width = (winRect.right - winRect.left);
 		float height = (winRect.bottom - winRect.top);
 		aspectRatio = width / height;

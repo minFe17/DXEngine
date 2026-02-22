@@ -18,6 +18,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineAnimation.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineApplicationEvent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineBoxCollider2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCircleCollider2D.h" />
@@ -28,6 +29,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineDontDestroyOnLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEnum.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEvent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGraphicDevice_DX11.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGraphics.h" />
@@ -37,6 +39,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMaterial.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMesh.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMouseEvent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineRenderTarget.h" />
@@ -56,6 +59,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineUIManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineVertexBuffer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineAnimation.cpp" />
@@ -96,5 +100,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineUIManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineVertexBuffer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineWindow.cpp" />
   </ItemGroup>
 </Project>
