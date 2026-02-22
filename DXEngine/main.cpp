@@ -7,6 +7,7 @@
 #include "..\\Engine\DXEngineLoadScene.h"
 
 #include "..\\Editor_Source\GuiEditorApplication.h"
+#include "..\\Engine\DXEngineLoadResources.h"
 
 DXEngine::Application application;
 
@@ -125,12 +126,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 		return FALSE;
 	}
 
-	ShowWindow(hWnd, nCmdShow);
-	UpdateWindow(hWnd);
-
 	application.Init(hWnd, width, height);
 
 	DXEngine::LoadScenes();
+	DXEngine::LoadResources();
 	Gui::EditorApplication::Init();
 
 	return TRUE;

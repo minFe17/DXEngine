@@ -8,7 +8,7 @@
 
 namespace DXEngine
 {
-	Application::Application() : hWnd(nullptr), hdc(nullptr), width(0), height(0), backHdc(NULL), backBuffer(NULL), isLoad(false), isRunning(false)
+	Application::Application() : hWnd(nullptr), windowWidth(0), windowHeight(0), width(0), height(0), x(0), y(0), isLoad(false), isRunning(false)
 	{
 
 	}
@@ -21,7 +21,6 @@ namespace DXEngine
 	void Application::Init(HWND hwnd, int width, int height)
 	{
 		hWnd = hwnd;
-		hdc = GetDC(hwnd);
 
 		AdjustWindow(width, height);
 		InitEtc();
@@ -38,6 +37,12 @@ namespace DXEngine
 		SceneManager::Init();
 
 		isRunning = true;
+	}
+
+	void Application::InitWindow(HWND hwnd)
+	{
+		SetWindowPos(hwnd, nullptr, x, y, windowWidth, windowHeight, 0);
+		ShowWindow(hwnd, SW_SHOWDEFAULT);
 	}
 
 	void Application::Run()
@@ -70,16 +75,21 @@ namespace DXEngine
 
 	void Application::Render()
 	{
-		Graphics::GetDevice()->ClearRenderTargetView();
-		Graphics::GetDevice()->ClearDepthStencilView();
-		Graphics::GetDevice()->BindViewPort();
-		Graphics::GetDevice()->BindDefaultRenderTarget();
+		GetDevice()->ClearRenderTargetView();
+		GetDevice()->ClearDepthStencilView();
+		GetDevice()->BindViewPort();
+		GetDevice()->BindDefaultRenderTarget();
 
 		Time::Render();
 		CollisionManager::Render();
 		UIManager::Render();
 		SceneManager::Render();
 
+		//copy back buffer
+		Microsoft::WRL::ComPtr<ID3D11Texture2D> src = GetDevice()->GetFrameBuffer();
+		Microsoft::WRL::ComPtr<ID3D11Texture2D> dst = Renderer::FrameBuffer->GetAttachmentTexture(0)->GetTexture();
+
+		GetDevice()->CopyResource(dst.Get(), src.Get());
 	}
 
 	void Application::Present()
@@ -103,16 +113,22 @@ namespace DXEngine
 	{
 		RECT rect = { 0, 0, (LONG)width, (LONG)height };
 		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
-		GetWindowRect(hWnd, &rect); // 현재 윈도우의 좌표와 크기를 가져옴
 
-		int x = rect.left;
-		int y = rect.top;
+		RECT winRect;
+		::GetWindowRect(hWnd, &winRect);
 
-		this->width = rect.right - rect.left;
-		this->height = rect.bottom - rect.top;
+		//window position
+		x = winRect.left;
+		y = winRect.top;
 
-		SetWindowPos(hWnd, nullptr, x, y, width, height, 0);
-		ShowWindow(hWnd, true);
+		// window size
+		windowWidth = rect.right - rect.left;
+		windowHeight = rect.bottom - rect.top;
+
+		this->width = width;
+		this->height = height;
+
+		InitWindow(hWnd);
 	}
 
 	void Application::ReszieGraphicDevice(int width, int height)
@@ -121,7 +137,7 @@ namespace DXEngine
 			return;
 
 		RECT winRect;
-		GetClientRect(hWnd, &winRect);
+		::GetClientRect(hWnd, &winRect);
 		D3D11_VIEWPORT viewport = {};
 		viewport.TopLeftX = 0.0f;
 		viewport.TopLeftY = 0.0f;
@@ -134,6 +150,7 @@ namespace DXEngine
 		this->height = height;
 
 		GraphicDevice->Resize(viewport);
+		Renderer::FrameBuffer->Resize(this->width, this->height);
 	}
 
 	void Application::InitEtc()

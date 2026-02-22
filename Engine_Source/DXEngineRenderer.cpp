@@ -3,6 +3,10 @@
 #include "DXEngineMesh.h"
 #include "DXEngineShader.h"
 #include "DXEngineMaterial.h"
+#include "DXEngineRenderTarget.h"
+#include "DXEngineApplication.h"
+
+extern DXEngine::Application application;
 
 namespace DXEngine::Renderer
 {
@@ -14,6 +18,8 @@ namespace DXEngine::Renderer
 	Microsoft::WRL::ComPtr<ID3D11RasterizerState> rasterizerStates[(UINT)ERasterizerState::Max] = {};
 	Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[(UINT)EBlendState::Max] = {};
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthStencilStates[(UINT)EDepthStencilState::Max] = {};
+
+	RenderTarget* FrameBuffer = nullptr;
 
 	void LoadStates()
 	{
@@ -186,7 +192,6 @@ namespace DXEngine::Renderer
 		vertexes[1].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
 		vertexes[1].uv = Vector2(1.0f, 0.0f);
 
-		vertexes[2].position = Vector3(-0.5f, -0.5f, 0.0f);
 		vertexes[2].position = Vector3(0.5f, -0.5f, 0.0f);
 		vertexes[2].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
 		vertexes[2].uv = Vector2(1.0f, 1.0f);
@@ -251,7 +256,6 @@ namespace DXEngine::Renderer
 		Resources::Insert(L"SpriteMaterial", spriteMaterial);
 	}
 
-
 	void LoadShaders()
 	{
 		Resources::Load<Graphics::Shader>(L"TriangleShader", L"..\\Shaders_SOURCE\\Triangle");
@@ -265,6 +269,16 @@ namespace DXEngine::Renderer
 		constantBuffers[CBSLOT_TRANSFORM]->Create(sizeof(TransformCB));
 	}
 
+	void LoadFrameBuffer()
+	{
+		RenderTargetSpecification spec;
+		spec.Attachments = { ERenderTragetFormat::RGBA8, ERenderTragetFormat::Depth };
+		spec.Width = application.GetWidth();
+		spec.Height = application.GetHeight();
+
+		FrameBuffer = RenderTarget::Create(spec);
+	}
+
 	void Init()
 	{
 		LoadStates();
@@ -272,10 +286,14 @@ namespace DXEngine::Renderer
 		LoadMeshes();
 		LoadMaterials();
 		LoadConstantBuffers();
+		LoadFrameBuffer();
 	}
 
 	void Release()
 	{
+		delete FrameBuffer;
+		FrameBuffer = nullptr;
+
 		for (UINT i = 0; i < (UINT)ECBType::Max; i++)
 		{
 			delete constantBuffers[i];

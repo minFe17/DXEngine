@@ -12,6 +12,7 @@ namespace DXEngine
 		Application();
 		~Application();
 		void Init(HWND hwnd, int width, int height);
+		void InitWindow(HWND hwnd);
 		void Run();
 
 		void Update();
@@ -22,7 +23,6 @@ namespace DXEngine
 		void Destroy();
 
 		HWND GetHwnd() const { return hWnd; }
-		HDC GetHdc() const { return hdc; }
 		UINT GetWidth() const { return width; }
 		UINT GetHeight() const { return height; }
 
@@ -38,15 +38,17 @@ namespace DXEngine
 	private:
 		bool isLoad;
 		bool isRunning;
-		std::unique_ptr<Graphics::GraphicDevice_DX11> GraphicDevice;
 
 		HWND hWnd;
-		HDC hdc;
+		std::unique_ptr<Graphics::GraphicDevice_DX11> GraphicDevice;
 
-		HDC backHdc;
-		HBITMAP backBuffer;
+		UINT windowWidth;
+		UINT windowHeight;
 
 		UINT width;
 		UINT height;
+
+		UINT x;
+		UINT y;
 	};
 }

@@ -2,6 +2,8 @@
 #include "GuiEditor.h"
 #include "GuiEditorWindow.h"
 
+#include "..\\Engine_Source\\DXEngineRenderTarget.h"
+
 namespace Gui
 {
 	/// <summary>
@@ -39,16 +41,23 @@ namespace Gui
 		static void NewScene();
 		static void SaveScene();
 		static void SaveSceneAs();
+		static void OpenScene(const std::filesystem::path& path);
 
 	private:
 		static bool ImGuiInit();
 		static void ImGuiRender();
 
+		static std::map<std::wstring, EditorWindow*> editorWindows;
 		static ImGuiWindowFlags flag;
 		static ImGuiDockNodeFlags dockspaceFlags;
 		static EStateType state;
 		static bool fullScreen;
 
-		static std::map<std::wstring, EditorWindow*> editorWindows;
+		static DXEngine::Math::Vector2 viewportBounds[2];
+		static DXEngine::Math::Vector2 viewportSize;
+		static bool mViewportFocused;
+		static bool mViewportHovered;
+
+		static DXEngine::Graphics::RenderTarget* frameBuffer;
 	};
 }

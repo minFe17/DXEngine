@@ -10,15 +10,21 @@ extern DXEngine::Application application;
 
 namespace Gui
 {
+	std::map<std::wstring, EditorWindow*> EditorApplication::editorWindows;
 	ImGuiWindowFlags EditorApplication::flag = ImGuiWindowFlags_None;
 	ImGuiDockNodeFlags EditorApplication::dockspaceFlags = ImGuiDockNodeFlags_None;
 	EditorApplication::EStateType EditorApplication::state = EditorApplication::EStateType::Active;
 	bool EditorApplication::fullScreen = true;
-	std::map<std::wstring, EditorWindow*> EditorApplication::editorWindows;
+	DXEngine::Math::Vector2 EditorApplication::viewportBounds[2] = {};
+	DXEngine::Math::Vector2 EditorApplication::viewportSize;
+	bool EditorApplication::mViewportFocused = false;
+	bool EditorApplication::mViewportHovered = false;
+	DXEngine::Graphics::RenderTarget* EditorApplication::frameBuffer = nullptr;
 
 	bool EditorApplication::Init()
 	{
 		ImGuiInit();
+		frameBuffer = DXEngine::Renderer::FrameBuffer;
 
 		InspectorWindow* inspector = new InspectorWindow();
 		editorWindows.insert(std::make_pair(L"InspectorWindow", inspector));
@@ -70,6 +76,11 @@ namespace Gui
 	}
 
 	void EditorApplication::SaveSceneAs()
+	{
+
+	}
+
+	void EditorApplication::OpenScene(const std::filesystem::path& path)
 	{
 
 	}
@@ -236,7 +247,41 @@ namespace Gui
 
 		// viewport
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
-		ImGui::Begin("Viewport");
+		ImGui::Begin("Scene");
+
+		ImVec2 viewportMinRegion = ImGui::GetWindowContentRegionMin(); // ¾ÀºäÀÇ ÃÖ¼Ò ÁÂÇ¥
+		ImVec2 viewportMaxRegion = ImGui::GetWindowContentRegionMax(); // ¾ÀºäÀÇ ÃÖ´ë ÁÂÇ¥
+		ImVec2 viewportOffset = ImGui::GetWindowPos(); // ¾ÀºäÀÇ À§Ä¡
+
+		const int letTop = 0;
+		viewportBounds[letTop] = { viewportMinRegion.x + viewportOffset.x, viewportMinRegion.y + viewportOffset.y };
+
+		const int rightBottom = 1;
+		viewportBounds[rightBottom] = { viewportMaxRegion.x + viewportOffset.x, viewportMaxRegion.y + viewportOffset.y };
+
+		// check if the mouse,keyboard is on the Sceneview
+		mViewportFocused = ImGui::IsWindowFocused();
+		mViewportHovered = ImGui::IsWindowHovered();
+
+		// to do : mouse, keyboard event
+		// 
+
+		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+		viewportSize = { viewportPanelSize.x, viewportPanelSize.y };
+		DXEngine::Graphics::Texture* texture = frameBuffer->GetAttachmentTexture(0);
+		ImGui::Image((ImTextureID)texture->GetShaderResourceView().Get(), ImVec2{ viewportSize.x, viewportSize.y }
+		, ImVec2{ 0, 0 }, ImVec2{ 1, 1 });
+
+		// Open Scene by drag and drop
+		if (ImGui::BeginDragDropTarget())
+		{
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("PROJECT_ITEM"))
+			{
+				const wchar_t* path = (const wchar_t*)payload->Data;
+				OpenScene(path);
+			}
+			ImGui::EndDragDropTarget();
+		}
 
 		ImGui::End();
 		ImGui::PopStyleVar();

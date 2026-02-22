@@ -27,7 +27,6 @@ namespace DXEngine
 
 	void PlayScene::Init()
 	{
-
 		GameObject* camera = Object::Instantiate<GameObject>(Enum::ELayerType::None, Vector3(0.0f, 0.0f, -10.0f));
 		Camera* cameraComponent = camera->AddComponent<Camera>();
 		cameraComponent->SetProjectionType(Camera::EProjectionType::Perspective);
