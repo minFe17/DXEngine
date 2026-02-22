@@ -9,6 +9,11 @@ namespace DXEngine
 	class Application
 	{
 	public:
+		struct WindowData
+		{
+			std::wstring Title;
+		};
+
 		Application();
 		~Application();
 		void Init(HWND hwnd, int width, int height);

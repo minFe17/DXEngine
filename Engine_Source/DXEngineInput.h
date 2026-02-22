@@ -18,6 +18,7 @@ namespace DXEngine
 		Z, X, C, V, B, N, M, 
 		Left, Right, Down, Up,
 		LButton, WheelButton, RButton,
+		Leftcontrol,	
 		Max,
 	};
 

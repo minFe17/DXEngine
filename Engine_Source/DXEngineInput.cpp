@@ -15,6 +15,7 @@ namespace DXEngine
 		'Z', 'X', 'C', 'V', 'B', 'N', 'M',
 		VK_LEFT, VK_RIGHT, VK_DOWN, VK_UP,
 		VK_LBUTTON, VK_MBUTTON, VK_RBUTTON,
+		VK_LCONTROL,
 	};
 
 	void Input::Init()

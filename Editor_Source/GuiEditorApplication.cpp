@@ -5,6 +5,7 @@
 #include "..\\Engine_Source\\DXEngineRenderer.h"
 #include "..\\Engine_Source\\DXEngineTransform.h"
 #include "..\\Engine_Source\DXEngineApplication.h"
+#include "..\\Engine_Source\DXEngineInput.h"
 
 extern DXEngine::Application application;
 
@@ -17,8 +18,9 @@ namespace Gui
 	bool EditorApplication::fullScreen = true;
 	DXEngine::Math::Vector2 EditorApplication::viewportBounds[2] = {};
 	DXEngine::Math::Vector2 EditorApplication::viewportSize;
-	bool EditorApplication::mViewportFocused = false;
-	bool EditorApplication::mViewportHovered = false;
+	bool EditorApplication::viewportFocused = false;
+	bool EditorApplication::viewportHovered = false;
+	int EditorApplication::guizmoType = -1;
 	DXEngine::Graphics::RenderTarget* EditorApplication::frameBuffer = nullptr;
 
 	bool EditorApplication::Init()
@@ -90,7 +92,7 @@ namespace Gui
 		// Setup Dear ImGui context
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
-		ImGuiIO& io = ImGui::GetIO(); 
+		ImGuiIO& io = ImGui::GetIO();
 		(void)io;
 		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
 		io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
@@ -155,6 +157,7 @@ namespace Gui
 		ImGui_ImplDX11_NewFrame();
 		ImGui_ImplWin32_NewFrame();
 		ImGui::NewFrame();
+		ImGuizmo::BeginFrame();
 
 		// We are using the ImGuiWindowFlags_NoDocking flag to make the parent window not dockable into,
 		// because it would be confusing to have two docking targets within each others.
@@ -254,14 +257,14 @@ namespace Gui
 		ImVec2 viewportOffset = ImGui::GetWindowPos(); // ¾ÀºäÀÇ À§Ä¡
 
 		const int letTop = 0;
-		viewportBounds[letTop] = { viewportMinRegion.x + viewportOffset.x, viewportMinRegion.y + viewportOffset.y };
-
 		const int rightBottom = 1;
+
+		viewportBounds[letTop] = { viewportMinRegion.x + viewportOffset.x, viewportMinRegion.y + viewportOffset.y };
 		viewportBounds[rightBottom] = { viewportMaxRegion.x + viewportOffset.x, viewportMaxRegion.y + viewportOffset.y };
 
 		// check if the mouse,keyboard is on the Sceneview
-		mViewportFocused = ImGui::IsWindowFocused();
-		mViewportHovered = ImGui::IsWindowHovered();
+		viewportFocused = ImGui::IsWindowFocused();
+		viewportHovered = ImGui::IsWindowHovered();
 
 		// to do : mouse, keyboard event
 		// 
@@ -283,90 +286,62 @@ namespace Gui
 			ImGui::EndDragDropTarget();
 		}
 
+		DXEngine::GameObject* selectedObject = DXEngine::Renderer::selectedObject;
+		guizmoType = ImGuizmo::OPERATION::TRANSLATE;
+		if (selectedObject && guizmoType != -1)
+		{
+			ImGuizmo::SetOrthographic(false);
+			ImGuizmo::SetDrawlist();
+			ImGuizmo::SetRect(viewportBounds[0].x, viewportBounds[0].y, viewportBounds[1].x - viewportBounds[0].x, viewportBounds[1].y - viewportBounds[0].y);
+
+			// To do : guizmo...
+			// game view camera setting
+
+			// Scene Camera
+			const DXEngine::Math::Matrix& viewMatrix = DXEngine::Renderer::mainCamera->GetViewMatrix();
+			const DXEngine::Math::Matrix& projectionMatrix = DXEngine::Renderer::mainCamera->GetProjectionMatrix();
+
+			// Object Transform
+			DXEngine::Transform* transform = selectedObject->GetComponent<DXEngine::Transform>();
+			DXEngine::Math::Matrix worldMatrix = transform->GetWorldMatrix();
+
+			// snapping
+			bool snap = DXEngine::Input::GetKey(DXEngine::EKeyCode::Leftcontrol);
+			float snapValue = 0.5f;
+
+			// snap to 45 degrees for rotation
+			if (guizmoType == ImGuizmo::OPERATION::ROTATE)
+				snapValue = 45.0f;
+
+			float snapValues[3] = { snapValue, snapValue, snapValue };
+
+			ImGuizmo::Manipulate(*viewMatrix.m, *projectionMatrix.m, static_cast<ImGuizmo::OPERATION>(guizmoType)
+				, ImGuizmo::LOCAL, *worldMatrix.m, nullptr, snap ? snapValues : nullptr);
+
+			if (ImGuizmo::IsUsing())
+			{
+				// Decompose matrix to translation, rotation and scale
+				float translation[3];
+				float rotation[3];
+				float scale[3];
+				ImGuizmo::DecomposeMatrixToComponents(*worldMatrix.m, translation, rotation, scale);
+
+				// delta rotation from the current rotation
+				DXEngine::Math::Vector3 deltaRotation = Vector3(rotation) - transform->GetRotation();
+				deltaRotation = transform->GetRotation() + deltaRotation;
+
+				// set the new transform
+				transform->SetScale(Vector3(scale));
+				transform->SetRotation(Vector3(deltaRotation));
+				transform->SetPosition(Vector3(translation));
+			}
+		}
+
 		ImGui::End();
 		ImGui::PopStyleVar();
 
 		ImGui::End(); // dockspace end
-#pragma region demo
-		////imGuizmo
-		//ImGuiIO& io = ImGui::GetIO();
 
-		//ImGuizmo::SetOrthographic(false/*!isPerspective*/);
-		//ImGuizmo::SetDrawlist(ImGui::GetCurrentWindow()->DrawList);
-
-		//ImGuizmo::BeginFrame();
-
-		//UINT width = application.GetWidth();
-		//UINT height = application.GetHeight();
-		//float windowWidth = (float)ImGui::GetWindowWidth();
-		//float windowHeight = (float)ImGui::GetWindowHeight();
-
-		//RECT rect = { 0, 0, 0, 0 };
-		//::GetClientRect(application.GetHwnd(), &rect);
-
-		//// Transform start
-		////ImGuizmo::SetRect(0, 0, width, height);
-		//ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, windowWidth, windowHeight);
-
-		//Matrix viewMatirx;
-		//Matrix projectionMatirx;
-
-		//if (ya::renderer::mainCamera)
-		//{
-		//	viewMatirx = ya::renderer::mainCamera->GetViewMatrix();
-		//	projectionMatirx = ya::renderer::mainCamera->GetProjectionMatrix();
-		//}
-
-		//Matrix modelMatrix;
-		//if (ya::renderer::selectedObject)
-		//{
-		//	modelMatrix = ya::renderer::selectedObject->GetComponent<ya::Transform>()->GetWorldMatrix();
-		//}
-
-		//ImGuizmo::Manipulate(*viewMatirx.m, *projectionMatirx.m,
-		//	ImGuizmo::OPERATION::TRANSLATE, ImGuizmo::LOCAL, *modelMatrix.m);
-
-		//ImGuizmo::SetDrawlist(ImGui::GetCurrentWindow()->DrawList);
-
-
-		//demo window
-		//// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
-		//if (show_demo_window)
-		//	ImGui::ShowDemoWindow(&show_demo_window);
-
-		//// 2. Show a simple window that we create ourselves. We use a Begin/End pair to create a named window.
-		//{
-		//	static float f = 0.0f;
-		//	static int counter = 0;
-
-		//	ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
-
-		//	ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
-		//	ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
-		//	ImGui::Checkbox("Another Window", &show_another_window);
-
-		//	ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-		//	ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
-
-		//	if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
-		//		counter++;
-		//	ImGui::SameLine();
-		//	ImGui::Text("counter = %d", counter);
-
-		//	ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
-		//	ImGui::End();
-		//}
-
-		//// 3. Show another simple window.
-		//if (show_another_window)
-		//{
-		//	ImGui::Begin("Another Window", &show_another_window);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
-		//	ImGui::Text("Hello from another window!");
-		//	if (ImGui::Button("Close Me"))
-		//		show_another_window = false;
-		//	ImGui::End();
-		//}
-#pragma endregion
 		// Rendering
 		ImGui::Render();
 		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());

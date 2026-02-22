@@ -55,8 +55,9 @@ namespace Gui
 
 		static DXEngine::Math::Vector2 viewportBounds[2];
 		static DXEngine::Math::Vector2 viewportSize;
-		static bool mViewportFocused;
-		static bool mViewportHovered;
+		static bool viewportFocused;
+		static bool viewportHovered; 
+		static int guizmoType;
 
 		static DXEngine::Graphics::RenderTarget* frameBuffer;
 	};
