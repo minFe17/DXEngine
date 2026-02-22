@@ -21,7 +21,6 @@ namespace DXEngine::Graphics
 		bool CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* inputElementDescs, UINT numElements, const void* shaderBytecodeWithInputSignature, SIZE_T bytecodeLength, ID3D11InputLayout** inputLayout);
 		bool CreateBuffer(const D3D11_BUFFER_DESC* desc, const D3D11_SUBRESOURCE_DATA* initData, ID3D11Buffer** buffer);
 		bool CreateShaderResourceView(ID3D11Resource* resource, const D3D11_SHADER_RESOURCE_VIEW_DESC* desc, ID3D11ShaderResourceView** shaderResourceView);
-		bool CreateUnorderedAccessView(ID3D11Resource* resource, const D3D11_UNORDERED_ACCESS_VIEW_DESC* desc, ID3D11UnorderedAccessView** unorderdeAccessView);
 		bool CreateRasterizerState(const D3D11_RASTERIZER_DESC* rasterizerDesc, ID3D11RasterizerState** rasterizerState);
 		bool CreateBlendState(const D3D11_BLEND_DESC* blendDesc, ID3D11BlendState** blendState);
 		bool CreateDepthStencilState(const D3D11_DEPTH_STENCIL_DESC* depthStencilDesc, ID3D11DepthStencilState** depthStencilState);
@@ -45,7 +44,6 @@ namespace DXEngine::Graphics
 		void BindViewPort();
 		void BindRenderTargets(UINT numViews = 1, ID3D11RenderTargetView* const* renderTargetViews = nullptr, ID3D11DepthStencilView* depthStencilView = nullptr);
 		void BindDefaultRenderTarget();
-		void CopyResource(ID3D11Resource* dstResource, ID3D11Resource* srcResource);
 
 		void ClearRenderTargetView();
 		void ClearDepthStencilView();
@@ -55,15 +53,15 @@ namespace DXEngine::Graphics
 		void DrawIndexed(UINT indexCount, UINT startIndexLocation, INT baseVertexLocation);
 		void Present();
 
+	public:
 		[[nodiscard]] Microsoft::WRL::ComPtr<ID3D11Device> GetID3D11Device() { return device; }
 		[[nodiscard]] Microsoft::WRL::ComPtr<ID3D11DeviceContext> GetID3D11DeviceContext() { return deviceContext; }
-		Microsoft::WRL::ComPtr<ID3D11Texture2D> GetFrameBuffer() { return frameBuffer; }
 
 	private:
 		Microsoft::WRL::ComPtr<ID3D11Device> device;
 		Microsoft::WRL::ComPtr<ID3D11DeviceContext> deviceContext;
-		Microsoft::WRL::ComPtr<ID3D11Texture2D> frameBuffer;
-		Microsoft::WRL::ComPtr<ID3D11RenderTargetView> frameBufferView;
+		Microsoft::WRL::ComPtr<ID3D11Texture2D> renderTarget;
+		Microsoft::WRL::ComPtr<ID3D11RenderTargetView>	renderTargetView;
 		Microsoft::WRL::ComPtr<ID3D11Texture2D>			depthStencil;
 		Microsoft::WRL::ComPtr<ID3D11DepthStencilView>	depthStencilView;
 

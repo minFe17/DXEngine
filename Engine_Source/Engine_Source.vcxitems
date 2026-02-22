@@ -39,7 +39,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineRenderer.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineRenderTarget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineRigidbody.h" />
@@ -79,7 +78,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineMaterial.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineMesh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineRenderer.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineRenderTarget.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineRigidbody.cpp" />

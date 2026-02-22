@@ -4,7 +4,7 @@ namespace Gui
 {
 	InspectorWindow::InspectorWindow()
 	{
-		SetName("Inspector");
+		SetName("InspectorWindow");
 		SetSize(ImVec2(300, 600));
 	}
 

@@ -3,7 +3,6 @@
 #include "DXEngineGraphicDevice_DX11.h"
 
 #include "DXEngineConstantBuffer.h"
-#include "DXEngineRenderTarget.h"
 
 using namespace DXEngine::Math;
 using namespace DXEngine::Graphics;
@@ -18,8 +17,6 @@ namespace DXEngine::Renderer
 	extern Microsoft::WRL::ComPtr<ID3D11RasterizerState> rasterizerStates[(UINT)ERasterizerState::Max];
 	extern Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[(UINT)EBlendState::Max];
 	extern Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthStencilStates[(UINT)EDepthStencilState::Max];
-
-	extern RenderTarget* FrameBuffer;
 
 	void Init();
 	void Release();
