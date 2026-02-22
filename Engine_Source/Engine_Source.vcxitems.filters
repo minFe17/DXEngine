@@ -112,6 +112,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineInputLayout.cpp">
       <Filter>Graphics\InputLayout</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineRenderTarget.cpp">
+      <Filter>Graphics\RenderTarget</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -237,6 +240,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineInputLayout.h">
       <Filter>Graphics\InputLayout</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineRenderTarget.h">
+      <Filter>Graphics\RenderTarget</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -331,6 +337,9 @@
     </Filter>
     <Filter Include="Graphics\InputLayout">
       <UniqueIdentifier>{69ee6ca7-5ac2-445d-8f41-893c5aac2eeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\RenderTarget">
+      <UniqueIdentifier>{efd1d887-3564-4c70-8b9a-33654797a773}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
