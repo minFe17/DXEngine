@@ -15,7 +15,7 @@ namespace DXEngine
 		virtual void Update();
 		virtual void LateUpdate();
 		virtual void Render();
-		virtual void Destroy();
+		virtual void EndOfFrame();
 
 		virtual void OnEnter();
 		virtual void OnExit();
@@ -25,6 +25,8 @@ namespace DXEngine
 		Layer* GetLayer(Enum::ELayerType type) { return layers[(UINT)type]; }
 
 	private:
+		void CreateLayers();
+
 		std::vector<Layer*> layers;
 	};
 }

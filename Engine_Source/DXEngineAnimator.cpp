@@ -16,7 +16,7 @@ namespace DXEngine
 			iter.second = nullptr;
 		}
 
-		for (auto& iter : events)
+		for (auto& iter : queue)
 		{
 			delete iter.second;
 			iter.second = nullptr;
@@ -69,7 +69,7 @@ namespace DXEngine
 		animations.insert(std::make_pair(name, animation));
 
 		Events* event = new Events();
-		events.insert(std::make_pair(name, event));
+		queue.insert(std::make_pair(name, event));
 	}
 
 	void Animator::CreateAnimationByFolder()
@@ -87,8 +87,8 @@ namespace DXEngine
 
 	Animator::Events* Animator::FindEvents(const std::wstring& name)
 	{
-		auto iter = events.find(name);
-		if (iter == events.end())
+		auto iter = queue.find(name);
+		if (iter == queue.end())
 			return nullptr;
 		return iter->second;
 	}

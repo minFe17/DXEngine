@@ -30,7 +30,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEnum.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEvent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEventQueue.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGameObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGameObjectEvent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGraphicDevice_DX11.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineGraphics.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineIndexBuffer.h" />
@@ -75,6 +77,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineConstantBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineDontDestroyOnLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineEntity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineEventQueue.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineGraphicDevice_DX11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineIndexBuffer.cpp" />

@@ -3,6 +3,9 @@
 #include <DXEngineGameObject.h>
 #include <DXEngineTransform.h>
 #include <DXEngineTime.h>
+#include "DXEngineSpriteRenderer.h"
+#include "DXEngineObject.h"
+#include "DXEngineTexture.h"
 
 namespace DXEngine
 {
@@ -23,7 +26,18 @@ namespace DXEngine
 
 	void PlayerScript::Update()
 	{
-		
+		static Vector3 postions = Vector3(-1, 1, 0);
+
+		if (Input::GetKeyDown(EKeyCode::N))
+		{
+			projTile = Object::Instantiate<ProjectTile>(Enum::ELayerType::Background, postions);
+			SpriteRenderer* sr = projTile->AddComponent<SpriteRenderer>();
+			sr->SetSprite(Resources::Find<Graphics::Texture>(L"Player"));
+			postions.x += 1.0f;
+		}
+
+		if (Input::GetKeyDown(EKeyCode::D))
+			Object::Destroy(projTile);
 	}
 
 	void PlayerScript::LateUpdate()
@@ -33,6 +47,6 @@ namespace DXEngine
 
 	void PlayerScript::Render()
 	{
-
+		
 	}
 }

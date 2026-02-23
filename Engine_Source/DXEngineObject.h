@@ -5,6 +5,11 @@
 #include "DXEngineScene.h"
 #include "DXEngineSceneManager.h"
 #include "DXEngineTransform.h"
+#include "DXEngineApplication.h"
+#include "DXEngineGameObjectEvent.h"
+#include "DXEngineSceneManager.h"
+
+extern DXEngine::Application application;
 
 namespace DXEngine::Object
 {
@@ -15,8 +20,7 @@ namespace DXEngine::Object
 		gameObject->SetLayerType(type);
 
 		Scene* activeScene = SceneManager::GetActiveScene();
-		Layer* layer = activeScene->GetLayer(type);
-		layer->AddGameObject(gameObject);
+		SceneManager::PushEvent(new DXEngine::GameObjectCreatedEvent(gameObject, activeScene));
 
 		return gameObject;
 	}
@@ -27,22 +31,25 @@ namespace DXEngine::Object
 		T* gameObject = new T();
 		gameObject->SetLayerType(type);
 
-		Scene* activeScene = SceneManager::GetActiveScene();
-		Layer* layer = activeScene->GetLayer(type);
-		layer->AddGameObject(gameObject);
-
 		Transform* transform = gameObject->GetComponent<Transform>();
 		transform->SetPosition(position);
+
+		Scene* activeScene = SceneManager::GetActiveScene();
+		SceneManager::PushEvent(new DXEngine::GameObjectCreatedEvent(gameObject, activeScene));
 
 		return gameObject;
 	}
 
 	static void Destroy(GameObject* gameObject)
 	{
-		gameObject->Death();
+		if (gameObject != nullptr)
+			gameObject->Death();
+
+		Scene* activeScene = SceneManager::GetActiveScene();
+		SceneManager::PushEvent(new DXEngine::GameObjectDestroyedEvent(gameObject, activeScene));
 	}
 
-	void DontDestroyOnLoad(GameObject* gameObject)
+	static void DontDestroyOnLoad(GameObject* gameObject)
 	{
 		Scene* activeScene = SceneManager::GetActiveScene();
 		activeScene->EraseGameObject(gameObject);

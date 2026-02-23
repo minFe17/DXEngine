@@ -25,11 +25,11 @@ namespace DXEngine
 		void Render();
 		void Present();
 		void Release();
-		void Destroy();
+		void EndOfFrame();
 
 		void AdjustWindow(HWND hwnd, int width, int hewight);
 		void ReszieGraphicDevice(WindowResizeEvent& e);
-		void OnEvent(Event& e);
+		void OnWindowEvent(Event& e);
 		void InitEtc();
 		void Close();
 

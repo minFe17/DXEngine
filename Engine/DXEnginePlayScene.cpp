@@ -13,6 +13,7 @@
 #include "DXEngineRenderer.h"
 #include "DXEngineAnimator.h"
 #include "DXEngineCameraScript.h"
+#include "DXEnginePlayerScript.h"
 
 namespace DXEngine
 {
@@ -35,13 +36,17 @@ namespace DXEngine
 		CameraScript* cameraScript = camera->AddComponent<CameraScript>();
 		Renderer::mainCamera = cameraComponent;
 
-		GameObject* background = Object::Instantiate<Player>(Enum::ELayerType::Background);
-		Object::DontDestroyOnLoad(background);
+		for (size_t i = 0; i < 1; i++)
+		{
+			GameObject* player = Object::Instantiate<Player>(Enum::ELayerType::Player);
+			SpriteRenderer* sr = player->AddComponent<SpriteRenderer>();
+			sr->SetSprite(Resources::Find<Texture>(L"Player"));
 
-		SpriteRenderer* spriteRenderer = background->AddComponent<SpriteRenderer>();
-		spriteRenderer->SetSprite(Resources::Find<Graphics::Texture>(L"Player"));
+			player->AddComponent<PlayerScript>();
 
-		Renderer::selectedObject = background;
+			if (Renderer::selectedObject == nullptr)
+				Renderer::selectedObject = player;
+		}
 
 		Scene::Init();
 	}
@@ -54,9 +59,6 @@ namespace DXEngine
 	void PlayScene::LateUpdate()
 	{
 		Scene::LateUpdate();
-
-		if (Input::GetKeyDown(EKeyCode::N))
-			SceneManager::LoadScene(L"TitleScene");
 	}
 
 	void PlayScene::Render()

@@ -1,5 +1,6 @@
 #pragma once
 #include "..\\Engine_Source\DXEngineScript.h"
+#include "DXEngineProjectTile.h"
 
 namespace DXEngine
 {
@@ -13,5 +14,8 @@ namespace DXEngine
 		void Update() override;
 		void LateUpdate() override;
 		void Render() override;
+
+	private:
+		ProjectTile* projTile;
 	};
 }

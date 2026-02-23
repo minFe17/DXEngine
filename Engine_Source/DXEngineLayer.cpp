@@ -25,7 +25,7 @@ namespace DXEngine
 				continue;
 
 			GameObject::EStateType state = gameObjects[i]->GetState();
-			if (state == GameObject::EStateType::Paused || state == GameObject::EStateType::Dead)
+			if (state == GameObject::EStateType::Paused || state == GameObject::EStateType::Destroyed)
 				continue;
 
 			gameObjects[i]->Init();
@@ -60,28 +60,16 @@ namespace DXEngine
 				continue;
 
 			GameObject::EStateType state = gameObjects[i]->GetState();
-			if (state == GameObject::EStateType::Paused || state == GameObject::EStateType::Dead)
+			if (state == GameObject::EStateType::Paused || state == GameObject::EStateType::Destroyed)
 				continue;
 
 			gameObjects[i]->Render();
 		}
 	}
 
-	void Layer::Destroy()
+	void Layer::EndOfFrame()
 	{
-		for (GameObjectIter iter = gameObjects.begin(); iter != gameObjects.end(); )
-		{
-			GameObject::EStateType state = (*iter)->GetState();
-			if (state == GameObject::EStateType::Dead)
-			{
-				GameObject* object = (*iter);
-				iter = gameObjects.erase(iter);
-
-				delete object;
-				continue;
-			}
-			iter++;
-		}
+		
 	}
 
 	void Layer::AddGameObject(GameObject* gameObject)
@@ -93,10 +81,13 @@ namespace DXEngine
 
 	void Layer::EraseGameObject(GameObject* eraseGameObject)
 	{
+		GameObject* buffer = eraseGameObject;
 		std::erase_if(gameObjects, [=](GameObject* gameObject)
 			{
 				return gameObject == eraseGameObject;
 			});
+		delete buffer;
+		buffer = nullptr;
 	}
 
 	void Layer::FindDeadGameObjects(OUT std::vector<GameObject*>& findGameObjects)
@@ -104,7 +95,7 @@ namespace DXEngine
 		for (GameObject* gameObject : gameObjects)
 		{
 			GameObject::EStateType active = gameObject->GetState();
-			if (active == GameObject::EStateType::Dead)
+			if (active == GameObject::EStateType::Destroyed)
 				findGameObjects.push_back(gameObject);
 		}
 	}

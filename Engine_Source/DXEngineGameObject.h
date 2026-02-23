@@ -9,9 +9,10 @@ namespace DXEngine
 	public:
 		enum class EStateType
 		{
+			Created,
 			Active,
 			Paused,
-			Dead,
+			Destroyed,
 			Max,
 		};
 		GameObject();
@@ -52,7 +53,7 @@ namespace DXEngine
 		void SetLayerType(Enum::ELayerType layer) { layerType = layer; }
 		EStateType GetState() const { return stateType; }
 		bool IsActive() const { return stateType == EStateType::Active; }
-		bool IsDead() const { return stateType == EStateType::Dead; }
+		bool IsDead() const { return stateType == EStateType::Destroyed; }
 
 		void SetActive(bool power)
 		{
@@ -62,7 +63,7 @@ namespace DXEngine
 				stateType = EStateType::Paused;
 		}
 
-		void Death() { stateType = EStateType::Dead; }
+		void Death() { stateType = EStateType::Destroyed; }
 
 	private:
 		void InitTransform();

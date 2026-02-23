@@ -1,3 +1,4 @@
+#pragma once
 #include "DXEngineApplication.h"
 #include "DXEngineInput.h"
 #include "DXEngineSceneManager.h"
@@ -10,7 +11,7 @@ namespace DXEngine
 {
 	Application::Application() : isLoad(false), isRunning(false)
 	{
-		window.SetEventCallBack(DXENGINE_BIND_EVENT_FN(Application::OnEvent));
+		window.SetEventCallBack(DXENGINE_BIND_EVENT_FN(Application::OnWindowEvent));
 	}
 
 	Application::~Application()
@@ -27,9 +28,6 @@ namespace DXEngine
 		GraphicDevice = std::make_unique<Graphics::GraphicDevice_DX11>();
 		GraphicDevice->Init();
 		Renderer::Init();
-
-		Input::Init();
-		Time::Init();
 
 		CollisionManager::Init();
 		UIManager::Init();
@@ -53,7 +51,7 @@ namespace DXEngine
 		LateUpdate();
 		Render();
 
-		Destroy();
+		EndOfFrame();
 	}
 
 	void Application::Update()
@@ -103,9 +101,9 @@ namespace DXEngine
 		Resources::Release();
 	}
 
-	void Application::Destroy()
+	void Application::EndOfFrame()
 	{
-		SceneManager::Destroy();
+		SceneManager::EndOfFrame();
 	}
 
 	void Application::AdjustWindow(HWND hwnd, int width, int height)
@@ -149,7 +147,7 @@ namespace DXEngine
 		Renderer::FrameBuffer->Resize(viewport.Width, viewport.Height);
 	}
 
-	void Application::OnEvent(Event& e)
+	void Application::OnWindowEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowResizeEvent>([this](WindowResizeEvent& e) -> bool
@@ -161,6 +159,8 @@ namespace DXEngine
 
 	void Application::InitEtc()
 	{
+		Input::Init();
+		Time::Init();
 	}
 
 	void Application::Close()

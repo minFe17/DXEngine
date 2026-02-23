@@ -34,11 +34,26 @@
     <Filter Include="GUI\GUILayout">
       <UniqueIdentifier>{88f37cc1-bb51-41e7-b8aa-a6ca4ae1453e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GUI\View">
-      <UniqueIdentifier>{498dd1b7-c6bc-4a20-b49e-48c60581d4a1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GUI\EditorWindow\ImGuiEditor">
       <UniqueIdentifier>{8b6db504-6146-42bb-bd5e-e023acc14e65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Window">
+      <UniqueIdentifier>{1298140a-068d-4a5e-9e1c-dc0577f0c060}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Window\InspectWindow">
+      <UniqueIdentifier>{498dd1b7-c6bc-4a20-b49e-48c60581d4a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Window\ConsoleWindow">
+      <UniqueIdentifier>{744c1553-131b-4fe9-8775-eb2b88d5a3c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Window\GameWindow">
+      <UniqueIdentifier>{1c316f04-25be-4ccc-9976-360d2f6528d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Window\HierarchyWindow">
+      <UniqueIdentifier>{49e87b96-82f5-4f90-9f62-cbf9020c8267}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Window\ProjectWindow">
+      <UniqueIdentifier>{28b3fd52-8805-46e4-9969-9ab7a1f9429b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -112,10 +127,22 @@
       <Filter>GUI\Component\Transform</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GuiInspectorWindow.h">
-      <Filter>GUI\View</Filter>
+      <Filter>GUI\Window\InspectWindow</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GuiImguiEditor.h">
       <Filter>GUI\EditorWindow\ImGuiEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiConsoleWindow.h">
+      <Filter>GUI\Window\ConsoleWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiGameWindow.h">
+      <Filter>GUI\Window\GameWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiHierarchyWindow.h">
+      <Filter>GUI\Window\HierarchyWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GuiProjectWindow.h">
+      <Filter>GUI\Window\ProjectWindow</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -177,10 +204,22 @@
       <Filter>GUI\Component\Transform</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GuiInspectorWindow.cpp">
-      <Filter>GUI\View</Filter>
+      <Filter>GUI\Window\InspectWindow</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GuiImguiEditor.cpp">
       <Filter>GUI\EditorWindow\ImGuiEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiConsoleWindow.cpp">
+      <Filter>GUI\Window\ConsoleWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiGameWindow.cpp">
+      <Filter>GUI\Window\GameWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiHierarchyWindow.cpp">
+      <Filter>GUI\Window\HierarchyWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GuiProjectWindow.cpp">
+      <Filter>GUI\Window\ProjectWindow</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

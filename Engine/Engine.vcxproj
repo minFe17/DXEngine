@@ -149,6 +149,8 @@
     <ClInclude Include="DXEnginePlayer.h" />
     <ClInclude Include="DXEnginePlayerScript.h" />
     <ClInclude Include="DXEnginePlayScene.h" />
+    <ClInclude Include="DXEngineProjectTile.h" />
+    <ClInclude Include="DXEngineProjectTileScript.h" />
     <ClInclude Include="DXEngineTitleScene.h" />
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +158,8 @@
     <ClCompile Include="DXEnginePlayer.cpp" />
     <ClCompile Include="DXEnginePlayerScript.cpp" />
     <ClCompile Include="DXEnginePlayScene.cpp" />
+    <ClCompile Include="DXEngineProjectTile.cpp" />
+    <ClCompile Include="DXEngineProjectTileScript.cpp" />
     <ClCompile Include="DXEngineTitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>

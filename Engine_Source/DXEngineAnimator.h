@@ -56,6 +56,6 @@ namespace DXEngine
 		Animation* activeAnimation;
 		bool isLoop;
 
-		std::map<std::wstring, Events*> events;
+		std::map<std::wstring, Events*> queue;
 	};
 }

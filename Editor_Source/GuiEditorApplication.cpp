@@ -7,6 +7,12 @@
 #include "..\\Engine_Source\DXEngineApplication.h"
 #include "..\\Engine_Source\DXEngineInput.h"
 
+#include "GuiConsoleWindow.h"
+#include "GuiProjectWindow.h"
+#include "GuiProjectWindow.h"
+#include "GuiGameWindow.h"
+#include "GuiHierarchyWindow.h"
+
 extern DXEngine::Application application;
 
 namespace Gui
@@ -28,13 +34,43 @@ namespace Gui
 
 	bool EditorApplication::Init()
 	{
+#ifdef _DEBUG
+		if (::AllocConsole() == TRUE)
+		{
+			FILE* nfp[3];
+			freopen_s(nfp + 0, "CONOUT$", "rb", stdin);
+			freopen_s(nfp + 1, "CONOUT$", "wb", stdout);
+			freopen_s(nfp + 2, "CONOUT$", "wb", stderr);
+			std::ios::sync_with_stdio();
+		}
+
+		std::cout << "Console Open" << std::endl;
+#endif
+
 		imguiEditor = new ImguiEditor();
 		frameBuffer = DXEngine::Renderer::FrameBuffer;
-
 		imguiEditor->Init();
+
+		//InspectorWindow
 		InspectorWindow* inspector = new InspectorWindow();
 		editorWindows.insert(std::make_pair(L"InspectorWindow", inspector));
 		eventCallback = &EditorApplication::OnEvent;
+
+		//CosoleWindow
+		ConsoleWindow* console = new ConsoleWindow();
+		editorWindows.insert(std::make_pair(L"ConsoleWindow", console));
+
+		//ProjectWindow
+		ProjectWindow* project = new ProjectWindow();
+		editorWindows.insert(std::make_pair(L"ProjectWindow", project));
+
+		//GameWindow
+		GameWindow* game = new GameWindow();
+		editorWindows.insert(std::make_pair(L"GameWindow", game));
+
+		//HierarchyWindow
+		HierarchyWindow* hierarchy = new HierarchyWindow();
+		editorWindows.insert(std::make_pair(L"HierarchyWindow", hierarchy));
 
 		return true;
 	}
@@ -66,6 +102,10 @@ namespace Gui
 
 		delete imguiEditor;
 		imguiEditor = nullptr;
+
+#ifdef _DEBUG
+		FreeConsole();
+#endif
 	}
 
 	void EditorApplication::OnEvent(DXEngine::Event& e)

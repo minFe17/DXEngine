@@ -57,13 +57,13 @@ namespace DXEngine
 		}
 	}
 
-	void Scene::Destroy()
+	void Scene::EndOfFrame()
 	{
 		for (size_t i = 0; i < layers.size(); i++)
 		{
 			if (layers[i] == nullptr)
 				continue;
-			layers[i]->Destroy();
+			layers[i]->EndOfFrame();
 		}
 	}
 
@@ -79,12 +79,22 @@ namespace DXEngine
 
 	void Scene::AddGameObject(GameObject* gameObject, Enum::ELayerType type)
 	{
-		layers[(UINT)type]->AddGameObject(gameObject);
+		layers[static_cast<UINT>(type)]->AddGameObject(gameObject);
 	}
 
 	void Scene::EraseGameObject(GameObject* gameObject)
 	{
+		if (gameObject == nullptr)
+			return;
+
 		Enum::ELayerType layerType = gameObject->GetLayerType();
-		layers[(UINT)layerType]->EraseGameObject(gameObject);
+		layers[static_cast<UINT>(layerType)]->EraseGameObject(gameObject);
+	}
+
+	void Scene::CreateLayers()
+	{
+		layers.resize(static_cast<UINT>(Enum::ELayerType::Max));
+		for (size_t i = 0; i < static_cast<UINT>(Enum::ELayerType::Max); i++)
+			layers[i] = new Layer();
 	}
 }
