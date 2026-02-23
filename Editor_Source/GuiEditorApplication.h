@@ -1,10 +1,16 @@
 #pragma once
-#include "GuiEditor.h"
 #include "GuiEditorWindow.h"
 #include "GuiImguiEditor.h"
 
 #include "..\\Engine_Source\\DXEngineRenderTarget.h"
 #include "..\\Engine_Source\\DXEngineEvent.h"
+#include "..\\Engine_Source\\DXEngineKeyEvent.h"
+#include "..\\Engine_Source\\DXEngineMouseEvent.h"
+
+namespace DXEngine
+{
+	class KeyPressedEvent;
+}
 
 namespace Gui
 {
@@ -50,7 +56,11 @@ namespace Gui
 		static void OnImGuiRender();
 
 		//Event
+		static void SetKeyPressed(int keyCode, int scancode, int action, int mods);
 		static void SetCursorPos(double x, double y);
+		static bool OnKeyPressed(DXEngine::KeyPressedEvent& e);
+
+		static void SetGuizmoType(int type) { guizmoType = type; }
 
 	private:
 		static ImguiEditor* imguiEditor;

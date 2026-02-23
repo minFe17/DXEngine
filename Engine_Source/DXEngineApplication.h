@@ -5,6 +5,9 @@
 #include "DXEngineGraphicDevice_DX11.h"
 #include "DXEngineEvent.h"
 #include "DXEngineWindow.h"
+#include "DXEngineApplicationEvent.h"
+#include "DXEngineMouseEvent.h"
+#include "DXEngineKeyEvent.h"
 
 namespace DXEngine
 {
@@ -25,7 +28,7 @@ namespace DXEngine
 		void Destroy();
 
 		void AdjustWindow(HWND hwnd, int width, int hewight);
-		void ReszieGraphicDevice(UINT width, UINT height);
+		void ReszieGraphicDevice(WindowResizeEvent& e);
 		void OnEvent(Event& e);
 		void InitEtc();
 		void Close();

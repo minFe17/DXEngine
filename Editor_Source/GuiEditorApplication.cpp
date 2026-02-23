@@ -6,7 +6,6 @@
 #include "..\\Engine_Source\\DXEngineTransform.h"
 #include "..\\Engine_Source\DXEngineApplication.h"
 #include "..\\Engine_Source\DXEngineInput.h"
-#include "..\\Engine_Source\\DXEngineMouseEvent.h"
 
 extern DXEngine::Application application;
 
@@ -71,6 +70,32 @@ namespace Gui
 
 	void EditorApplication::OnEvent(DXEngine::Event& e)
 	{
+		DXEngine::EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<DXEngine::KeyPressedEvent>([](DXEngine::KeyPressedEvent& e) -> bool
+			{
+				// Todo : KeyPressedEvent
+				if (OnKeyPressed(e))
+					return true;
+
+				return false;
+			});
+
+		dispatcher.Dispatch<DXEngine::KeyReleasedEvent>([](DXEngine::KeyReleasedEvent& e) -> bool
+			{
+				// Todo : KeyReleasedEvent
+				//if (OnKeyPressed(e))
+					//return true;
+
+				return false;
+			});
+
+		dispatcher.Dispatch<DXEngine::MouseMovedEvent>([](DXEngine::MouseMovedEvent& e) -> bool
+			{
+				// Todo : MouseMovedEvent
+
+				return true;
+			});
+
 		if (!e.Handled)
 			imguiEditor->OnEvent(e);
 	}
@@ -209,22 +234,22 @@ namespace Gui
 			ImGui::EndMenuBar();
 		}
 
-		for (auto iter : editorWindows)
+		for (auto& iter : editorWindows)
 			iter.second->Run();
 
 		// viewport
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
 		ImGui::Begin("Scene");
 
-		ImVec2 viewportMinRegion = ImGui::GetWindowContentRegionMin(); // ¾ÀºäÀÇ ÃÖ¼Ò ÁÂÇ¥
-		ImVec2 viewportMaxRegion = ImGui::GetWindowContentRegionMax(); // ¾ÀºäÀÇ ÃÖ´ë ÁÂÇ¥
-		ImVec2 viewportOffset = ImGui::GetWindowPos(); // ¾ÀºäÀÇ À§Ä¡
+		const ImVec2 viewportMinRegion = ImGui::GetWindowContentRegionMin(); // ¾ÀºäÀÇ ÃÖ¼Ò ÁÂÇ¥
+		const ImVec2 viewportMaxRegion = ImGui::GetWindowContentRegionMax(); // ¾ÀºäÀÇ ÃÖ´ë ÁÂÇ¥
+		const ImVec2 viewportOffset = ImGui::GetWindowPos(); // ¾ÀºäÀÇ À§Ä¡
 
-		const int letTop = 0;
-		const int rightBottom = 1;
+		constexpr int letTop = 0;
+		constexpr int rightBottom = 1;
 
-		viewportBounds[letTop] = { viewportMinRegion.x + viewportOffset.x, viewportMinRegion.y + viewportOffset.y };
-		viewportBounds[rightBottom] = { viewportMaxRegion.x + viewportOffset.x, viewportMaxRegion.y + viewportOffset.y };
+		viewportBounds[letTop] = Vector2{ viewportMinRegion.x + viewportOffset.x, viewportMinRegion.y + viewportOffset.y };
+		viewportBounds[rightBottom] = Vector2{ viewportMaxRegion.x + viewportOffset.x, viewportMaxRegion.y + viewportOffset.y };
 
 		// check if the mouse,keyboard is on the Sceneview
 		viewportFocused = ImGui::IsWindowFocused();
@@ -234,7 +259,7 @@ namespace Gui
 		imguiEditor->BlockEvent(!viewportHovered);
 
 		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-		viewportSize = { viewportPanelSize.x, viewportPanelSize.y };
+		viewportSize = Vector2{ viewportPanelSize.x, viewportPanelSize.y };
 		DXEngine::Graphics::Texture* texture = frameBuffer->GetAttachmentTexture(0);
 		ImGui::Image((ImTextureID)texture->GetShaderResourceView().Get(), ImVec2{ viewportSize.x, viewportSize.y }
 		, ImVec2{ 0, 0 }, ImVec2{ 1, 1 });
@@ -244,18 +269,18 @@ namespace Gui
 		{
 			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("PROJECT_ITEM"))
 			{
-				const wchar_t* path = (const wchar_t*)payload->Data;
+				const auto path = static_cast<const wchar_t*>(payload->Data);
 				OpenScene(path);
 			}
 			ImGui::EndDragDropTarget();
 		}
 
 		DXEngine::GameObject* selectedObject = DXEngine::Renderer::selectedObject;
-		guizmoType = ImGuizmo::OPERATION::TRANSLATE;
 		if (selectedObject && guizmoType != -1)
 		{
 			ImGuizmo::SetOrthographic(false);
 			ImGuizmo::SetDrawlist();
+			ImGuizmo::SetGizmoSizeClipSpace(0.15f);
 			ImGuizmo::SetRect(viewportBounds[0].x, viewportBounds[0].y, viewportBounds[1].x - viewportBounds[0].x, viewportBounds[1].y - viewportBounds[0].y);
 
 			// To do : guizmo...
@@ -279,8 +304,7 @@ namespace Gui
 
 			float snapValues[3] = { snapValue, snapValue, snapValue };
 
-			ImGuizmo::Manipulate(*viewMatrix.m, *projectionMatrix.m, static_cast<ImGuizmo::OPERATION>(guizmoType)
-				, ImGuizmo::LOCAL, *worldMatrix.m, nullptr, snap ? snapValues : nullptr);
+			ImGuizmo::Manipulate(*viewMatrix.m, *projectionMatrix.m, static_cast<ImGuizmo::OPERATION>(guizmoType), ImGuizmo::WORLD, *worldMatrix.m, nullptr, snap ? snapValues : nullptr);
 
 			if (ImGuizmo::IsUsing())
 			{
@@ -307,11 +331,100 @@ namespace Gui
 		ImGui::End(); // dockspace end
 	}
 
+	void EditorApplication::SetKeyPressed(int keyCode, int scancode, int action, int mods)
+	{
+		constexpr int RELEASE = 0;
+		constexpr int PRESS = 1;
+		constexpr int REPEAT = 2;
+
+		//To do : repeat check
+		//if (action == PRESS)
+			//action = REPEAT;
+		//static std::unordered_map<key, >
+
+		// unordered map key setting
+
+		switch (action)
+		{
+		case RELEASE:
+		{
+			DXEngine::KeyReleasedEvent event(static_cast<DXEngine::EKeyCode>(keyCode));
+
+			if (eventCallback)
+				eventCallback(event);
+		}
+		break;
+		case PRESS:
+		{
+			DXEngine::KeyPressedEvent event(static_cast<DXEngine::EKeyCode>(keyCode), false);
+
+			if (eventCallback)
+				eventCallback(event);
+		}
+		break;
+		case REPEAT:
+		{
+			DXEngine::KeyPressedEvent event(static_cast<DXEngine::EKeyCode>(keyCode), true);
+
+			if (eventCallback)
+				eventCallback(event);
+		}
+		break;
+		}
+	}
+
 	void EditorApplication::SetCursorPos(double x, double y)
 	{
 		DXEngine::MouseMovedEvent mouseMovedEvent(x, y);
 
 		if (eventCallback)
 			eventCallback(mouseMovedEvent);
+	}
+
+	bool EditorApplication::OnKeyPressed(DXEngine::KeyPressedEvent& e)
+	{
+		if (e.IsRepeat())
+			return false;
+
+		bool control = DXEngine::Input::GetKey(DXEngine::EKeyCode::Leftcontrol) || DXEngine::Input::GetKey(DXEngine::EKeyCode::RightControl);
+		bool shift = DXEngine::Input::GetKey(DXEngine::EKeyCode::LeftShift) || DXEngine::Input::GetKey(DXEngine::EKeyCode::RightShift);
+
+		switch (e.GetKeyCode())
+		{
+			// Gizmos
+		case DXEngine::EKeyCode::Q:
+		{
+			if (!ImGuizmo::IsUsing())
+				SetGuizmoType(-1);
+			break;
+		}
+		case DXEngine::EKeyCode::W:
+		{
+			if (!ImGuizmo::IsUsing())
+				SetGuizmoType(ImGuizmo::OPERATION::TRANSLATE);
+			break;
+		}
+		case DXEngine::EKeyCode::E:
+		{
+			if (!ImGuizmo::IsUsing())
+				SetGuizmoType(ImGuizmo::OPERATION::ROTATE);
+			break;
+		}
+		case DXEngine::EKeyCode::R:
+		{
+			if (control)
+			{
+				//ScriptEngine::ReloadAssembly();
+			}
+			else
+			{
+				if (!ImGuizmo::IsUsing())
+					SetGuizmoType(ImGuizmo::OPERATION::SCALE);
+			}
+			break;
+		}
+		}
+
+		return true;
 	}
 }

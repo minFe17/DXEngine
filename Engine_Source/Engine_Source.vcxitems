@@ -36,6 +36,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineIndexBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineInputLayout.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineKeyEvent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMaterial.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineMesh.h" />

@@ -8,16 +8,6 @@ namespace DXEngine
 	std::vector<Input::Key> Input::keys = {};
 	Math::Vector2 Input::mousePosition = Math::Vector2::One;
 
-	int ASCII[(UINT)EKeyCode::Max] =
-	{
-		'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
-		'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
-		'Z', 'X', 'C', 'V', 'B', 'N', 'M',
-		VK_LEFT, VK_RIGHT, VK_DOWN, VK_UP,
-		VK_LBUTTON, VK_MBUTTON, VK_RBUTTON,
-		VK_LCONTROL,
-	};
-
 	void Input::Init()
 	{
 		CreateKeys();
@@ -30,12 +20,15 @@ namespace DXEngine
 
 	void Input::CreateKeys()
 	{
-		for (size_t i = 0; i < (UINT)EKeyCode::Max; i++)
+		for (int vk = 0; vk <= 0xFF; ++vk)
 		{
+			EKeyCode keyCode = static_cast<EKeyCode>(vk);
+
 			Key key = {};
-			key.isPressed = false;
-			key.state = EKeyState::None;
-			key.keyCode = (EKeyCode)i;
+			key.IsPressed = false;
+			key.State = EKeyState::None;
+			key.KeyCode = keyCode;
+			key.VK_KeyCode = vk;
 
 			keys.push_back(key);
 		}
@@ -54,11 +47,11 @@ namespace DXEngine
 	{
 		if (GetFocus())
 		{
-			if (IsKeyDown(key.keyCode))
+			if (IsKeyDown(key.KeyCode))
 				UpdateKeyDown(key);
 			else
 				UpdateKeyUp(key);
-
+			 
 			GetMousePositionByWindow();
 		}
 		else
@@ -67,27 +60,27 @@ namespace DXEngine
 
 	bool Input::IsKeyDown(EKeyCode code)
 	{
-		return GetAsyncKeyState(ASCII[(UINT)code]) & 0x8000;
+		return GetAsyncKeyState(static_cast<int>(code)) & 0x8000;
 	}
 
 	void Input::UpdateKeyDown(Key& key)
 	{
-		if (key.isPressed == true)
-			key.state = EKeyState::Pressed;
+		if (key.IsPressed == true)
+			key.State = EKeyState::Pressed;
 		else
-			key.state = EKeyState::Down;
+			key.State = EKeyState::Down;
 
-		key.isPressed = true;
+		key.IsPressed = true;
 	}
 
 	void Input::UpdateKeyUp(Key& key)
 	{
-		if (key.isPressed == true)
-			key.state = EKeyState::Up;
+		if (key.IsPressed == true)
+			key.State = EKeyState::Up;
 		else
-			key.state = EKeyState::None;
+			key.State = EKeyState::None;
 
-		key.isPressed = false;
+		key.IsPressed = false;
 	}
 
 	void Input::GetMousePositionByWindow()
@@ -112,12 +105,12 @@ namespace DXEngine
 	{
 		for (Key& key : keys)
 		{
-			if (key.state == EKeyState::Down || key.state == EKeyState::Pressed)
-				key.state = EKeyState::Up;
-			else if (key.state == EKeyState::Up)
-				key.state = EKeyState::None;
+			if (key.State == EKeyState::Down || key.State == EKeyState::Pressed)
+				key.State = EKeyState::Up;
+			else if (key.State == EKeyState::Up)
+				key.State = EKeyState::None;
 
-			key.isPressed = false;
+			key.IsPressed = false;
 		}
 	}
 }

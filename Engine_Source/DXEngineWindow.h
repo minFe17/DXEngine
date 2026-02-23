@@ -41,7 +41,6 @@ namespace DXEngine
 
 		void Init();
 		void SetWindowResize(UINT width, UINT height);
-		void SetCursorPos(double x, double y);
 
 		void SetEventCallBack(const EventCallbackFn& callback) { windowData.EventCallback = callback; }
 
