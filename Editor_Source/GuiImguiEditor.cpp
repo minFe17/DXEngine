@@ -6,8 +6,7 @@ extern DXEngine::Application application;
 
 namespace Gui
 {
-	ImguiEditor::ImguiEditor()
-		: blockEvent(false)
+	ImguiEditor::ImguiEditor()		: blockEvent(false)
 	{
 	}
 

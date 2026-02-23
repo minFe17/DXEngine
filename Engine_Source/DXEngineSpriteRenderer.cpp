@@ -1,14 +1,12 @@
 #include "DXEngineSpriteRenderer.h"
 #include "DXEngineGameObject.h"
-#include "DXEngineTransform.h"
 #include "DXEngineTexture.h"
 #include "DXEngineRenderer.h"
-#include "DXEngineTransform.h"
 #include "DXEngineResources.h"
 
 namespace DXEngine
 {
-	SpriteRenderer::SpriteRenderer() : Component(Enum::EComponentType::SpriteRenderer), sprite(nullptr), material(nullptr), mesh(nullptr)
+	SpriteRenderer::SpriteRenderer() : BaseRenderer(Enum::EComponentType::SpriteRenderer)
 	{
 
 	}
@@ -20,31 +18,32 @@ namespace DXEngine
 
 	void SpriteRenderer::Init()
 	{
-		mesh = Resources::Find<Mesh>(L"RectMesh");
-		material = Resources::Find<Material>(L"SpriteMaterial");
+		BaseRenderer::Init();
+
+		Mesh* mesh = Resources::Find<Mesh>(L"RectMesh");
+		Material* material = Resources::Find<Material>(L"SpriteMaterial");
+
+		SetMesh(mesh);
+		SetMaterial(material);
 	}
 
 	void SpriteRenderer::Update()
 	{
+		BaseRenderer::Update();
 	}
 
 	void SpriteRenderer::LateUpdate()
 	{
+		BaseRenderer::LateUpdate();
 	}
 
-	void SpriteRenderer::Render()
+	void SpriteRenderer::Render(const Matrix& view, const Matrix& projection)
 	{
-		Transform* transform = GetOwner()->GetComponent<Transform>();
-		if (transform)
-			transform->Bind();
+		BaseRenderer::Render(view, projection);
 
-		if (mesh)
-			mesh->Bind();
-		if (material)
-			material->Bind();
 		if (sprite)
 			sprite->Bind(EShaderStage::PS, (UINT)ETextureType::Sprite);
-		if (mesh)
-			Graphics::GetDevice()->DrawIndexed(mesh->GetIndexCount(), 0, 0);
+
+		BaseRenderer::Draw();
 	}
 }

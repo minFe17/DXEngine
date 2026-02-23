@@ -6,6 +6,7 @@
 #include "DXEngineCollisionManager.h"
 #include "DXEngineUIManager.h"
 #include "DXEngineRenderer.h"
+#include "DXEngineTransform.h"
 
 namespace DXEngine
 {
@@ -78,9 +79,9 @@ namespace DXEngine
 		GetDevice()->BindDefaultRenderTarget();
 
 		Time::Render();
+		SceneManager::Render();
 		CollisionManager::Render();
 		UIManager::Render();
-		SceneManager::Render();
 
 		//copy back buffer
 		Microsoft::WRL::ComPtr<ID3D11Texture2D> src = GetDevice()->GetFrameBuffer();

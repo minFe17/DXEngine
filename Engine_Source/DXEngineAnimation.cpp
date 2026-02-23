@@ -43,7 +43,7 @@ namespace DXEngine
 		}
 	}
 
-	void Animation::Render()
+	void Animation::Render(const Matrix& view, const Matrix& projection)
 	{
 		if (texture == nullptr)
 			return;

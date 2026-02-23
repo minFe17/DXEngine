@@ -30,7 +30,7 @@ namespace DXEngine
 
 	}
 
-	void CircleCollider2D::Render()
+	void CircleCollider2D::Render(const Matrix& view, const Matrix& projection)
 	{
 		Transform* transform = GetOwner()->GetComponent<Transform>();
 		Vector3 pos = transform->GetPosition();

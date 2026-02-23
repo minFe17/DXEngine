@@ -19,6 +19,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineApplicationEvent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineBaseRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineBoxCollider2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineCircleCollider2D.h" />
@@ -27,6 +28,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineConstantBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineDontDestroyOnLoad.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEditorCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEnum.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineEvent.h" />
@@ -50,6 +52,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineRigidbody.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineScene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineSceneCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineSceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineScript.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DXEngineShader.h" />
@@ -68,6 +71,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineAnimation.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineAnimator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineBaseRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineBoxCollider2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineCircleCollider2D.cpp" />
@@ -76,6 +80,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineConstantBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineDontDestroyOnLoad.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineEditorCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineEventQueue.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineGameObject.cpp" />
@@ -92,6 +97,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineRigidbody.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineScene.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineSceneCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineSceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineScript.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DXEngineShader.cpp" />

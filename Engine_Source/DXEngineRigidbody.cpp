@@ -30,7 +30,7 @@ namespace DXEngine
 
 	}
 
-	void Rigidbody::Render()
+	void Rigidbody::Render(const Matrix& view, const Matrix& projection)
 	{
 
 	}

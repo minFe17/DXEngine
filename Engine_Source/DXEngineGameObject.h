@@ -21,7 +21,7 @@ namespace DXEngine
 		virtual void Init();
 		virtual void Update();
 		virtual void LateUpdate();
-		virtual void Render();
+		virtual void Render(const Matrix& view, const Matrix& projection);
 
 		template <typename T>
 		T* AddComponent()

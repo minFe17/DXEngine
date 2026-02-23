@@ -52,13 +52,13 @@ namespace DXEngine
 		}
 	}
 
-	void GameObject::Render()
+	void GameObject::Render(const Matrix& view, const Matrix& projection)
 	{
 		for (size_t i = 0; i < components.size(); i++)
 		{
 			if (components[i] == nullptr)
 				continue;
-			components[i]->Render();
+			components[i]->Render(view, projection);
 		}
 	}
 

@@ -36,7 +36,7 @@ namespace DXEngine
 		void Init() override;
 		void Update() override;
 		void LateUpdate() override;
-		void Render() override;
+		void Render(const Matrix& view, const Matrix& projection) override;
 
 		void CreateAnimation(const std::wstring& name, Graphics::Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration);
 		void CreateAnimationByFolder();

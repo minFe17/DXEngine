@@ -23,12 +23,15 @@ namespace DXEngine
 		void BindShader();
 		void BindTextures();
 
+		void SetRenderingMode(const Graphics::ERenderingMode renderingMode);
+
 		void SetShader(Graphics::Shader* shader) { this->shader = shader; }
 		void SetAlbedoTexture(Graphics::Texture* texture)
 		{
 			albedoTexture = texture;
 			data.albedo = texture->GetName();
 		}
+		Graphics::ERenderingMode GetRenderingMode() const { return mode; }
 
 	private:
 		Graphics::ERenderingMode mode;

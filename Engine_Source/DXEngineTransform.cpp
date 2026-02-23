@@ -37,7 +37,7 @@ namespace DXEngine
 		up = Vector3::TransformNormal(Vector3::Up, rotationMatrix);
 	}
 
-	void Transform::Render()
+	void Transform::Render(const Matrix& view, const Matrix& projection)
 	{
 	}
 

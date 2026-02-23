@@ -22,7 +22,7 @@ namespace DXEngine
 	{
 	}
 
-	void ProjectTileScript::Render()
+	void ProjectTileScript::Render(const Matrix& view, const Matrix& projection)
 	{
 	}
 

@@ -14,10 +14,10 @@ namespace DXEngine::Renderer
 	GameObject* selectedObject = nullptr;
 
 	ConstantBuffer* constantBuffers[(UINT)ECBType::Max] = {};
-	Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerStates[(UINT)ESamplerType::Max] = {};
-	Microsoft::WRL::ComPtr<ID3D11RasterizerState> rasterizerStates[(UINT)ERasterizerState::Max] = {};
-	Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[(UINT)EBlendState::Max] = {};
-	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthStencilStates[(UINT)EDepthStencilState::Max] = {};
+	Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerStates[static_cast<UINT>(ESamplerType::Max)] = {};
+	Microsoft::WRL::ComPtr<ID3D11RasterizerState> rasterizerStates[static_cast<UINT>(ERasterizerState::Max)] = {};
+	Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[static_cast<UINT>(EBlendState::Max)] = {};
+	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthStencilStates[static_cast<UINT>(EDepthStencilState::Max)] = {};
 
 	RenderTarget* FrameBuffer = nullptr;
 
@@ -32,7 +32,7 @@ namespace DXEngine::Renderer
 		samplerDesc.ComparisonFunc = D3D11_COMPARISON_FUNC::D3D11_COMPARISON_NEVER;
 		samplerDesc.MinLOD = 0;
 		samplerDesc.MaxLOD = D3D11_FLOAT32_MAX;
-		GetDevice()->CreateSamplerState(&samplerDesc, samplerStates[(UINT)ESamplerType::Anisotropic].GetAddressOf());
+		GetDevice()->CreateSamplerState(&samplerDesc, samplerStates[static_cast<UINT>(ESamplerType::Anisotropic)].GetAddressOf());
 
 		ZeroMemory(&samplerDesc, sizeof(samplerDesc));
 		samplerDesc.Filter = D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_POINT;
@@ -42,7 +42,7 @@ namespace DXEngine::Renderer
 		samplerDesc.ComparisonFunc = D3D11_COMPARISON_FUNC::D3D11_COMPARISON_NEVER;
 		samplerDesc.MinLOD = 0;
 		samplerDesc.MaxLOD = D3D11_FLOAT32_MAX;
-		GetDevice()->CreateSamplerState(&samplerDesc, samplerStates[(UINT)ESamplerType::Point].GetAddressOf());
+		GetDevice()->CreateSamplerState(&samplerDesc, samplerStates[static_cast<UINT>(ESamplerType::Point)].GetAddressOf());
 
 		ZeroMemory(&samplerDesc, sizeof(samplerDesc));
 		samplerDesc.Filter = D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_LINEAR;
@@ -52,7 +52,7 @@ namespace DXEngine::Renderer
 		samplerDesc.ComparisonFunc = D3D11_COMPARISON_FUNC::D3D11_COMPARISON_NEVER;
 		samplerDesc.MinLOD = 0;
 		samplerDesc.MaxLOD = D3D11_FLOAT32_MAX;
-		GetDevice()->CreateSamplerState(&samplerDesc, samplerStates[(UINT)ESamplerType::Linear].GetAddressOf());
+		GetDevice()->CreateSamplerState(&samplerDesc, samplerStates[static_cast<UINT>(ESamplerType::Linear)].GetAddressOf());
 
 		ZeroMemory(&samplerDesc, sizeof(samplerDesc));
 		samplerDesc.Filter = D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_LINEAR;
@@ -64,10 +64,10 @@ namespace DXEngine::Renderer
 		samplerDesc.MaxLOD = D3D11_FLOAT32_MAX;
 		GetDevice()->CreateSamplerState(&samplerDesc, samplerStates[(UINT)ESamplerType::PostProcess].GetAddressOf());
 
-		GetDevice()->BindSamplers((UINT)ESamplerType::Point, 1, samplerStates[(UINT)ESamplerType::Point].GetAddressOf());
-		GetDevice()->BindSamplers((UINT)ESamplerType::Linear, 1, samplerStates[(UINT)ESamplerType::Linear].GetAddressOf());
-		GetDevice()->BindSamplers((UINT)ESamplerType::Anisotropic, 1, samplerStates[(UINT)ESamplerType::Anisotropic].GetAddressOf());
-		GetDevice()->BindSamplers((UINT)ESamplerType::PostProcess, 1, samplerStates[(UINT)ESamplerType::PostProcess].GetAddressOf());
+		GetDevice()->BindSamplers((UINT)ESamplerType::Point, 1, samplerStates[static_cast<UINT>(ESamplerType::Point)].GetAddressOf());
+		GetDevice()->BindSamplers((UINT)ESamplerType::Linear, 1, samplerStates[static_cast<UINT>(ESamplerType::Linear)].GetAddressOf());
+		GetDevice()->BindSamplers((UINT)ESamplerType::Anisotropic, 1, samplerStates[static_cast<UINT>(ESamplerType::Anisotropic)].GetAddressOf());
+		GetDevice()->BindSamplers((UINT)ESamplerType::PostProcess, 1, samplerStates[static_cast<UINT>(ESamplerType::PostProcess)].GetAddressOf());
 #pragma endregion
 #pragma region rasterize state
 		D3D11_RASTERIZER_DESC rsDesc = {};
@@ -81,38 +81,61 @@ namespace DXEngine::Renderer
 		rsDesc.MultisampleEnable = false;
 		rsDesc.ScissorEnable = false;
 		rsDesc.SlopeScaledDepthBias = 0.0f;
-		GetDevice()->CreateRasterizerState(&rsDesc, rasterizerStates[(UINT)ERasterizerState::SolidBack].GetAddressOf());
+		GetDevice()->CreateRasterizerState(&rsDesc, rasterizerStates[static_cast<UINT>(ERasterizerState::SolidBack)].GetAddressOf());
 
 		rsDesc.FillMode = D3D11_FILL_MODE::D3D11_FILL_SOLID;
 		rsDesc.CullMode = D3D11_CULL_MODE::D3D11_CULL_FRONT;
-		GetDevice()->CreateRasterizerState(&rsDesc, rasterizerStates[(UINT)ERasterizerState::SolidFront].GetAddressOf());
+		GetDevice()->CreateRasterizerState(&rsDesc, rasterizerStates[static_cast<UINT>(ERasterizerState::SolidFront)].GetAddressOf());
 
 		rsDesc.FillMode = D3D11_FILL_MODE::D3D11_FILL_SOLID;
 		rsDesc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
-		GetDevice()->CreateRasterizerState(&rsDesc, rasterizerStates[(UINT)ERasterizerState::SolidNone].GetAddressOf());
+		GetDevice()->CreateRasterizerState(&rsDesc, rasterizerStates[static_cast<UINT>(ERasterizerState::SolidNone)].GetAddressOf());
 
 		rsDesc.FillMode = D3D11_FILL_MODE::D3D11_FILL_WIREFRAME;
 		rsDesc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
-		GetDevice()->CreateRasterizerState(&rsDesc, rasterizerStates[(UINT)ERasterizerState::Wireframe].GetAddressOf());
+		GetDevice()->CreateRasterizerState(&rsDesc, rasterizerStates[static_cast<UINT>(ERasterizerState::Wireframe)].GetAddressOf());
 #pragma endregion
 
 #pragma region blend state
 		D3D11_BLEND_DESC bsDesc = {};
-		bsDesc.AlphaToCoverageEnable = false;
-		bsDesc.IndependentBlendEnable = false;
-		bsDesc.RenderTarget[0].BlendEnable = true;
+		bsDesc.RenderTarget[0].BlendEnable = FALSE;
+		bsDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+		GetDevice()->CreateBlendState(&bsDesc, blendStates[static_cast<UINT>(EBlendState::Opaque)].GetAddressOf());
+
+		bsDesc = {};
+		bsDesc.RenderTarget[0].BlendEnable = FALSE;
+		bsDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+		GetDevice()->CreateBlendState(&bsDesc, blendStates[static_cast<UINT>(EBlendState::Cutout)].GetAddressOf());
+
+		bsDesc = {};
+		bsDesc.RenderTarget[0].BlendEnable = TRUE;
 		bsDesc.RenderTarget[0].SrcBlend = D3D11_BLEND::D3D11_BLEND_SRC_ALPHA;
 		bsDesc.RenderTarget[0].DestBlend = D3D11_BLEND::D3D11_BLEND_INV_SRC_ALPHA;
 		bsDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP::D3D11_BLEND_OP_ADD;
+
 		bsDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND::D3D11_BLEND_ONE;
 		bsDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND::D3D11_BLEND_ZERO;
 		bsDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP::D3D11_BLEND_OP_ADD;
-		bsDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE::D3D11_COLOR_WRITE_ENABLE_ALL;
-		GetDevice()->CreateBlendState(&bsDesc, blendStates[(UINT)EBlendState::AlphaBlend].GetAddressOf());
 
+		bsDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE::D3D11_COLOR_WRITE_ENABLE_ALL;
+		GetDevice()->CreateBlendState(&bsDesc, blendStates[static_cast<UINT>(EBlendState::Transparent)].GetAddressOf());
+
+		bsDesc = {};
+		bsDesc.RenderTarget[0].BlendEnable = TRUE;
+
+		// 색상 블렌딩
 		bsDesc.RenderTarget[0].SrcBlend = D3D11_BLEND::D3D11_BLEND_ONE;
 		bsDesc.RenderTarget[0].DestBlend = D3D11_BLEND::D3D11_BLEND_ONE;
-		GetDevice()->CreateBlendState(&bsDesc, blendStates[(UINT)EBlendState::OneOne].GetAddressOf());
+		bsDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+
+		// 알파 블렌딩 (보통 무시)
+		bsDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+		bsDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+		bsDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+
+		// 출력 마스크: RGBA 다 써도 됨
+		bsDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+		GetDevice()->CreateBlendState(&bsDesc, blendStates[static_cast<UINT>(EBlendState::OneOne)].GetAddressOf());
 #pragma endregion
 
 #pragma region depthstencil state
@@ -121,13 +144,21 @@ namespace DXEngine::Renderer
 		dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK::D3D11_DEPTH_WRITE_MASK_ALL;
 		dsDesc.DepthFunc = D3D11_COMPARISON_FUNC::D3D11_COMPARISON_LESS_EQUAL;
 		dsDesc.StencilEnable = false;
-		GetDevice()->CreateDepthStencilState(&dsDesc, depthStencilStates[(UINT)EDepthStencilState::LessEqual].GetAddressOf());
+		GetDevice()->CreateDepthStencilState(&dsDesc, depthStencilStates[static_cast<UINT>(EDepthStencilState::LessEqual)].GetAddressOf());
 
+		dsDesc = {};
 		dsDesc.DepthEnable = false;
 		dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK::D3D11_DEPTH_WRITE_MASK_ZERO;
-		dsDesc.DepthFunc = D3D11_COMPARISON_FUNC::D3D11_COMPARISON_LESS_EQUAL;
+		dsDesc.DepthFunc = D3D11_COMPARISON_FUNC::D3D11_COMPARISON_NEVER;
 		dsDesc.StencilEnable = false;
-		GetDevice()->CreateDepthStencilState(&dsDesc, depthStencilStates[(UINT)EDepthStencilState::DepthNone].GetAddressOf());
+		GetDevice()->CreateDepthStencilState(&dsDesc, depthStencilStates[static_cast<UINT>(EDepthStencilState::DepthNone)].GetAddressOf());
+
+		dsDesc = {};
+		dsDesc.DepthEnable = true;
+		dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
+		dsDesc.DepthFunc = D3D11_COMPARISON_ALWAYS;
+		dsDesc.StencilEnable = false;
+		GetDevice()->CreateDepthStencilState(&dsDesc, depthStencilStates[static_cast<UINT>(EDepthStencilState::Always)].GetAddressOf());
 #pragma endregion
 	}
 

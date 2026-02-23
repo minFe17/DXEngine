@@ -1,19 +1,14 @@
 #include "DXEnginePlayScene.h"
 #include "DXEngineGameObject.h"
 #include "DXEnginePlayer.h"
-#include "DXEngineTransform.h"
 #include "DXEngineSpriteRenderer.h"
-#include "DXEngineInput.h"
-#include "DXEngineSceneManager.h"
 #include "DXEngineObject.h"
 #include "DXEngineTexture.h"
 #include "DXEngineResources.h"
 #include "DXEnginePlayerScript.h"
 #include "DXEngineCamera.h"
 #include "DXEngineRenderer.h"
-#include "DXEngineAnimator.h"
-#include "DXEngineCameraScript.h"
-#include "DXEnginePlayerScript.h"
+#include "DXEngineSceneCamera.h"
 
 namespace DXEngine
 {
@@ -29,11 +24,11 @@ namespace DXEngine
 	void PlayScene::Init()
 	{
 		GameObject* camera = Object::Instantiate<GameObject>(Enum::ELayerType::None, Vector3(0.0f, 0.0f, -10.0f));
-		Camera* cameraComponent = camera->AddComponent<Camera>();
+
+		SceneCamera* cameraComponent = camera->AddComponent<SceneCamera>();
 		cameraComponent->SetProjectionType(Camera::EProjectionType::Perspective);
 		cameraComponent->SetSize(200.0f);
 
-		CameraScript* cameraScript = camera->AddComponent<CameraScript>();
 		Renderer::mainCamera = cameraComponent;
 
 		for (size_t i = 0; i < 1; i++)

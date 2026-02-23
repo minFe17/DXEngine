@@ -53,7 +53,6 @@ namespace DXEngine::Graphics
 		Opaque,
 		CutOut,
 		Transparent,
-		PostProcess,
 		Max,
 	};
 
@@ -79,7 +78,9 @@ namespace DXEngine::Graphics
 
 	enum class EBlendState
 	{
-		AlphaBlend,
+		Opaque,
+		Cutout,
+		Transparent,
 		OneOne,
 		Max,
 	};
@@ -88,6 +89,7 @@ namespace DXEngine::Graphics
 	{
 		DepthNone,
 		LessEqual,
+		Always,
 		Max,
 	};
 

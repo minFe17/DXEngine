@@ -13,7 +13,7 @@ namespace DXEngine
 		void Init() override;
 		void Update() override;
 		void LateUpdate() override;
-		void Render() override;
+		void Render(const Matrix& view, const Matrix& projection) override;
 
 		void SetMass(float massValue) { mass = massValue; }
 		void AddForce(Vector2 forceValue) { force = forceValue; }

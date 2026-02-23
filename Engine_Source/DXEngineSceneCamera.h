@@ -1,21 +1,21 @@
 #pragma once
-#include "DXEngineCollider.h"
+#include "DXEngineCamera.h"
 
 namespace DXEngine
 {
-	class CircleCollider2D : public Collider
+	class SceneCamera : public Camera
 	{
 	public:
-		CircleCollider2D();
-		~CircleCollider2D();
+		SceneCamera();
+		virtual ~SceneCamera();
 
-	private:
 		void Init() override;
 		void Update() override;
 		void LateUpdate() override;
 		void Render(const Matrix& view, const Matrix& projection) override;
+		void OnEvent(Event& e);
 
 	private:
-		float radius;
+
 	};
 }

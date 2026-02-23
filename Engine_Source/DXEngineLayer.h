@@ -19,7 +19,7 @@ namespace DXEngine
 
 		void AddGameObject(GameObject* gameObject);
 		void EraseGameObject(GameObject* eraseGameObj);
-		const std::vector<GameObject*> GetGameObjects() { return gameObjects; }
+		std::vector<GameObject*>& GetGameObjects() { return gameObjects; }
 
 	private:
 		void FindDeadGameObjects(OUT std::vector<GameObject*>& findGameObjects);
@@ -30,5 +30,5 @@ namespace DXEngine
 		std::vector<GameObject*> gameObjects;
 	};
 
-	typedef std::vector<GameObject*>::iterator GameObjectIter;
+	using GameObjectIter = std::vector<GameObject*>::iterator;
 }

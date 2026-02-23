@@ -2,6 +2,7 @@
 #include "DXEngineGameObject.h"
 #include "DXEngineTransform.h"
 #include "DXEngineApplication.h"
+#include "DXEngineSceneManager.h"
 
 extern DXEngine::Application application;
 
@@ -22,7 +23,8 @@ namespace DXEngine
 
 	void Camera::Init()
 	{
-		
+		Scene* activeScene = SceneManager::GetActiveScene();
+		activeScene->AddCamera(this);
 	}
 
 	void Camera::Update()
@@ -39,7 +41,7 @@ namespace DXEngine
 		ProjectionMatrix = projectionMatrix;
 	}
 
-	void Camera::Render()
+	void Camera::Render(const Matrix& view, const Matrix& projection)
 	{
 
 	}

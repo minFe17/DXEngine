@@ -9,6 +9,6 @@ namespace DXEngine
 		void Init();
 		void Update();
 		void LateUpdate();
-		void Render();
+		void Render(const Matrix& view, const Matrix& projection);
 	};
 }

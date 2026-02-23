@@ -37,7 +37,10 @@ namespace DXEngine
 		}
 
 		if (Input::GetKeyDown(EKeyCode::D))
+		{
 			Object::Destroy(projTile);
+			projTile = nullptr;
+		}
 	}
 
 	void PlayerScript::LateUpdate()
@@ -45,7 +48,7 @@ namespace DXEngine
 
 	}
 
-	void PlayerScript::Render()
+	void PlayerScript::Render(const Matrix& view, const Matrix& projection)
 	{
 		
 	}

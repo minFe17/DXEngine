@@ -5,6 +5,7 @@
 namespace DXEngine
 {
 	using namespace Math;
+
 	class Transform : public Component
 	{
 	public:
@@ -14,7 +15,7 @@ namespace DXEngine
 		void Init() override;
 		void Update() override;
 		void LateUpdate() override;
-		void Render() override;
+		void Render(const Matrix& view, const Matrix& projection) override;
 
 		void Bind();
 

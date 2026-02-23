@@ -33,7 +33,7 @@ namespace DXEngine
 
 	}
 
-	void Collider::Render()
+	void Collider::Render(const Matrix& view, const Matrix& projection)
 	{
 
 	}

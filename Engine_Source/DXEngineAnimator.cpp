@@ -49,7 +49,7 @@ namespace DXEngine
 	{
 	}
 
-	void Animator::Render()
+	void Animator::Render(const Matrix& view, const Matrix& projection)
 	{
 		
 	}

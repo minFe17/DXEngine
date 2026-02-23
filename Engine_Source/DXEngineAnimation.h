@@ -27,7 +27,7 @@ namespace DXEngine
 		virtual HRESULT Load(const std::wstring& path) override;
 
 		void Update();
-		void Render();
+		void Render(const Matrix& view, const Matrix& projection);
 
 		void CreateAnimation(const std::wstring& name, Graphics::Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration);
 		void Reset();

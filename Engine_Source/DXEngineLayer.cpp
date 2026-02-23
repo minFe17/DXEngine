@@ -54,17 +54,6 @@ namespace DXEngine
 
 	void Layer::Render()
 	{
-		for (size_t i = 0; i < gameObjects.size(); i++)
-		{
-			if (gameObjects[i] == nullptr)
-				continue;
-
-			GameObject::EStateType state = gameObjects[i]->GetState();
-			if (state == GameObject::EStateType::Paused || state == GameObject::EStateType::Destroyed)
-				continue;
-
-			gameObjects[i]->Render();
-		}
 	}
 
 	void Layer::EndOfFrame()
